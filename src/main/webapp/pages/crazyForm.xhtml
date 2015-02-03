@@ -1,0 +1,38 @@
+<ui:composition template="/template.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Crazy Form</ui:define>
+
+    <ui:define name="body">
+
+        <h:form>
+            <p:panelGrid columns="2">
+
+                <p:outputLabel value="Switcher" />
+                <p:inputSwitch value="#{crazyBean.switcher}" />
+
+                <p:outputLabel value="Spinner" />
+                <p:spinner value="#{crazyBean.spin}" />
+
+                <p:outputLabel value="Slider" />
+                <h:panelGroup>
+                    <p:slider for="slideMin, slideMax" range="true" />
+                    <h:inputHidden id="slideMin" value="#{crazyBean.slideMin}" />
+                    <h:inputHidden id="slideMax" value="#{crazyBean.slideMax}" />
+                </h:panelGroup>
+
+                <p:outputLabel value="Count" />
+                <p:outputLabel value="#{crazyBean.count}" id="counter"/>
+
+                <p:outputLabel value="" />
+                <p:commandButton value="Count" actionListener="#{crazyBean.increment()}" update="counter" />
+
+            </p:panelGrid>
+
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>
