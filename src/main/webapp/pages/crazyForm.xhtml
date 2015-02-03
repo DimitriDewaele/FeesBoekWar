@@ -9,11 +9,29 @@
 
         <h:form>
             <p:panelGrid columns="2">
+
+                <p:outputLabel value="Switcher" />
+                <p:inputSwitch value="#{crazyBean.switcher}" />
+
+                <p:outputLabel value="Spinner" />
+                <p:spinner value="#{crazyBean.spin}" />
+
+                <p:outputLabel value="Slider" />
+                <h:panelGroup>
+                    <p:slider for="slideMin, slideMax" range="true" />
+                    <h:inputHidden id="slideMin" value="#{crazyBean.slideMin}" />
+                    <h:inputHidden id="slideMax" value="#{crazyBean.slideMax}" />
+                </h:panelGroup>
+
                 <p:outputLabel value="Count" />
-                <p:outputLabel value="#{crazyForm.count}" id="counter" />
+                <p:outputLabel value="#{crazyBean.count}" id="counter"/>
+
+                <p:outputLabel value="" />
+                <p:commandButton value="Count" actionListener="#{crazyBean.increment()}" update="counter" />
+
             </p:panelGrid>
 
-            <p:commandButton value="Count" actionListener="#{crazyForm.increment()}" update="counter" />
+
         </h:form>
     </ui:define>
 
