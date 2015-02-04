@@ -1,0 +1,16 @@
+<ui:composition template="/template.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                      xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">Flow Scoped - Page 1</ui:define>
+    
+    <ui:define name="body">
+        <div>Simple flow starts implicitly, based on the empty configuration file</div>
+
+        <h:form>
+            <p>Value: <h:inputText id="input" value="#{flowScope.value}" /></p>
+            <p><h:commandButton value="Next" action="simple-flow-page2" /></p>
+        </h:form>
+    </ui:define>
+    
+</ui:composition>

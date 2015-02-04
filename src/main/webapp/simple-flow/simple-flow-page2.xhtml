@@ -1,0 +1,16 @@
+<ui:composition template="/template.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                      xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">Flow Scoped - Page 2</ui:define>
+    
+    <ui:define name="body">
+        <div>This is an implicit FlowScoped bean</div>
+        
+        <h:form>
+            <p>Value: #{flowScope.value}</p>
+            <p><h:commandButton value="Return" action="simple-flow-return" /></p>
+        </h:form>
+    </ui:define>
+    
+</ui:composition>
