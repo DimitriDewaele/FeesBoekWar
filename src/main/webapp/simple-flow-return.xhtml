@@ -1,0 +1,15 @@
+<ui:composition template="/template.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                      xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">Flow Scoped - return page</ui:define>
+    
+    <ui:define name="body">        
+        <div>The FlowScoped bean is not visible at the return page of the flow. Only return values, but there are none in this example.</div>
+
+        <p>Value (should be empty):
+        <h:outputText id="output" value="#{flowScope.value}" /></p>
+        <p><h:link outcome="index" value="Back to Start" /></p>
+    </ui:define>
+    
+</ui:composition>
