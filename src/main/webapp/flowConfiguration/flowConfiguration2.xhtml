@@ -1,0 +1,15 @@
+<ui:composition template="/template.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                      xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">Configuration flow - page 2</ui:define>
+    
+    <ui:define name="body">
+        <div>Configuration flow - configuration in xml to define flow</div>
+
+        <p>Return page: bean not valid = empty = <h:outputLabel value="#{flowConfigurationBean.value}" /></p>
+        
+        <p><h:commandLink value="Thanks - see you again" action="index" /></p>
+    </ui:define>
+    
+</ui:composition>

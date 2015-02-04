@@ -1,0 +1,16 @@
+<ui:composition template="/template.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                      xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">Programmatic flow - page 4</ui:define>
+    
+    <ui:define name="body">
+        <div>Programmatic flow - configuration in code to define flow</div>
+
+        <p>Return page: bean not valid = empty = <h:outputLabel value="#{flowProgrammaticBean.value}" /></p>
+
+        <p><h:commandButton value="Previous" action="flowProgrammatic3" /></p>
+        <p><h:commandLink value="Thanks - see you again" action="index" /></p>
+    </ui:define>
+    
+</ui:composition>

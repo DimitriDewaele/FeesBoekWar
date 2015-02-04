@@ -1,0 +1,16 @@
+<ui:composition template="/template.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                      xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">Configuration flow - page 1</ui:define>
+    
+    <ui:define name="body">
+        <div>Configuration flow - configuration in xml to define flow</div>
+
+        <h:form>
+            <p>Value: <h:inputText id="input" value="#{flowConfigurationBean.value}" /></p>
+            <p><h:commandButton value="Next" action="flowConfiguration2" /></p>
+        </h:form>
+    </ui:define>
+    
+</ui:composition>
