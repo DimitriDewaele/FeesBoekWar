@@ -8,26 +8,28 @@
             <from-outcome>#{flowConfigurationBean.returnValue}</from-outcome>
         </flow-return>
 
+        <!-- Incoming parameters: collected from flowScope, in this order-->
         <inbound-parameter>
-            <name>param1FromFlowProgrammatic</name>
-            <value>#{flowScope.param1Value}</value>
+            <name>paramFromProgrammaticValue1</name>
+            <value>#{flowScope.paramFromProgrammaticValue1}</value>
         </inbound-parameter>
         <inbound-parameter>
-            <name>param2FromFlowProgrammatic</name>
-            <value>#{flowScope.param2Value}</value>
+            <name>paramFromProgrammaticValue2</name>
+            <value>#{flowScope.paramFromProgrammaticValue2}</value>
         </inbound-parameter>
         
+        <!-- Possible to call following flow with these parameters -->
         <flow-call id="callflowProgrammatic">
             <flow-reference>
                 <flow-id>flowProgrammatic</flow-id>
             </flow-reference>
             <outbound-parameter>
-                <name>param1FromFlowConfiguration</name>
-                <value>param1 flowConfiguration value</value>
+                <name>paramFromConfigurationValue1</name>
+                <value>Just a string value 1</value>
             </outbound-parameter>
             <outbound-parameter>
-                <name>param2FromFlowConfiguration</name>
-                <value>param2 flowConfiguration value</value>
+                <name>paramFromConfigurationValue2</name>
+                <value>Another string for value 2</value>
             </outbound-parameter>
         </flow-call>
     </flow-definition>

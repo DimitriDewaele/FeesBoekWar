@@ -26,16 +26,16 @@ public class FlowProgrammatic implements Serializable {
         flowBuilder.returnNode("returnFromFlowProgrammatic").
                 fromOutcome("#{flowProgrammaticBean.returnValue}");
 
-        flowBuilder.inboundParameter("param1FromFlowConfiguration", 
-                "#{flowScope.param1Value}");
-        flowBuilder.inboundParameter("param2FromFlowConfiguration", 
-                "#{flowScope.param2Value}");
+        flowBuilder.inboundParameter("paramFromConfigurationValue1", 
+                "#{flowScope.paramFromConfigurationValue1}");
+        flowBuilder.inboundParameter("paramFromConfigurationValue2", 
+                "#{flowScope.paramFromConfigurationValue2}");
 
         flowBuilder.flowCallNode("calljoin").flowReference("", "flowConfiguration").
-                outboundParameter("param1FromFlowProgrammatic", 
-                "#{flowProgrammaticBean.name}").
-                outboundParameter("param2FromFlowProgrammatic", 
-                "#{flowProgrammaticBean.city}");
+                outboundParameter("paramFromProgrammaticValue1", 
+                "#{flowProgrammaticBean.value1}").
+                outboundParameter("paramFromProgrammaticValue2", 
+                "#{flowProgrammaticBean.value2}");
         return flowBuilder.getFlow();
     }
 }

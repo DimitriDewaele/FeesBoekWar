@@ -5,11 +5,23 @@
     <ui:define name="title">Programmatic flow - page 1</ui:define>
     
     <ui:define name="body">
-        <div>Programmatic flow - configuration in code to define flow</div>
+        <h2>Page 1: Programmatic flow</h2>
+        
+        <p>The configuration of this flow is done in code.</p>
+        <ul>
+            <li>Configuration Class must have the same name as the flow: FlowProgrammatic.java</li>
+            <li>Single method to define the flow: defineFlow</li>
+        </ul>
 
         <h:form>
-            <p>Value: <h:inputText id="input" value="#{flowProgrammaticBean.value}" /></p>
+            <p>Value 1: <h:inputText id="input" value="#{flowProgrammaticBean.value1}" /></p>
             <p><h:commandButton value="Next" action="flowProgrammatic2" /></p>
+            
+            <p>If you called this flow from the Configuration flow, then you can see these parameters:</p>
+            <ul>
+                <li>flowScope.paramFromConfigurationValue1 = #{flowScope.paramFromConfigurationValue1}</li>
+                <li>flowScope.paramFromConfigurationValue2 = #{flowScope.paramFromConfigurationValue2}</li>
+            </ul>
         </h:form>
     </ui:define>
     
