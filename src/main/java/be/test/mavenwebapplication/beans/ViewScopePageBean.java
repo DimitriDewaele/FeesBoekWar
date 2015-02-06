@@ -3,6 +3,7 @@ package be.test.mavenwebapplication.beans;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 /**
@@ -10,13 +11,13 @@ import javax.inject.Named;
  * @author dimitridw
  */
 @Named
-@SessionScoped
+@ViewScoped
 public class ViewScopePageBean implements Serializable{
     private static final long serialVersionUID = 1L;
     
     private String value1 = "a";
     private String value2 = "b";
-    private static int counter;
+    private int counter;
     
     @PostConstruct
     private void init() {
