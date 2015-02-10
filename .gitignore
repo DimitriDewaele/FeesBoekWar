@@ -1,1 +1,7 @@
 /target/
+*~
+*.bak
+*.old
+*.NavData
+nbactions.xml
+nb-configuration.xml

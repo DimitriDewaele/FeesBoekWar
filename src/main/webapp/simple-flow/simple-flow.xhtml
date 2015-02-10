@@ -1,16 +1,28 @@
 <ui:composition template="/template.xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                      xmlns:h="http://java.sun.com/jsf/html">
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="title">Flow Scoped - Page 1</ui:define>
-    
+
     <ui:define name="body">
-        <div>Simple flow starts implicitly, based on the empty configuration file</div>
+        <h2>Simple flow starts implicitly</h2>
+
+        <p>A simple flow has an empty configuration files, nothing much more... The flow is derived implicitly.</p>
+
+        <ul>
+            <li>simple-flow-flow.xml: By convention -flow.xml configuration file</li>
+            <li>simple-flow.xhtml: First page by conventions</li>
+            <li>simple-flow-return.xhtml: Return page by conventions</li>
+            <li>No managed bean is necessary: only flow-scoped data</li>
+            <li>Navigate from first page to other and use flowScope data</li>
+            <li>Navigate to return page to exit the flow. flowScope parameter is not usable any more.</li>
+        </ul>
 
         <h:form>
-            <p>Value: <h:inputText id="input" value="#{flowScope.value}" /></p>
+            <p>flowScope.data1 <h:inputText id="input" value="#{flowScope.data1}"/></p>
             <p><h:commandButton value="Next" action="simple-flow-page2" /></p>
         </h:form>
     </ui:define>
-    
+
 </ui:composition>

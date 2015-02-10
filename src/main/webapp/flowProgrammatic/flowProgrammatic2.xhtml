@@ -1,0 +1,27 @@
+<ui:composition template="/template.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">Programmatic flow - page 2</ui:define>
+
+    <ui:define name="body">
+        <h2>Page 1: Programmatic flow</h2>
+
+        <h:form>
+            <p>Value 1: #{flowProgrammaticBean.value1}</p>
+            <p>Value 2: <h:inputText id="input" value="#{flowProgrammaticBean.value2}" /></p>
+            <p>
+                <h:commandButton value="Previous" action="flowProgrammatic" />
+                <h:commandButton value="Next" action="flowProgrammatic3" />
+            </p>
+
+            <p>Inbound parameters or still visible??</p>
+            <ul>
+                <li>flowScope.paramFromConfigurationValue1 = #{flowScope.paramFromConfigurationValue1}</li>
+                <li>flowScope.paramFromConfigurationValue2 = #{flowScope.paramFromConfigurationValue2}</li>
+            </ul>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

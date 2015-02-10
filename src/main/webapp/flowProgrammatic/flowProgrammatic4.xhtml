@@ -1,0 +1,24 @@
+<ui:composition template="/template.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                      xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">Programmatic flow - page 4</ui:define>
+    
+    <ui:define name="body">
+        <h2>Page 4: Programmatic flow</h2>
+
+        <h:form>
+            <p>Value 1: #{flowProgrammaticBean.value1}</p>
+            <p>Value 2: #{flowProgrammaticBean.value2}</p>
+            <p>Value 3: #{flowProgrammaticBean.value3}</p>
+            <p>Value 4: <h:inputText id="input" value="#{flowProgrammaticBean.value4}" /></p>
+            <p>
+                <h:commandButton value="Previous" action="flowProgrammatic3" />
+                <h:commandButton value="Return page" action="returnFromFlowProgrammatic" />
+                <h:commandButton value="Join Flow" action="calljoin" />
+            </p>
+        </h:form>
+        
+    </ui:define>
+    
+</ui:composition>
