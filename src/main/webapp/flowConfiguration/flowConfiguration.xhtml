@@ -1,0 +1,27 @@
+<ui:composition template="/template.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="title">Configuration flow - page 1</ui:define>
+
+    <ui:define name="body">
+        <h2>Page 1: Configuration flow</h2>
+
+        <p>The configuration for this flow is done in -flow.xml</p>
+        <ul>
+            <li>flowConfiguration-flow.xml: file name by convention. This is a faces-config file with a flow-definition element.</li>
+        </ul>
+
+        <h:form>
+            <p>Value 1: <h:inputText id="input" value="#{flowConfigurationBean.value1}" /></p>
+            <p><h:commandButton value="Next" action="flowConfiguration2" /></p>
+        </h:form>
+
+        <p>If you called this flow from the Configuration flow, then you can see these parameters:</p>
+        <ul>
+            <li>flowScope.paramFromProgrammaticValue1 = #{flowScope.paramFromProgrammaticValue1}</li>
+            <li>flowScope.paramFromProgrammaticValue2 = #{flowScope.paramFromProgrammaticValue2}</li>
+        </ul>
+    </ui:define>
+
+</ui:composition>

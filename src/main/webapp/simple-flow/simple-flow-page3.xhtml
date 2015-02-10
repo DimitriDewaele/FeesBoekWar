@@ -2,18 +2,20 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                       xmlns:h="http://java.sun.com/jsf/html">
 
-    <ui:define name="title">Flow Scoped - Page 2</ui:define>
+    <ui:define name="title">Flow Scoped - Page 3</ui:define>
     
     <ui:define name="body">
-        <h2></h2>
+        <h2>Page 3</h2>
         
         <p>Use the flowscoped data.</p>
         
         <h:form>
             <p>flowScope.data1 = #{flowScope.data1}</p>
-            <p>flowScope.data2 <h:inputText id="input" value="#{flowScope.data2}"/></p>
-            <p><h:commandButton value="Previous" action="simple-flow" /><h:commandButton value="Next" action="simple-flow-page3" /></p>
+            <p>flowScope.data2 = #{flowScope.data2}</p>
+            <p>flowScope.data3 <h:inputText id="input" value="#{flowScope.data3}"/></p>
+            <p><h:commandButton value="Previous" action="simple-flow-page2" /><h:commandButton value="Return Page" action="simple-flow-return" /></p>
         </h:form>
+        
     </ui:define>
     
 </ui:composition>
