@@ -41,6 +41,7 @@ public class TableBean implements Serializable {
         persons.add(new PersonVO("Medina", "Zegers", "test engineer", new Date(85, 10, 10)));
         persons.add(new PersonVO("Horaire", "Safrina", "manager", new Date(47, 10, 10)));
 
+        // Add random up to  10 rows - loaded in RequestScope
         Random randomGenerator = new Random();
         int randomInt = randomGenerator.nextInt(10);
         for (int j = 0; j < randomInt; j++) {
@@ -63,16 +64,15 @@ public class TableBean implements Serializable {
     }
 
     public String getCalculatedRowClasses() {
-        StringBuffer build = new StringBuffer();
-
+        StringBuilder build = new StringBuilder();
+        
         int total = persons.size();
+        int factor = 99 / total;    //divide an integer results in an interger
+        
         build.append("list-row-0");
-
-        int factor = 99 / total;
-
         for (int i = 0; i < total; i++) {
             build.append(",");
-            build.append("list-row-" + (i * factor));
+            build.append("list-row-").append(i * factor);   //divide the css over the 100 available in style.css
         }
 
         return build.toString();
