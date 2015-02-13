@@ -1,0 +1,134 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 13, 2015, 11:41:00 AM
+    Author     : dimitridw
+*/
+
+.list-header {
+    background-color: coral;
+}
+
+.list-caption {
+    background-color: crimson;
+}
+
+.list-row-even {
+    background-color: darkgreen;
+}
+
+.list-row-odd {
+    background-color: chartreuse;
+}
+
+.list-row-0 { background-color: #990000; color: yellow;}
+.list-row-1 { background-color: #980100; color: yellow;}
+.list-row-2 { background-color: #970200; color: yellow;}
+.list-row-3 { background-color: #960300; color: yellow;}
+.list-row-4 { background-color: #950400; color: yellow;}
+.list-row-5 { background-color: #940500; color: yellow;}
+.list-row-6 { background-color: #930600; color: yellow;}
+.list-row-7 { background-color: #920700; color: yellow;}
+.list-row-8 { background-color: #910800; color: yellow;}
+.list-row-9 { background-color: #900900; color: yellow;}
+.list-row-10 { background-color: #891000; color: yellow;}
+.list-row-11 { background-color: #881100; color: yellow;}
+.list-row-12 { background-color: #871200; color: yellow;}
+.list-row-13 { background-color: #861300; color: yellow;}
+.list-row-14 { background-color: #851400; color: yellow;}
+.list-row-15 { background-color: #841500; color: yellow;}
+.list-row-16 { background-color: #831600; color: yellow;}
+.list-row-17 { background-color: #821700; color: yellow;}
+.list-row-18 { background-color: #811800; color: yellow;}
+.list-row-19 { background-color: #801900; color: yellow;}
+.list-row-20 { background-color: #792000; color: yellow;}
+.list-row-21 { background-color: #782100; color: yellow;}
+.list-row-22 { background-color: #772200; color: yellow;}
+.list-row-23 { background-color: #762300; color: yellow;}
+.list-row-24 { background-color: #752400; color: yellow;}
+.list-row-25 { background-color: #742500; color: yellow;}
+.list-row-26 { background-color: #732600; color: yellow;}
+.list-row-27 { background-color: #722700; color: yellow;}
+.list-row-28 { background-color: #712800; color: yellow;}
+.list-row-29 { background-color: #702900; color: yellow;}
+.list-row-30 { background-color: #693000; color: yellow;}
+.list-row-31 { background-color: #683100; color: yellow;}
+.list-row-32 { background-color: #673200; color: yellow;}
+.list-row-33 { background-color: #663300; color: yellow;}
+.list-row-34 { background-color: #653400; color: yellow;}
+.list-row-35 { background-color: #643500; color: yellow;}
+.list-row-36 { background-color: #633600; color: yellow;}
+.list-row-37 { background-color: #623700; color: yellow;}
+.list-row-38 { background-color: #613800; color: yellow;}
+.list-row-39 { background-color: #603900; color: yellow;}
+.list-row-40 { background-color: #594000; color: yellow;}
+.list-row-41 { background-color: #584100; color: yellow;}
+.list-row-42 { background-color: #574200; color: yellow;}
+.list-row-43 { background-color: #564300; color: yellow;}
+.list-row-44 { background-color: #554400; color: yellow;}
+.list-row-45 { background-color: #544500; color: yellow;}
+.list-row-46 { background-color: #534600; color: yellow;}
+.list-row-47 { background-color: #524700; color: yellow;}
+.list-row-48 { background-color: #514800; color: yellow;}
+.list-row-49 { background-color: #504900; color: yellow;}
+.list-row-50 { background-color: #495000; color: yellow;}
+.list-row-51 { background-color: #485100; color: yellow;}
+.list-row-52 { background-color: #475200; color: yellow;}
+.list-row-53 { background-color: #465300; color: yellow;}
+.list-row-54 { background-color: #455400; color: yellow;}
+.list-row-55 { background-color: #445500; color: yellow;}
+.list-row-56 { background-color: #435600; color: yellow;}
+.list-row-57 { background-color: #425700; color: yellow;}
+.list-row-58 { background-color: #415800; color: yellow;}
+.list-row-59 { background-color: #405900; color: yellow;}
+.list-row-60 { background-color: #396000; color: yellow;}
+.list-row-61 { background-color: #386100; color: yellow;}
+.list-row-62 { background-color: #376200; color: yellow;}
+.list-row-63 { background-color: #366300; color: yellow;}
+.list-row-64 { background-color: #356400; color: yellow;}
+.list-row-65 { background-color: #346500; color: yellow;}
+.list-row-66 { background-color: #336600; color: yellow;}
+.list-row-67 { background-color: #326700; color: yellow;}
+.list-row-68 { background-color: #316800; color: yellow;}
+.list-row-69 { background-color: #306900; color: yellow;}
+.list-row-70 { background-color: #297000; color: yellow;}
+.list-row-71 { background-color: #287100; color: yellow;}
+.list-row-72 { background-color: #277200; color: yellow;}
+.list-row-73 { background-color: #267300; color: yellow;}
+.list-row-74 { background-color: #257400; color: yellow;}
+.list-row-75 { background-color: #247500; color: yellow;}
+.list-row-76 { background-color: #237600; color: yellow;}
+.list-row-77 { background-color: #227700; color: yellow;}
+.list-row-78 { background-color: #217800; color: yellow;}
+.list-row-79 { background-color: #207900; color: yellow;}
+.list-row-80 { background-color: #198000; color: yellow;}
+.list-row-81 { background-color: #188100; color: yellow;}
+.list-row-82 { background-color: #178200; color: yellow;}
+.list-row-83 { background-color: #168300; color: yellow;}
+.list-row-84 { background-color: #158400; color: yellow;}
+.list-row-85 { background-color: #148500; color: yellow;}
+.list-row-86 { background-color: #138600; color: yellow;}
+.list-row-87 { background-color: #128700; color: yellow;}
+.list-row-88 { background-color: #118800; color: yellow;}
+.list-row-89 { background-color: #108900; color: yellow;}
+.list-row-90 { background-color: #099000; color: yellow;}
+.list-row-91 { background-color: #089100; color: yellow;}
+.list-row-92 { background-color: #079200; color: yellow;}
+.list-row-93 { background-color: #069300; color: yellow;}
+.list-row-94 { background-color: #059400; color: yellow;}
+.list-row-95 { background-color: #049500; color: yellow;}
+.list-row-96 { background-color: #039600; color: yellow;}
+.list-row-97 { background-color: #029700; color: yellow;}
+.list-row-98 { background-color: #019800; color: yellow;}
+.list-row-99 { background-color: #009900; color: yellow;}
+
+.list-column {
+    background-color: appworkspace;
+}
+
+.list-footer {
+    background-color: chocolate;
+}
