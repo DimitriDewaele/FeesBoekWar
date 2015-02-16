@@ -1,38 +1,46 @@
 <ui:composition template="/template.xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">Table Demo</ui:define>
 
     <ui:define name="body">
 
         <p>My nice table</p>
-        
+
         <h:outputStylesheet library="default" name="css/style.css" />
 
-        <h:dataTable id="persons" value="#{tableBean.persons}" var="person"
-                     headerClass="list-header"
-                     captionClass="list-caption"
-                     rowClasses="#{tableBean.calculatedRowClasses}"
-                     footerClass="list-footer" >
-            <h:column>
-                <h:outputLabel value="#{person.firstName}" />
-            </h:column>
-            <h:column>
-                <h:outputLabel value="#{person.lastName}" />
-            </h:column>
-            <h:column>
-                <h:outputLabel value="#{person.jobTitle}" />
-            </h:column>
-            <h:column>
-                <h:outputLabel value="#{person.birthDate}" />
-            </h:column>
-            <h:column>
-                <h:outputLabel value="#{person.age}" />
-            </h:column>
-        </h:dataTable>
-        
+        <h:form>
+            <h:dataTable id="persons" value="#{tableBean.persons}" var="person"
+                         headerClass="list-header"
+                         captionClass="list-caption"
+                         rowClasses="#{tableBean.calculatedRowClasses}"
+                         footerClass="list-footer">
+                <h:column>
+                    <h:outputLabel value="#{person.firstName}" />
+                </h:column>
+                <h:column>
+                    <h:outputLabel value="#{person.lastName}" />
+                </h:column>
+                <h:column>
+                    <h:outputLabel value="#{person.jobTitle}" />
+                </h:column>
+                <h:column>
+                    <h:outputLabel value="#{person.birthDate}" />
+                </h:column>
+                <h:column>
+                    <h:outputLabel value="#{person.age}" />
+                </h:column>
+                <h:column>
+                    <h:link outcome="/viewScopePage" value="Person with id: #{person.id}" style="color: wheat">
+                        <f:param name="personId" value="#{person.id}"/>
+                    </h:link>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+
     </ui:define>
 
 </ui:composition>

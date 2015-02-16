@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class PersonVO {
     
+    private int id;
     private String firstName;
     private String lastName;
     private String jobTitle;
@@ -22,7 +23,8 @@ public class PersonVO {
     public PersonVO() {
     }
     
-    public PersonVO(String firstName, String lastName, String jobTitle, Date birthDate){
+    public PersonVO(int id, String firstName, String lastName, String jobTitle, Date birthDate){
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.jobTitle = jobTitle;
@@ -98,6 +100,20 @@ public class PersonVO {
      */
     public void setAge(int age) {
         this.age = age;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
     
     

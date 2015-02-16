@@ -7,6 +7,10 @@
       xmlns:p="http://primefaces.org/ui">
 
     <f:view contentType="text/html">
+
+        <!-- Add page specific metadata-->
+        <ui:insert name="metadata"/>
+
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
@@ -32,8 +36,8 @@
                         <p:menu>
                             <p:submenu label="Pages">
                                 <p:menuitem value="Index" url="/index.xhtml" />
-                                <p:menuitem value="Guestbook" outcome="/pages/guestbook" />
-                                <p:menuitem value="Guestbook Prime" outcome="/pages/guestbookPrime" />
+                                <p:menuitem value="Feesboek" outcome="/pages/feesboek" />
+                                <p:menuitem value="Primeboek" outcome="/pages/primeboek" />
                                 <p:menuitem value="Crazy Form" outcome="/pages/crazyForm" />
                                 <p:menuitem value="Simple Flow" action="simple-flow" ajax="false"/>
                                 <p:menuitem value="Programmatic Flow" action="flowProgrammatic" />

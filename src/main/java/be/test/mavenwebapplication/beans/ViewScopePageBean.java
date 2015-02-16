@@ -1,8 +1,8 @@
 package be.test.mavenwebapplication.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -15,15 +15,16 @@ import javax.inject.Named;
 public class ViewScopePageBean implements Serializable{
     private static final long serialVersionUID = 1L;
     
+    private int personId;
     private String value1 = "a";
     private String value2 = "b";
     private int counter;
+    private PersonVO person;
     
     @PostConstruct
     private void init() {
         setValue1("initial value 1");
         setValue2("initial value 2");
-        
     }
 
     ViewScopePageBean() {
@@ -35,6 +36,12 @@ public class ViewScopePageBean implements Serializable{
         setValue2("doit 2 - " + counter);
         counter++;
     }
+    
+    public void getPersonFromId() {
+        System.out.println("getPersonFromId:" + personId);
+        person = new PersonVO(personId, "First", "Last", "development", new Date());
+    }
+    
     /**
      * @return the value1
      */
@@ -61,5 +68,34 @@ public class ViewScopePageBean implements Serializable{
      */
     public void setValue2(String value2) {
         this.value2 = value2;
+    }
+
+    /**
+     * @return the personId
+     */
+    public int getPersonId() {
+        return personId;
+    }
+
+    /**
+     * @param personId the personId to set
+     */
+    public void setPersonId(int personId) {
+        System.out.println("setPersonId:" + personId);
+        this.personId = personId;
+    }
+
+    /**
+     * @return the person
+     */
+    public PersonVO getPerson() {
+        return person;
+    }
+
+    /**
+     * @param person the person to set
+     */
+    public void setPerson(PersonVO person) {
+        this.person = person;
     }
 }
