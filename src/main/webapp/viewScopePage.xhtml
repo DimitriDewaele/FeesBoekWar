@@ -8,7 +8,7 @@
         <f:metadata>
             <f:viewParam name="personId" value="#{viewScopePageBean.personId}"/>
 
-            <f:viewAction action="#{viewScopePageBean.getPersonFromId()}"/>
+            <f:viewAction action="#{viewScopePageBean.loadPersonFromId()}"/>
         </f:metadata>
     </ui:define>
 
@@ -27,6 +27,9 @@
                 <h:outputLabel value="Value 2"/>
                 <h:outputText value="#{viewScopePageBean.value2}" />
 
+                <h:outputLabel value="Count"/>
+                <h:outputText value="#{viewScopePageBean.counter}" />
+                
                 <h:outputLabel value="Person ID"/>
                 <h:outputText value="#{viewScopePageBean.personId}" />
 
@@ -36,7 +39,7 @@
                 <h:commandButton value="Back to page" action="viewScopePage" />
                 <h:commandButton value="Do it" action="#{viewScopePageBean.doit}" />
 
-                <h:commandButton value="Other page" action="index" />
+                <h:commandButton value="Other page" action="/index" />
 
             </h:panelGrid>
         </h:form>

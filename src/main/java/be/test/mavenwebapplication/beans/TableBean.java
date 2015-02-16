@@ -48,7 +48,7 @@ public class TableBean implements Serializable {
             persons.add(new PersonVO((11+j),"Horaire", "Safrina", "manager", new Date(47, 10, 10)));    
         }
     }
-
+    
     /**
      * @return the persons
      */

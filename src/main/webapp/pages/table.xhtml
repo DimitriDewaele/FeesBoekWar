@@ -2,7 +2,8 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="title">Table Demo</ui:define>
 
@@ -34,10 +35,16 @@
                     <h:outputLabel value="#{person.age}" />
                 </h:column>
                 <h:column>
-                    <h:link outcome="/viewScopePage" value="Person with id: #{person.id}" style="color: wheat">
+                    <h:link outcome="/viewScopePage" value="ViewScope" style="color: pink">
                         <f:param name="personId" value="#{person.id}"/>
                     </h:link>
                 </h:column>
+                <h:column>
+                    <h:link outcome="flowProgrammatic" value="FlowScope" style="color: wheat">
+                        <f:param name="personId" value="#{person.id}"/>
+                    </h:link>
+                </h:column>
+                
             </h:dataTable>
         </h:form>
 

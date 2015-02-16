@@ -3,6 +3,7 @@ package be.test.mavenwebapplication.beans;
 import java.io.Serializable;
 import java.util.Date;
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -15,30 +16,37 @@ import javax.inject.Named;
 public class ViewScopePageBean implements Serializable{
     private static final long serialVersionUID = 1L;
     
-    private int personId;
     private String value1 = "a";
     private String value2 = "b";
     private int counter;
+    
+    private int personId;
     private PersonVO person;
     
     @PostConstruct
     private void init() {
+        System.out.println("STOP");
         setValue1("initial value 1");
         setValue2("initial value 2");
-    }
-
-    ViewScopePageBean() {
         counter = 1;
     }
     
-    public void doit() {
-        setValue1("doit 1 - " + counter);
-        setValue2("doit 2 - " + counter);
-        counter++;
+    @PreDestroy
+    private void stop() {
+        System.out.println("STOP");
+    }            
+
+    ViewScopePageBean() {
     }
     
-    public void getPersonFromId() {
-        System.out.println("getPersonFromId:" + personId);
+    public void doit() {
+        counter++;
+        setValue1("doit 1 - " + counter);
+        setValue2("doit 2 - " + counter);
+    }
+    
+    public void loadPersonFromId() {
+        System.out.println("loadPersonFromId:" + personId);
         person = new PersonVO(personId, "First", "Last", "development", new Date());
     }
     
@@ -81,7 +89,6 @@ public class ViewScopePageBean implements Serializable{
      * @param personId the personId to set
      */
     public void setPersonId(int personId) {
-        System.out.println("setPersonId:" + personId);
         this.personId = personId;
     }
 
@@ -97,5 +104,19 @@ public class ViewScopePageBean implements Serializable{
      */
     public void setPerson(PersonVO person) {
         this.person = person;
+    }
+
+    /**
+     * @return the counter
+     */
+    public int getCounter() {
+        return counter;
+    }
+
+    /**
+     * @param counter the counter to set
+     */
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 }
