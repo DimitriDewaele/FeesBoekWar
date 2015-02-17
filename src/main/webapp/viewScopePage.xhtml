@@ -1,25 +1,47 @@
 <ui:composition template="/template.xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="personId" value="#{viewScopePageBean.personId}"/>
+
+            <f:viewAction action="#{viewScopePageBean.loadPersonFromId()}"/>
+        </f:metadata>
+    </ui:define>
 
     <ui:define name="title">ViewScoped page</ui:define>
 
     <ui:define name="body">
-        <h2>View scope page</h2>
 
-        <p>The bean remains active as long as you don't navigate to another page than itself.</p>
+        The bean remains active as long as you don't navigate to another page than itself.
 
-        <p>NOT WORKING - SESSIONSCOPED</p>
-        
         <h:form id="viewScopedForm">
-            <p>Value 1: #{viewScopePageBean.value1}</p>
-            <p>Value 2: <p:inputText value="#{viewScopePageBean.value2}" /></p>
-            <p>
+            <h:panelGrid columns="2">
+
+                <h:outputLabel value="Value 1"/>
+                <h:outputText value="#{viewScopePageBean.value1}" />
+
+                <h:outputLabel value="Value 2"/>
+                <h:outputText value="#{viewScopePageBean.value2}" />
+
+                <h:outputLabel value="Count"/>
+                <h:outputText value="#{viewScopePageBean.counter}" />
+                
+                <h:outputLabel value="Person ID"/>
+                <h:outputText value="#{viewScopePageBean.personId}" />
+
+                <h:outputLabel value="Person Name"/>
+                <h:outputText value="#{viewScopePageBean.person.firstName}" />
+
                 <h:commandButton value="Back to page" action="viewScopePage" />
                 <h:commandButton value="Do it" action="#{viewScopePageBean.doit}" />
-                <h:commandButton value="Other page" action="index" />
-            </p>
+
+                <h:commandButton value="Other page" action="/index" />
+
+            </h:panelGrid>
         </h:form>
     </ui:define>
 

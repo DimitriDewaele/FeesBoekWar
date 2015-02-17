@@ -1,8 +1,9 @@
 package be.test.mavenwebapplication.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
+import javax.annotation.PreDestroy;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -19,22 +20,36 @@ public class ViewScopePageBean implements Serializable{
     private String value2 = "b";
     private int counter;
     
+    private int personId;
+    private PersonVO person;
+    
     @PostConstruct
     private void init() {
+        System.out.println("STOP");
         setValue1("initial value 1");
         setValue2("initial value 2");
-        
-    }
-
-    ViewScopePageBean() {
         counter = 1;
     }
     
+    @PreDestroy
+    private void stop() {
+        System.out.println("STOP");
+    }            
+
+    ViewScopePageBean() {
+    }
+    
     public void doit() {
+        counter++;
         setValue1("doit 1 - " + counter);
         setValue2("doit 2 - " + counter);
-        counter++;
     }
+    
+    public void loadPersonFromId() {
+        System.out.println("loadPersonFromId:" + personId);
+        person = new PersonVO(personId, "First", "Last", "development", new Date());
+    }
+    
     /**
      * @return the value1
      */
@@ -61,5 +76,47 @@ public class ViewScopePageBean implements Serializable{
      */
     public void setValue2(String value2) {
         this.value2 = value2;
+    }
+
+    /**
+     * @return the personId
+     */
+    public int getPersonId() {
+        return personId;
+    }
+
+    /**
+     * @param personId the personId to set
+     */
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
+
+    /**
+     * @return the person
+     */
+    public PersonVO getPerson() {
+        return person;
+    }
+
+    /**
+     * @param person the person to set
+     */
+    public void setPerson(PersonVO person) {
+        this.person = person;
+    }
+
+    /**
+     * @return the counter
+     */
+    public int getCounter() {
+        return counter;
+    }
+
+    /**
+     * @param counter the counter to set
+     */
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 }

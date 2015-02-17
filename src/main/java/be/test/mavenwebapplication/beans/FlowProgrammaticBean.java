@@ -1,11 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package be.test.mavenwebapplication.beans;
 
 import java.io.Serializable;
+import java.util.Date;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.faces.flow.FlowScoped;
 import javax.inject.Named;
 
@@ -22,14 +20,33 @@ public class FlowProgrammaticBean implements Serializable {
     private String value3;
     private String value4;
 
+    private int personId;
+    private PersonVO person;
+
     /**
      * Creates a new instance of FlowProgrammaticBean
      */
     public FlowProgrammaticBean() {
+        System.out.println("CONSTRUCT");
     }
-
+    
     public String getReturnValue() {
         return "/flowProgrammaticReturn";
+    }
+
+    @PostConstruct
+    public void start() {
+        System.out.println("START");
+    }
+    
+    @PreDestroy
+    public void end() {
+        System.out.println("END");
+    }
+    
+    public void loadPersonFromId() {
+        System.out.println("loadPersonFromId:" + personId);
+        person = new PersonVO(personId, "First", "Last", "development", new Date());
     }
 
     /**
@@ -86,5 +103,33 @@ public class FlowProgrammaticBean implements Serializable {
      */
     public void setValue4(String value4) {
         this.value4 = value4;
+    }
+
+    /**
+     * @return the personId
+     */
+    public int getPersonId() {
+        return personId;
+    }
+
+    /**
+     * @param personId the personId to set
+     */
+    public void setPersonId(int personId) {
+        this.personId = personId;
+    }
+
+    /**
+     * @return the person
+     */
+    public PersonVO getPerson() {
+        return person;
+    }
+
+    /**
+     * @param person the person to set
+     */
+    public void setPerson(PersonVO person) {
+        this.person = person;
     }
 }

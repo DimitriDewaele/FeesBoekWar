@@ -1,0 +1,55 @@
+<ui:composition template="/template.xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">JSF test page</ui:define>
+
+    <ui:define name="body">
+        Hello from Feesboek
+
+        <h:form>
+            <h:panelGrid>
+                <h:inputText value="#{messageBean.user}"></h:inputText>
+                <h:inputTextarea value="#{messageBean.message}"></h:inputTextarea>
+                <h:inputText id="age" value="#{messageBean.age}">
+                    <f:validateLongRange minimum="0" maximum="10"/>
+                </h:inputText>
+                <h:message for="age"/>
+                <h:inputText value="#{messageBean.lastFriday}">
+                    <f:convertDateTime type="date" dateStyle="full" />
+                </h:inputText>
+                <h:inputText value="#{messageBean.price}"/>
+                <h:commandButton value="Message" action="/pages/feesboek"></h:commandButton>                
+            </h:panelGrid>
+        </h:form>
+
+        <h:panelGrid columns="2">
+            <h:outputLabel value="User"/>
+            <h:outputText value="#{messageBean.user}"/>
+
+            <h:outputLabel value="Message"/>
+            <h:outputText value="#{messageBean.message}"/>
+
+            <h:outputLabel value="Age"/>
+            <h:outputText value="#{messageBean.age}"/>
+
+            <h:outputLabel value="Date"/>
+            <h:outputText value="#{messageBean.lastFriday}">
+                <f:convertDateTime type="date" dateStyle="full" />
+            </h:outputText>
+
+            <h:outputLabel value="Date (raw)"/>
+            <h:outputText value="#{messageBean.lastFriday}"/>
+
+            <h:outputLabel value="Price"/>
+            <h:outputText value="#{messageBean.price}">
+                <f:convertNumber currencySymbol="€" type="currency"/>
+            </h:outputText>
+
+        </h:panelGrid>
+
+        <h:messages />
+    </ui:define>
+
+</ui:composition>
