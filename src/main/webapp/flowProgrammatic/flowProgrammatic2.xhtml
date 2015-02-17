@@ -1,6 +1,7 @@
 <ui:composition template="/template.xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:h="http://java.sun.com/jsf/html">
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="title">Programmatic flow - page 2</ui:define>
 
@@ -8,18 +9,30 @@
         <h2>Page 1: Programmatic flow</h2>
 
         <h:form>
-            <p>Value 1: #{flowProgrammaticBean.value1}</p>
-            <p>Value 2: <h:inputText id="input" value="#{flowProgrammaticBean.value2}" /></p>
-            <p>
+
+            <p:panelGrid columns="2">
+                <h:outputLabel value="Value 1"/>
+                <h:outputLabel value="#{flowProgrammaticBean.value1}" />
+
+                <h:outputLabel value="Value 2"/>
+                <h:inputText value="#{flowProgrammaticBean.value2}" />
+
                 <h:commandButton value="Previous" action="flowProgrammatic" />
                 <h:commandButton value="Next" action="flowProgrammatic3" />
-            </p>
+
+                <h:outputLabel value="Person ID"/>
+                <h:outputText value="#{flowProgrammaticBean.personId}" />
+
+                <h:outputLabel value="Person Name"/>
+                <h:outputText value="#{flowProgrammaticBean.person.firstName}" />
+            </p:panelGrid>
 
             <p>Inbound parameters or still visible??</p>
             <ul>
                 <li>flowScope.paramFromConfigurationValue1 = #{flowScope.paramFromConfigurationValue1}</li>
                 <li>flowScope.paramFromConfigurationValue2 = #{flowScope.paramFromConfigurationValue2}</li>
             </ul>
+
         </h:form>
 
     </ui:define>
