@@ -12,6 +12,8 @@ import java.io.Serializable;
 @SessionScoped
 public class CrazyBean implements Serializable {
     
+    org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(CrazyBean.class);
+    
     private int spin = 10;
     private int count = 0;
     private boolean switcher = true;
@@ -22,6 +24,7 @@ public class CrazyBean implements Serializable {
      * Creates a new instance of CrazyForm
      */
     public CrazyBean() {
+        LOGGER.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
     }
     
     public void increment() {

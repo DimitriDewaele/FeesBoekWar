@@ -19,6 +19,8 @@ public class MessageBean implements Serializable {
     private Integer age;
     private Date lastFriday;
     private double price;
+    private String email;
+    
     /**
      * Creates a new instance of MessageBean
      */
@@ -99,6 +101,20 @@ public class MessageBean implements Serializable {
      */
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
     
 }

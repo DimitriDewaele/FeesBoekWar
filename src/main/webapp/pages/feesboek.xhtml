@@ -1,7 +1,9 @@
 <ui:composition template="/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp">
 
     <ui:define name="title">JSF test page</ui:define>
 
@@ -20,7 +22,8 @@
                     <f:convertDateTime type="date" dateStyle="full" />
                 </h:inputText>
                 <h:inputText value="#{messageBean.price}"/>
-                <h:commandButton value="Message" action="/pages/feesboek"></h:commandButton>                
+                <em:email value="#{messageBean.email}"/>
+                <h:commandButton value="Message" action="feesboek"></h:commandButton>                
             </h:panelGrid>
         </h:form>
 
