@@ -27,7 +27,13 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="south" closable="true" collapsible="true" minSize="100" maxSize="300">
-                    <ui:insert name="footer">Copyright © All Rights Reserved.</ui:insert>
+                    <ui:insert name="footer">Copyright © All Rights Reserved
+                        - Application counter: <h:outputText value="#{applicationBean.counter()}"/>
+                        - Start time: 
+                        <h:outputText value="#{applicationBean.start}">
+                            <f:convertDateTime type="both" dateStyle="full" />
+                        </h:outputText>
+                    </ui:insert>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
