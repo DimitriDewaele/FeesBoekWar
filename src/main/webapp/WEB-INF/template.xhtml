@@ -27,7 +27,13 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="south" closable="true" collapsible="true" minSize="100" maxSize="300">
-                    <ui:insert name="footer">Copyright © All Rights Reserved.</ui:insert>
+                    <ui:insert name="footer">Copyright © All Rights Reserved
+                        - Application counter: <h:outputText value="#{applicationBean.counter()}"/>
+                        - Start time: 
+                        <h:outputText value="#{applicationBean.start}">
+                            <f:convertDateTime type="both" dateStyle="full" />
+                        </h:outputText>
+                    </ui:insert>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
@@ -42,8 +48,10 @@
                                 <p:menuitem value="Simple Flow" action="simple-flow" ajax="false"/>
                                 <p:menuitem value="Programmatic Flow" action="flowProgrammatic" />
                                 <p:menuitem value="Configuration Flow" action="flowConfiguration" />
-                                <p:menuitem value="View Scoped Page" action="viewScopePage" />
+                                <p:menuitem value="View Scoped Page" action="/pages/viewScopePage" />
                                 <p:menuitem value="Table Demo" outcome="/pages/table" />
+                                <p:menuitem value="Prime upload" outcome="/pages/primeupload" />
+                                <p:menuitem value="Servlet upload" outcome="/pages/fileupload" />
                             </p:submenu>
                             <p:submenu label="Links">
                                 <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
