@@ -1,4 +1,5 @@
-<ui:composition template="/template.xhtml"
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
@@ -18,8 +19,10 @@
                 <li><p:commandLink action="simple-flow" value="Simple Flow"/></li>
                 <li><p:commandLink action="flowProgrammatic" value="Programmatic Flow" /></li>
                 <li><p:commandLink action="flowConfiguration" value="Configuration Flow" /></li>
-                <li><p:commandLink action="viewScopePage" value="View Scoped Page" /></li>
+                <li><p:commandLink action="/pages/viewScopePage" value="View Scoped Page" /></li>
                 <li><h:link outcome="/pages/table" value="Table demo" /></li>
+                <li><h:link outcome="/pages/primeupload" value="Prime upload" /></li>
+                <li><h:link outcome="/pages/fileupload" value="Servlet upload" /></li>
             </ul>
         </h:form>
     </ui:define>
