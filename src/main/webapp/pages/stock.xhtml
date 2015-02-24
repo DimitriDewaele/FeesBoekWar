@@ -1,0 +1,29 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Upload file</ui:define>
+
+    <ui:define name="body">
+        <h:outputScript library="javascript" name="stockWS.js" target="head"/>
+
+        <h2>Potato price</h2>
+
+        <p:outputLabel id="potato">Web Sockets. Open a second page and change color on both! (white, green, #FFF, ...)</p:outputLabel>
+
+        <p:panelGrid columns="2">
+            <h:outputText value="Price (€)"/>
+            <h:outputText value="--.--" id="price" style="font-size:24pt;font-weight:bold;"/>
+
+            <h:outputText value="Volume (kg)"/>
+            <h:outputText value="--" id="volume" style="font-size:18pt;"/>
+
+            <p:inputText value="white" id="color"/>
+            <p:commandButton value="Change color" onclick="sendColor();"/>
+        </p:panelGrid>
+
+    </ui:define>
+
+</ui:composition>
