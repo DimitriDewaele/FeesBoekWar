@@ -36,7 +36,7 @@
                     </ui:insert>
                 </p:layoutUnit>
 
-                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                <p:layoutUnit position="west" size="275" header="Left" collapsible="true">
                     <!-- MenuAction items need a form -->
                     <h:form id="menuForm">
                         <p:menu>
@@ -45,11 +45,16 @@
                                 <p:menuitem value="Feesboek" outcome="/pages/feesboek" />
                                 <p:menuitem value="Primeboek" outcome="/pages/primeboek" />
                                 <p:menuitem value="Crazy Form" outcome="/pages/crazyForm" />
+                                <p:menuitem value="Potato price" outcome="/pages/stock" />
+                            </p:submenu>
+                            <p:submenu label="Flows">
                                 <p:menuitem value="Simple Flow" action="simple-flow" ajax="false"/>
                                 <p:menuitem value="Programmatic Flow" action="flowProgrammatic" />
                                 <p:menuitem value="Configuration Flow" action="flowConfiguration" />
                                 <p:menuitem value="View Scoped Page" action="/pages/viewScopePage" />
                                 <p:menuitem value="Table Demo" outcome="/pages/table" />
+                            </p:submenu>
+                            <p:submenu label="Upload">
                                 <p:menuitem value="Prime upload" outcome="/pages/primeupload" />
                                 <p:menuitem value="Servlet upload" outcome="/pages/fileupload" />
                             </p:submenu>
