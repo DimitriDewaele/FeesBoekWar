@@ -11,19 +11,39 @@
         Hello from Feesboek
 
         <h:form>
-            <h:panelGrid>
-                <h:inputText value="#{messageBean.user}"></h:inputText>
-                <h:inputTextarea value="#{messageBean.message}"></h:inputTextarea>
+            <h:panelGrid columns="3">
+                
+                <h:outputLabel for="user" value="User"/>
+                <h:inputText id="user" value="#{messageBean.user}"></h:inputText>
+                <h:message for="user"/>
+                
+                <h:outputLabel for="message" value="Message"/>
+                <h:inputTextarea id="message" value="#{messageBean.message}"></h:inputTextarea>
+                <h:message for="message"/>
+                
+                <h:outputLabel for="age" value="Age"/>
                 <h:inputText id="age" value="#{messageBean.age}">
                     <f:validateLongRange minimum="0" maximum="10"/>
                 </h:inputText>
                 <h:message for="age"/>
-                <h:inputText value="#{messageBean.lastFriday}">
+
+                <h:outputLabel for="lastFriday" value="Last friday"/>
+                <h:inputText id="lastFriday" value="#{messageBean.lastFriday}">
                     <f:convertDateTime type="date" dateStyle="full" />
                 </h:inputText>
-                <h:inputText value="#{messageBean.price}"/>
-                <em:email value="#{messageBean.email}"/>
+                <h:message for="lastFriday"/>
+                
+                <h:outputLabel for="price" value="price"/>
+                <h:inputText id="price" value="#{messageBean.price}"/>
+                <h:message for="price"/>
+                
+                <h:outputLabel for="email" value="Custom field:"/>
+                <em:email id="email" value="#{messageBean.email}"/>
+                <h:message for="email"/>
+                
+                <h:panelGroup/>
                 <h:commandButton value="Message" action="feesboek"></h:commandButton>                
+                <h:panelGroup/>
             </h:panelGrid>
         </h:form>
 
