@@ -1,0 +1,45 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">Observer</ui:define>
+
+    <ui:define name="body">
+        <h2>OBserver an event</h2>
+        
+        <p>Observer an event and fire business code. The managed bean creates an event, supplies the payload and fires it. An event listener handles the events, using observer methods.</p>
+        <p>Extra: There is also an interceptor set on a class and some methods. Enable the interceptor in beans.xml and mark the classes and/or methods you want to intercept.</p>
+
+        <h:form>
+            <p:panelGrid columns="3">
+
+                <p:outputLabel for="value" value="Amount to pay"/>
+                <p:inputText id="value" value="#{paymentBean.value}"/>
+                <p:message for="value"/>
+                
+                <p:outputLabel for="type" value="Type"/>
+                <p:selectOneRadio id="type" required="true" value="#{paymentBean.option}">
+                    <f:selectItem itemValue="1" itemLabel="Cash"/>
+                    <f:selectItem itemValue="2" itemLabel="Debit card"/>
+                    <f:selectItem itemValue="3" itemLabel="Credit card"/>
+                </p:selectOneRadio>
+                <p:message for="type"/>
+
+                <h:commandButton value="Reset" action="#{paymentBean.reset()}"/>
+                <h:commandButton value="Code" action="#{paymentBean.pay()}"/>
+                <h:panelGroup/>
+            </p:panelGrid>
+        </h:form>
+
+        <p><b>Payed with:</b></p>
+        <p:outputLabel value="#{paymentBean.option}"/>
+        <p><b>Value:</b></p>
+        <p:outputLabel value="#{paymentBean.value}"/>
+
+        <p:messages/>
+    </ui:define>
+
+</ui:composition>

@@ -22,11 +22,11 @@
 
             <p:layout fullPage="true">
 
-                <p:layoutUnit position="north" size="120" resizable="true" closable="true" collapsible="true">
+                <p:layoutUnit position="north" size="80" resizable="true" closable="true" collapsible="true">
                     <h1><ui:insert name="title">Default title</ui:insert></h1>
                 </p:layoutUnit>
 
-                <p:layoutUnit position="south" closable="true" collapsible="true" minSize="100" maxSize="300">
+                <p:layoutUnit position="south" closable="true" collapsible="true" size="80">
                     <ui:insert name="footer">Copyright © All Rights Reserved
                         - Application counter: <h:outputText value="#{applicationBean.counter()}"/>
                         - Start time: 
@@ -36,17 +36,14 @@
                     </ui:insert>
                 </p:layoutUnit>
 
-                <p:layoutUnit position="west" size="275" header="Left" collapsible="true">
+                <p:layoutUnit position="west" minSize="50" maxSize="300" header="Left" collapsible="true">
                     <!-- MenuAction items need a form -->
                     <h:form id="menuForm">
                         <p:menu>
                             <p:submenu label="Pages">
                                 <p:menuitem value="Index" url="/index.xhtml" />
                                 <p:menuitem value="Feesboek" outcome="/pages/feesboek" />
-                                <p:menuitem value="Alternative" outcome="/pages/alternative" />
-                                <p:menuitem value="Producer" outcome="/pages/producer" />
                                 <p:menuitem value="Crazy Form" outcome="/pages/crazyForm" />
-                                <p:menuitem value="Potato price" outcome="/pages/stock" />
                             </p:submenu>
                             <p:submenu label="Flows">
                                 <p:menuitem value="Simple Flow" action="simple-flow" ajax="false"/>
@@ -55,15 +52,17 @@
                                 <p:menuitem value="View Scoped Page" action="/pages/viewScopePage" />
                                 <p:menuitem value="Table Demo" outcome="/pages/table" />
                             </p:submenu>
+                            <p:submenu label="CDI">
+                                <p:menuitem value="Alternative" outcome="/pages/alternative" />
+                                <p:menuitem value="Producer" outcome="/pages/producer" />
+                                <p:menuitem value="Observer" outcome="/pages/observer" />
+                            </p:submenu>
                             <p:submenu label="Upload">
                                 <p:menuitem value="Prime upload" outcome="/pages/primeupload" />
                                 <p:menuitem value="Servlet upload" outcome="/pages/fileupload" />
                             </p:submenu>
-                            <p:submenu label="Links">
-                                <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
-                                <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
-                                <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
-                                <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
+                            <p:submenu label="Special">
+                                <p:menuitem value="Potato price" outcome="/pages/stock" />
                             </p:submenu>
                         </p:menu>
                     </h:form>

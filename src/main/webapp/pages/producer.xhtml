@@ -10,7 +10,7 @@
     <ui:define name="body">
         <h2>Producer to choose implementation at runtime.</h2>
         
-        <p>The managed bean has a <b>producer method</b> to choose the implementation at runtime.</p>
+        <p>The managed bean has a <b>producer method</b> to choose the implementation at runtime. Inject this produced method.</p>
 
         <h:form>
             <p:panelGrid columns="3">
@@ -25,7 +25,6 @@
                     <f:selectItem itemValue="2" itemLabel="Binary output"/>
                     <f:selectItem itemValue="3" itemLabel="Hexadecimal output"/>
                 </p:selectOneRadio>
-                
                 <p:message for="impl"/>
 
                 <h:commandButton value="Reset" action="#{producerBean.reset()}"/>
