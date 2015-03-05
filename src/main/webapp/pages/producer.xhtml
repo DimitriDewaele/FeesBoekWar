@@ -1,0 +1,42 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">Producer</ui:define>
+
+    <ui:define name="body">
+        <h2>Producer to choose implementation at runtime.</h2>
+        
+        <p>The managed bean has a <b>producer method</b> to choose the implementation at runtime. Inject this produced method.</p>
+
+        <h:form>
+            <p:panelGrid columns="3">
+
+                <p:outputLabel for="input" value="Decimal number"/>
+                <p:inputText id="input" value="#{producerBean.input}"/>
+                <p:message for="input"/>
+                
+                <p:outputLabel for="impl" value="Code"/>
+                <p:selectOneRadio id="impl" required="true" value="#{producerBean.type}">
+                    <f:selectItem itemValue="1" itemLabel="Decimal output"/>
+                    <f:selectItem itemValue="2" itemLabel="Binary output"/>
+                    <f:selectItem itemValue="3" itemLabel="Hexadecimal output"/>
+                </p:selectOneRadio>
+                <p:message for="impl"/>
+
+                <h:commandButton value="Reset" action="#{producerBean.reset()}"/>
+                <h:commandButton value="Code" action="#{producerBean.encodeInput()}"/>
+                <h:panelGroup/>
+            </p:panelGrid>
+        </h:form>
+
+        <p><b>Output based on chosen producer:</b></p>
+        <p:outputLabel id="coded" value="#{producerBean.output}"/>
+
+        <p:messages/>
+    </ui:define>
+
+</ui:composition>

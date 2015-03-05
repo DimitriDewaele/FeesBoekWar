@@ -4,13 +4,14 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="title">Upload file</ui:define>
+    <ui:define name="title">Potato price</ui:define>
 
     <ui:define name="body">
         <h:outputScript library="javascript" name="stockWS.js" target="head"/>
 
         <h2>Potato price</h2>
 
+        <p>Updated every second on all pages with Web Sockets.</p>
         <p:outputLabel id="potato">Web Sockets. Open a second page and change color on both! (white, green, #FFF, ...)</p:outputLabel>
 
         <p:panelGrid columns="2">

@@ -1,22 +1,12 @@
 package be.test.mavenwebapplication.beans;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import org.primefaces.model.UploadedFile;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -28,8 +18,11 @@ public class MessageBean implements Serializable {
 
     org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(MessageBean.class);
 
+    @NotNull
+    @Size(min = 2, max = 10)
     private String user;
     private String message;
+    @NotNull
     private Integer age;
     private Date lastFriday;
     private double price;
