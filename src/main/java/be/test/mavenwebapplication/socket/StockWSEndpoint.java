@@ -42,6 +42,7 @@ public class StockWSEndpoint {
     @OnMessage
     public void onMessage(String color) {
         this.color = color;
+        LOGGER.info("Message received: color = {}", color);
     }
 
     @OnOpen

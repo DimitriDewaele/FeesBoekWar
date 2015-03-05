@@ -1,0 +1,37 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Alternative Bean</ui:define>
+
+    <ui:define name="body">
+        <h2>Alternative beans at deploy time</h2>
+        
+        <p>Annotate the alternative bean and mark this bean activate in beans.xml to demonstrate the use during deployment.</p>
+
+        <h:form>
+            <p:panelGrid columns="3">
+
+                <p:outputLabel for="string" value="String"/>
+                <p:inputText id="string" value="#{coderBean.inputString}"/>
+                <p:message for="string"/>
+
+                <p:outputLabel for="code" value="Code"/>
+                <p:inputText id="code" value="#{coderBean.codeNumber}"/>
+                <p:message for="code"/>
+
+                <h:commandButton value="Reset" action="#{coderBean.reset()}"/>
+                <h:commandButton value="Code" action="#{coderBean.encodeString()}"/>
+                <h:panelGroup/>
+            </p:panelGrid>
+        </h:form>
+
+        <p><b>Coded String:</b></p>
+        <p:outputLabel id="coded" value="#{coderBean.codedString}"/>
+
+        <p:messages/>
+    </ui:define>
+
+</ui:composition>
