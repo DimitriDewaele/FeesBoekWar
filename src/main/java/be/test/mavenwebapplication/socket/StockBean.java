@@ -28,7 +28,7 @@ public class StockBean {
     private TimerService tservice;
     private Random random;
     private volatile double price = 100.0;
-    private volatile int volume = 3000;
+    private volatile int volume = 10000;
 
     /**
      * Creates a new instance of StockBean
@@ -46,7 +46,7 @@ public class StockBean {
         TimerConfig timerConfig = new TimerConfig();
         timerConfig.setInfo("StockBean timer");
         timerConfig.setPersistent(false);
-        tservice.createIntervalTimer(10000, 10000, timerConfig);
+        tservice.createIntervalTimer(1000, 1000, timerConfig);
     }
 
     @Timeout
