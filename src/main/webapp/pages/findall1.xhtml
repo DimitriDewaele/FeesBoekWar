@@ -1,0 +1,35 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Find All 1</ui:define>
+
+    <ui:define name="body">
+
+        <h1>Find All - Named Query</h1>
+
+        <h:panelGrid columns="2">
+
+            <h:outputText value="Messages"/>
+
+            <h:outputText value="Users"/>
+
+            <h:dataTable id="messages" value="#{persistenceBean.messages1}" var="message">
+                <h:column>#{message.id}</h:column>
+                <h:column>#{message.message}</h:column>
+                <h:column>#{message.userId}</h:column>
+                <h:column>#{message.userId.name}</h:column>
+            </h:dataTable>
+
+            <h:dataTable id="users" value="#{persistenceBean.users1}" var="user">
+                <h:column>#{user.id}</h:column>
+                <h:column>#{user.name}</h:column>
+            </h:dataTable>
+
+        </h:panelGrid>
+
+    </ui:define>
+
+</ui:composition>
