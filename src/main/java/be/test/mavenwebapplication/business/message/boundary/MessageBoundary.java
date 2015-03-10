@@ -18,7 +18,7 @@ public class MessageBoundary implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(MessageBoundary.class);
+    private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(MessageBoundary.class);
 
     @Inject
     MessageService messageService;
@@ -31,8 +31,8 @@ public class MessageBoundary implements Serializable {
         return messageService.findAllByBuilder();
     }
 
-    public MessageEntity findByFetchGraph(Long id) {
-        return messageService.findByFetchGraph(id);
+    public MessageEntity findByFetchGraph(Long userId) {
+        return messageService.findByFetchGraph(userId);
     }
 
     public void save(MessageEntity entity) {

@@ -1,7 +1,9 @@
 package be.test.mavenwebapplication.beans;
 
+import be.test.mavenwebapplication.business.country.boundary.CountryBoundary;
 import be.test.mavenwebapplication.business.message.boundary.MessageBoundary;
 import be.test.mavenwebapplication.business.user.boundary.UserBoundary;
+import be.test.mavenwebapplication.entity.CountryEntity;
 import be.test.mavenwebapplication.entity.MessageEntity;
 import be.test.mavenwebapplication.entity.UserEntity;
 import java.io.Serializable;
@@ -23,7 +25,11 @@ public class PersistenceBean implements Serializable {
 
     org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(MessageBoundary.class);
 
-    private String UserName;
+    private Long userId;
+    private String username;
+    private String firstname;
+    private String lastname;
+    private CountryEntity country;
     
     private String first;
     private MessageEntity message;
@@ -35,11 +41,15 @@ public class PersistenceBean implements Serializable {
     private List<UserEntity> users1;
     private List<UserEntity> users2;
     private List<UserEntity> users3;
+    
+    private List<CountryEntity> countries;
 
     @Inject
-    MessageBoundary messageBoundary;
+    CountryBoundary countryBoundary;
     @Inject
     UserBoundary userBoundary;
+    @Inject
+    MessageBoundary messageBoundary;
 
     PersistenceBean() {
     }
@@ -47,6 +57,9 @@ public class PersistenceBean implements Serializable {
     @PostConstruct
     public void postConstruct() {
         LOGGER.trace("MessageBean PostConstruct");
+        
+        countries = countryBoundary.findAllByBuilder();
+        
         setMessages1(messageBoundary.findAllByNamedQuery());
         setMessages2(messageBoundary.findAllByBuilder());
         setMessages3(messageBoundary.findAllByBuilder());
@@ -59,12 +72,14 @@ public class PersistenceBean implements Serializable {
     }
     
     public String createUser() {
-        LOGGER.debug("Create User: {}", UserName);
+        LOGGER.debug("Create User: {}", username);
         
         UserEntity user = new UserEntity();
-        user.setName(UserName);
-        //TODO: get max or let to be generated in db
-        user.setId(4L);
+        user.setUserId(userId);
+        user.setUsername(username);
+        user.setFirstname(firstname);
+        user.setLastname(lastname);
+        user.setCountryId(country);
         
         userBoundary.save(user);
         
@@ -186,16 +201,86 @@ public class PersistenceBean implements Serializable {
     }
 
     /**
-     * @return the UserName
+     * @return the countries
      */
-    public String getUserName() {
-        return UserName;
+    public List<CountryEntity> getCountries() {
+        return countries;
     }
 
     /**
-     * @param UserName the UserName to set
+     * @param countries the countries to set
      */
-    public void setUserName(String UserName) {
-        this.UserName = UserName;
+    public void setCountries(List<CountryEntity> countries) {
+        this.countries = countries;
+    }
+
+    /**
+     * @return the userId
+     */
+    public Long getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId the userId to set
+     */
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * @return the firstname
+     */
+    public String getFirstname() {
+        return firstname;
+    }
+
+    /**
+     * @param firstname the firstname to set
+     */
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    /**
+     * @return the lastname
+     */
+    public String getLastname() {
+        return lastname;
+    }
+
+    /**
+     * @param lastname the lastname to set
+     */
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    /**
+     * @return the country
+     */
+    public CountryEntity getCountry() {
+        return country;
+    }
+
+    /**
+     * @param country the country to set
+     */
+    public void setCountry(CountryEntity country) {
+        this.country = country;
     }
 }

@@ -1,6 +1,7 @@
 package be.test.mavenwebapplication.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,35 +24,50 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "MessageEntity.findAll", query = "SELECT m FROM MessageEntity m"),
-    @NamedQuery(name = "MessageEntity.findById", query = "SELECT m FROM MessageEntity m WHERE m.id = :id"),
-    @NamedQuery(name = "MessageEntity.findByMessage", query = "SELECT m FROM MessageEntity m WHERE m.message = :message")})
+    @NamedQuery(name = "MessageEntity.findByMessageId", query = "SELECT m FROM MessageEntity m WHERE m.messageId = :messageId"),
+    @NamedQuery(name = "MessageEntity.findByTitle", query = "SELECT m FROM MessageEntity m WHERE m.title = :title"),
+    @NamedQuery(name = "MessageEntity.findByMessage", query = "SELECT m FROM MessageEntity m WHERE m.message = :message"),
+    @NamedQuery(name = "MessageEntity.findBySubmitTime", query = "SELECT m FROM MessageEntity m WHERE m.submitTime = :submitTime")})
 public class MessageEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
-    private Long id;
+    @Column(name = "MESSAGE_ID")
+    private Long messageId;
+    @Size(max = 128)
+    @Column(name = "TITLE")
+    private String title;
     @Size(max = 1024)
     @Column(name = "MESSAGE")
     private String message;
-    @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
-    @ManyToOne
+    @Column(name = "SUBMIT_TIME")
+    private Date submitTime;
+    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
+    @ManyToOne(optional = false)
     private UserEntity userId;
 
     public MessageEntity() {
     }
 
-    public MessageEntity(Long id) {
-        this.id = id;
+    public MessageEntity(Long messageId) {
+        this.messageId = messageId;
     }
 
-    public Long getId() {
-        return id;
+    public Long getMessageId() {
+        return messageId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMessageId(Long messageId) {
+        this.messageId = messageId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getMessage() {
@@ -60,6 +76,14 @@ public class MessageEntity implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Date getSubmitTime() {
+        return submitTime;
+    }
+
+    public void setSubmitTime(Date submitTime) {
+        this.submitTime = submitTime;
     }
 
     public UserEntity getUserId() {
@@ -73,7 +97,7 @@ public class MessageEntity implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (messageId != null ? messageId.hashCode() : 0);
         return hash;
     }
 
@@ -84,7 +108,7 @@ public class MessageEntity implements Serializable {
             return false;
         }
         MessageEntity other = (MessageEntity) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.messageId == null && other.messageId != null) || (this.messageId != null && !this.messageId.equals(other.messageId))) {
             return false;
         }
         return true;
@@ -92,7 +116,7 @@ public class MessageEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "be.mips.cyberlab.guestbook.entity.MessageEntity[ id=" + id + " ]";
+        return "be.test.mavenwebapplication.entity.MessageEntity[ messageId=" + messageId + " ]";
     }
     
 }

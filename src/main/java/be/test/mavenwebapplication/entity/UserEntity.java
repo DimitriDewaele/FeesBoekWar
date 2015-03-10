@@ -3,9 +3,12 @@ package be.test.mavenwebapplication.entity;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -24,57 +27,99 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "UserEntity.findAll", query = "SELECT u FROM UserEntity u"),
-    @NamedQuery(name = "UserEntity.findById", query = "SELECT u FROM UserEntity u WHERE u.id = :id"),
-    @NamedQuery(name = "UserEntity.findByName", query = "SELECT u FROM UserEntity u WHERE u.name = :name")})
+    @NamedQuery(name = "UserEntity.findByUserId", query = "SELECT u FROM UserEntity u WHERE u.userId = :userId"),
+    @NamedQuery(name = "UserEntity.findByUsername", query = "SELECT u FROM UserEntity u WHERE u.username = :username"),
+    @NamedQuery(name = "UserEntity.findByFirstname", query = "SELECT u FROM UserEntity u WHERE u.firstname = :firstname"),
+    @NamedQuery(name = "UserEntity.findByLastname", query = "SELECT u FROM UserEntity u WHERE u.lastname = :lastname")})
 public class UserEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ID")
-    private Long id;
+    @Column(name = "USER_ID")
+    private Long userId;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 256)
+    @Column(name = "USERNAME")
+    private String username;
     @Size(max = 256)
-    @Column(name = "NAME")
-    private String name;
-    @OneToMany(mappedBy = "userId")
-    private Collection<MessageEntity> messagesCollection;
+    @Column(name = "FIRSTNAME")
+    private String firstname;
+    @Size(max = 256)
+    @Column(name = "LASTNAME")
+    private String lastname;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private Collection<MessageEntity> messageEntityCollection;
+    @JoinColumn(name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID")
+    @ManyToOne
+    private CountryEntity countryId;
 
     public UserEntity() {
     }
 
-    public UserEntity(Long id) {
-        this.id = id;
+    public UserEntity(Long userId) {
+        this.userId = userId;
     }
 
-    public Long getId() {
-        return id;
+    public UserEntity(Long userId, String username) {
+        this.userId = userId;
+        this.username = username;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public String getName() {
-        return name;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     @XmlTransient
-    public Collection<MessageEntity> getMessagesCollection() {
-        return messagesCollection;
+    public Collection<MessageEntity> getMessageEntityCollection() {
+        return messageEntityCollection;
     }
 
-    public void setMessagesCollection(Collection<MessageEntity> messagesCollection) {
-        this.messagesCollection = messagesCollection;
+    public void setMessageEntityCollection(Collection<MessageEntity> messageEntityCollection) {
+        this.messageEntityCollection = messageEntityCollection;
+    }
+
+    public CountryEntity getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(CountryEntity countryId) {
+        this.countryId = countryId;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (userId != null ? userId.hashCode() : 0);
         return hash;
     }
 
@@ -85,7 +130,7 @@ public class UserEntity implements Serializable {
             return false;
         }
         UserEntity other = (UserEntity) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.userId == null && other.userId != null) || (this.userId != null && !this.userId.equals(other.userId))) {
             return false;
         }
         return true;
@@ -93,7 +138,7 @@ public class UserEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "be.mips.cyberlab.guestbook.entity.UserEntity[ id=" + id + " ]";
+        return "be.test.mavenwebapplication.entity.UserEntity[ userId=" + userId + " ]";
     }
     
 }

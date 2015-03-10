@@ -18,7 +18,7 @@ import javax.persistence.criteria.Root;
 //@TransactionAttribute(TransactionAttributeType.MANDATORY)
 public class UserService {
 
-    org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(UserService.class);
+    private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(UserService.class);
 
     @PersistenceContext
     EntityManager em;
