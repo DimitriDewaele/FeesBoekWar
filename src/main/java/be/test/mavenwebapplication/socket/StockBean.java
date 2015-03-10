@@ -34,13 +34,13 @@ public class StockBean {
      * Creates a new instance of StockBean
      */
     public StockBean() {
-        LOGGER.info("StockBean: constructor");
+        LOGGER.debug("StockBean: constructor");
     }
 
     @PostConstruct
     public void init() {
         /* Initialize the EJB and create a timer */
-        LOGGER.info("StockBean: PostConstruct");
+        LOGGER.debug("StockBean: PostConstruct");
         random = new Random();
         
         TimerConfig timerConfig = new TimerConfig();
@@ -51,7 +51,7 @@ public class StockBean {
 
     @Timeout
     public void timeout(Timer timer) {
-        LOGGER.info("StockBean: timeout: {}", new Date());
+        LOGGER.trace("StockBean: timeout: {}", new Date());
         /* Adjust price and volume and send updates */
         price += 1.0 * (random.nextInt(100) - 50) / 100.0;
         volume += random.nextInt(5000) - 2500;
