@@ -22,7 +22,7 @@
 
             <p:layout fullPage="true">
 
-                <p:layoutUnit position="north" size="80" resizable="true" closable="true" collapsible="true">
+                <p:layoutUnit position="north" size="120" resizable="true" closable="true" collapsible="true">
                     <h1><ui:insert name="title">Default title</ui:insert></h1>
                 </p:layoutUnit>
 
@@ -45,17 +45,23 @@
                                 <p:menuitem value="Feesboek" outcome="/pages/feesboek" />
                                 <p:menuitem value="Crazy Form" outcome="/pages/crazyForm" />
                             </p:submenu>
+                            <p:submenu label="Persistence">
+                                <p:menuitem value="Persistence" outcome="/pages/persistence" />
+                                <p:menuitem value="Find All 1" outcome="/pages/findall1" />
+                                <p:menuitem value="Find All 2" outcome="/pages/findall2" />
+                                <p:menuitem value="Find All 3" outcome="/pages/findall3" />
+                            </p:submenu>
+                            <p:submenu label="CDI">
+                                <p:menuitem value="Alternative" outcome="/pages/alternative" />
+                                <p:menuitem value="Producer" outcome="/pages/producer" />
+                                <p:menuitem value="Observer" outcome="/pages/observer" />
+                            </p:submenu>
                             <p:submenu label="Flows">
                                 <p:menuitem value="Simple Flow" action="simple-flow" ajax="false"/>
                                 <p:menuitem value="Programmatic Flow" action="flowProgrammatic" />
                                 <p:menuitem value="Configuration Flow" action="flowConfiguration" />
                                 <p:menuitem value="View Scoped Page" action="/pages/viewScopePage" />
                                 <p:menuitem value="Table Demo" outcome="/pages/table" />
-                            </p:submenu>
-                            <p:submenu label="CDI">
-                                <p:menuitem value="Alternative" outcome="/pages/alternative" />
-                                <p:menuitem value="Producer" outcome="/pages/producer" />
-                                <p:menuitem value="Observer" outcome="/pages/observer" />
                             </p:submenu>
                             <p:submenu label="Upload">
                                 <p:menuitem value="Prime upload" outcome="/pages/primeupload" />

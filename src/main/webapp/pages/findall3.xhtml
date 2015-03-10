@@ -1,0 +1,37 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Find All 3</ui:define>
+
+    <ui:define name="body">
+
+        <h1>Find All - Enity Graph</h1>
+
+        <h4>Entity Graph Message: #{persistenceBean.message.userId.username}</h4>
+
+        <h3>Messages</h3>
+
+        <h:dataTable id="messages" value="#{persistenceBean.messages3}" var="message">
+            <h:column>#{message.messageId}</h:column>
+            <h:column>#{message.userId.username}</h:column>
+            <h:column>#{message.title}</h:column>
+            <h:column>#{message.message}</h:column>
+        </h:dataTable>
+
+        <h3>Users</h3>
+
+        <h:dataTable id="users" value="#{persistenceBean.users3}" var="user">
+            <h:column>#{user.userId}</h:column>
+            <h:column>#{user.username}</h:column>
+            <h:column>#{user.firstname}</h:column>
+            <h:column>#{user.lastname}</h:column>
+            <h:column>#{user.countryId.countryName}</h:column>
+        </h:dataTable>
+
+
+    </ui:define>
+
+</ui:composition>
