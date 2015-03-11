@@ -44,7 +44,7 @@ public class CountryEntity implements Serializable {
     @Size(min = 1, max = 256)
     @Column(name = "COUNTRY_NAME")
     private String countryName;
-    @OneToMany(mappedBy = "countryId")
+    @OneToMany(mappedBy = "country")
     private Collection<UserEntity> userEntityCollection;
 
     public CountryEntity() {

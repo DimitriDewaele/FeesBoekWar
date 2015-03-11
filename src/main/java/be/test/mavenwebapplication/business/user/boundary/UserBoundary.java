@@ -15,14 +15,14 @@ import javax.inject.Named;
 @Named
 @SessionScoped
 public class UserBoundary implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(UserBoundary.class);
-    
+
     @Inject
     UserService userService;
-    
+
     public List<UserEntity> findAllByNamedQuery() {
         return userService.findAllByNamedQuery();
     }
@@ -35,5 +35,16 @@ public class UserBoundary implements Serializable {
         userService.save(entity);
     }
 
+    public List<UserEntity> findAllSorted() {
+        return userService.findAllSorted();
+    }
     
+    public List<UserEntity> findAllFromCountry(String countryISO) {
+        return userService.findAllFromCountry(countryISO);
+    }
+    
+    public Long findMaxId() {
+        return userService.findMaxId();
+    }
+
 }

@@ -53,7 +53,7 @@ public class UserEntity implements Serializable {
     private Collection<MessageEntity> messageEntityCollection;
     @JoinColumn(name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID")
     @ManyToOne
-    private CountryEntity countryId;
+    private CountryEntity country;
 
     public UserEntity() {
     }
@@ -108,12 +108,12 @@ public class UserEntity implements Serializable {
         this.messageEntityCollection = messageEntityCollection;
     }
 
-    public CountryEntity getCountryId() {
-        return countryId;
+    public CountryEntity getCountry() {
+        return country;
     }
 
-    public void setCountryId(CountryEntity countryId) {
-        this.countryId = countryId;
+    public void setCountry(CountryEntity country) {
+        this.country = country;
     }
 
     @Override

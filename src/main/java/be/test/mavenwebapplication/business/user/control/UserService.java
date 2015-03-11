@@ -42,5 +42,22 @@ public class UserService {
     public void save(UserEntity entity) {
         em.persist(entity);
     }
+    
+    public List<UserEntity> findAllSorted() {
+        TypedQuery<UserEntity> tq = em.createQuery("SELECT u FROM UserEntity u ORDER BY u.username", UserEntity.class);
+        return tq.getResultList();
+    }
 
+    public List<UserEntity> findAllFromCountry(String countryISO) {
+        TypedQuery<UserEntity> tq = em
+                .createQuery("SELECT u FROM UserEntity u WHERE u.country.countryIsoCode = :countryISO ORDER BY u.username", UserEntity.class)
+                .setParameter("countryISO", countryISO);
+        return tq.getResultList();
+    }
+    
+    public Long findMaxId() {
+        TypedQuery<Long> tq = em
+                .createQuery("SELECT MAX(u.userId) FROM UserEntity u", Long.class);
+        return tq.getSingleResult();
+    }
 }

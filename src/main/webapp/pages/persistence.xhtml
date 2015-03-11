@@ -12,7 +12,7 @@
         <h1>Persistence page</h1>
 
         <h3>Add user</h3>
-        
+
         <h:form id="User">
             <p:panelGrid columns="2">
 
@@ -35,6 +35,7 @@
                                    itemLabel="#{countryItem.countryName}"
                                    itemValue="#{countryItem.countryId}"/>
                 </p:selectOneMenu>
+
 
                 <h:panelGrid/>
                 <p:commandButton value="Create" action="#{persistenceBean.createUser()}"/>
