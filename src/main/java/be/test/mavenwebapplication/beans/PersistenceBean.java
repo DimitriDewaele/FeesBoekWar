@@ -59,7 +59,8 @@ public class PersistenceBean implements Serializable {
     public void postConstruct() {
         LOGGER.trace("MessageBean PostConstruct");
         
-        userId = userBoundary.findMaxId() + 1;
+        //userId = userBoundary.findMaxId() + 1;
+        userId = userBoundary.findMaxIdModel()+ 1;
         
         countries = countryBoundary.findAllByBuilder();
         
@@ -69,7 +70,8 @@ public class PersistenceBean implements Serializable {
         
         setUsers1(userBoundary.findAllByNamedQuery());
         setUsers2(userBoundary.findAllByBuilder());
-        setUsers3(userBoundary.findAllFromCountry("BE"));
+        //setUsers3(userBoundary.findAllFromCountry("BE"));
+        setUsers3(userBoundary.findAllFromCountryModel("BE"));
 
         setMessage(messageBoundary.findByFetchGraph(1L));
     }

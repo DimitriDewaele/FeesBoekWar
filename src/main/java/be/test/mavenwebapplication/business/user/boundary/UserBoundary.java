@@ -38,13 +38,20 @@ public class UserBoundary implements Serializable {
     public List<UserEntity> findAllSorted() {
         return userService.findAllSorted();
     }
-    
+
     public List<UserEntity> findAllFromCountry(String countryISO) {
         return userService.findAllFromCountry(countryISO);
     }
-    
+
     public Long findMaxId() {
         return userService.findMaxId();
     }
 
+    public List<UserEntity> findAllFromCountryModel(String countryISO) {
+        return userService.findAllFromCountryModel(countryISO);
+    }
+
+    public Long findMaxIdModel() {
+        return userService.findMaxIdModel();
+    }
 }
