@@ -13,7 +13,14 @@
 
         <h3>Add user</h3>
 
-        <h:form id="User">
+        <h:form id="user">
+
+            <!-- Focus on first field, or first field with error -->
+            <p:focus context="user"/>
+
+            <!-- Default button when pressing enter -->
+            <p:defaultCommand target="create"/>
+
             <p:panelGrid columns="2">
 
                 <p:outputLabel value="User ID"/>
@@ -37,8 +44,8 @@
                 </p:selectOneMenu>
 
 
-                <h:panelGrid/>
-                <p:commandButton value="Create" action="#{persistenceBean.createUser()}"/>
+                <p:commandButton id="reset" value="Reset" action="#{persistenceBean.reset()}" ajax="false"/>
+                <p:commandButton id="create" value="Create" action="#{persistenceBean.createUser()}" ajax="false"/>
             </p:panelGrid>
 
         </h:form>

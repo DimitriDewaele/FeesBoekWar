@@ -59,8 +59,7 @@ public class PersistenceBean implements Serializable {
     public void postConstruct() {
         LOGGER.trace("MessageBean PostConstruct");
         
-        //userId = userBoundary.findMaxId() + 1;
-        userId = userBoundary.findMaxIdModel()+ 1;
+        userId = userBoundary.findMaxId() + 1;
         
         countries = countryBoundary.findAllByBuilder();
         
@@ -76,7 +75,17 @@ public class PersistenceBean implements Serializable {
         setMessage(messageBoundary.findByFetchGraph(1L));
     }
     
-    public String createUser() {
+    public void reset() {
+        LOGGER.debug("Reset User");
+        
+        userId = userBoundary.findMaxIdModel()+ 1;
+        username = null;
+        firstname = null;
+        lastname = null;
+        countryId = null;
+    }
+    
+    public void createUser() {
         LOGGER.debug("Create User: {}", username);
         
         UserEntity user = new UserEntity();
@@ -88,7 +97,7 @@ public class PersistenceBean implements Serializable {
         
         userBoundary.save(user);
         
-        return "";
+//        return "/pages/persistence.xhtml";
     }
     
     //Getters and Setters
