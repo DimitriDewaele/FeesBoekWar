@@ -1,5 +1,7 @@
 package be.test.mavenwebapplication.beans;
 
+import be.test.mavenwebapplication.business.cache.CacheBoundary;
+import be.test.mavenwebapplication.business.cache.EntityCache;
 import be.test.mavenwebapplication.business.country.boundary.CountryBoundary;
 import be.test.mavenwebapplication.business.message.boundary.MessageBoundary;
 import be.test.mavenwebapplication.business.user.boundary.UserBoundary;
@@ -51,6 +53,8 @@ public class PersistenceBean implements Serializable {
     UserBoundary userBoundary;
     @Inject
     MessageBoundary messageBoundary;
+    @Inject
+    CacheBoundary cacheBoundary;
 
     PersistenceBean() {
     }
@@ -96,8 +100,26 @@ public class PersistenceBean implements Serializable {
         user.setCountry(countryBoundary.findById(countryId));
         
         userBoundary.save(user);
-        
-//        return "/pages/persistence.xhtml";
+    }
+    
+    public void cacheClear(int target) {
+        // Expression Language can not access enum's directly, so map:
+        switch (target) {
+            case 0 :
+                cacheBoundary.clearCache();
+                break;
+            case 1 :
+                cacheBoundary.clearCacheEntity(EntityCache.USER);
+                break;
+            case 2 :
+                cacheBoundary.clearCacheEntity(EntityCache.COUNTRY);
+                break;
+            case 3 :
+                cacheBoundary.clearCacheEntity(EntityCache.MESSAGE);
+                break;
+            default:
+                break;
+        }
     }
     
     //Getters and Setters
