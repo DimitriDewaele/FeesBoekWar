@@ -3,14 +3,24 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp">
+                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+                xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="title">JSF test page</ui:define>
 
     <ui:define name="body">
         <h2>Hello from Feesboek</h2>
+        
+        <p>With focus on first input field or first error field, and default submit after enter-pressed.</p>
 
-        <h:form>
+        <h:form id="feesboek">
+            
+            <!-- Focus on first field, or first field with error -->
+            <p:focus context="feesboek"/>
+            
+            <!-- Default button when pressing enter -->
+            <p:defaultCommand target="submit"/>
+            
             <h:panelGrid columns="3">
                 
                 <h:outputLabel for="user" value="User"/>
@@ -41,8 +51,8 @@
                 <em:email id="email" value="#{messageBean.email}"/>
                 <h:message for="email"/>
                 
-                <h:panelGroup/>
-                <h:commandButton value="Message" action="feesboek"></h:commandButton>                
+                <h:commandButton id="reset" value="Reset" action="#{messageBean.reset()}"/>
+                <h:commandButton id="submit" value="Message" action="feesboek"/>
                 <h:panelGroup/>
             </h:panelGrid>
         </h:form>

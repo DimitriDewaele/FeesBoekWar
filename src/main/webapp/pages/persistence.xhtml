@@ -12,8 +12,15 @@
         <h1>Persistence page</h1>
 
         <h3>Add user</h3>
-        
-        <h:form id="User">
+
+        <h:form id="user">
+
+            <!-- Focus on first field, or first field with error -->
+            <p:focus context="user"/>
+
+            <!-- Default button when pressing enter -->
+            <p:defaultCommand target="create"/>
+
             <p:panelGrid columns="2">
 
                 <p:outputLabel value="User ID"/>
@@ -36,10 +43,23 @@
                                    itemValue="#{countryItem.countryId}"/>
                 </p:selectOneMenu>
 
-                <h:panelGrid/>
-                <p:commandButton value="Create" action="#{persistenceBean.createUser()}"/>
+
+                <p:commandButton id="reset" value="Reset" action="#{persistenceBean.reset()}" ajax="false"/>
+                <p:commandButton id="create" value="Create" action="#{persistenceBean.createUser()}" ajax="false"/>
             </p:panelGrid>
 
+        </h:form>
+        
+        <h3>Manage the 2nd level Cache</h3>
+        <p>Monitor WildFly Runtime:  &#10144; Runtime &#10144; System Status &#10144; JPA &#10144; select Persistence Unit &#10144; !!Enable Metrics!! &#10144; View</p>
+        
+        <h:form id="cache">
+            <p:panelGrid columns="1">
+                <p:commandButton value="Clear Cache" action="#{persistenceBean.cacheClear(0)}" ajax="false"/>
+                <p:commandButton value="Clear Cache USER" action="#{persistenceBean.cacheClear(1)}" ajax="false"/>
+                <p:commandButton value="Clear Cache COUNTRY" action="#{persistenceBean.cacheClear(2)}" ajax="false"/>
+                <p:commandButton value="Clear Cache MESSAGE" action="#{persistenceBean.cacheClear(3)}" ajax="false"/>
+            </p:panelGrid>
         </h:form>
 
     </ui:define>

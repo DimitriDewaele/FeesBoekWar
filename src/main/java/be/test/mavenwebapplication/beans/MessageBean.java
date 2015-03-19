@@ -33,6 +33,12 @@ public class MessageBean implements Serializable {
      */
     public MessageBean() {
     }
+    
+    public void reset() {
+        user = null;
+        message = null;
+        age = null;
+    }
 
     @PostConstruct
     public void init() {
