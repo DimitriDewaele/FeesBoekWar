@@ -15,6 +15,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -24,7 +27,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "USERS")
-@XmlRootElement
+@XmlRootElement(name="user")
+@XmlAccessorType(XmlAccessType.FIELD)
 @NamedQueries({
     @NamedQuery(name = "UserEntity.findAll", query = "SELECT u FROM UserEntity u"),
     @NamedQuery(name = "UserEntity.findByUserId", query = "SELECT u FROM UserEntity u WHERE u.userId = :userId"),
@@ -42,17 +46,22 @@ public class UserEntity implements Serializable {
     @NotNull
     @Size(min = 1, max = 256)
     @Column(name = "USERNAME")
+    @XmlElement(required=true)
     private String username;
     @Size(max = 256)
     @Column(name = "FIRSTNAME")
+    @XmlElement(required=true)
     private String firstname;
     @Size(max = 256)
     @Column(name = "LASTNAME")
+    @XmlElement(required=true)
     private String lastname;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @XmlTransient
     private Collection<MessageEntity> messageEntityCollection;
     @JoinColumn(name = "COUNTRY_ID", referencedColumnName = "COUNTRY_ID")
     @ManyToOne
+    @XmlTransient
     private CountryEntity country;
 
     public UserEntity() {
@@ -99,7 +108,6 @@ public class UserEntity implements Serializable {
         this.lastname = lastname;
     }
 
-    @XmlTransient
     public Collection<MessageEntity> getMessageEntityCollection() {
         return messageEntityCollection;
     }

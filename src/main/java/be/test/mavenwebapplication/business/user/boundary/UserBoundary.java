@@ -54,4 +54,8 @@ public class UserBoundary implements Serializable {
     public Long findMaxIdModel() {
         return userService.findMaxIdModel();
     }
+    
+    public UserEntity findByUserName(String userName) {
+        return userService.findByUserName(userName);
+    }
 }

@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 
 /**
@@ -103,4 +104,28 @@ public class UserService {
         return tq.getSingleResult();
     }
 
+    public UserEntity findByUserName(String userName) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<UserEntity> cq = cb.createQuery(UserEntity.class);
+        Root<UserEntity> user = cq.from(UserEntity.class);
+        cq.select(user);
+        cq.where(cb.equal(user.get(UserEntity_.username), userName));
+
+        TypedQuery<UserEntity> tq = em.createQuery(cq);
+
+        return tq.getSingleResult();
+    }
+
+    public UserEntity findByUserNameWithCountry(String userName) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<UserEntity> cq = cb.createQuery(UserEntity.class);
+        Root<UserEntity> user = cq.from(UserEntity.class);
+        
+        cq.select(user);
+        cq.where(cb.equal(user.get(UserEntity_.username), userName));
+
+        TypedQuery<UserEntity> tq = em.createQuery(cq);
+
+        return tq.getSingleResult();
+    }
 }

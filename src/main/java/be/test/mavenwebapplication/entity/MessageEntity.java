@@ -13,6 +13,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -21,7 +24,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "MESSAGES")
-@XmlRootElement
+@XmlRootElement(name="message")
+@XmlAccessorType(XmlAccessType.FIELD)
 @NamedQueries({
     @NamedQuery(name = "MessageEntity.findAll", query = "SELECT m FROM MessageEntity m"),
     @NamedQuery(name = "MessageEntity.findByMessageId", query = "SELECT m FROM MessageEntity m WHERE m.messageId = :messageId"),
@@ -37,11 +41,14 @@ public class MessageEntity implements Serializable {
     private Long messageId;
     @Size(max = 128)
     @Column(name = "TITLE")
+    @XmlElement(required=true)
     private String title;
     @Size(max = 1024)
     @Column(name = "MESSAGE")
+    @XmlElement(required=true)
     private String message;
     @Column(name = "SUBMIT_TIME")
+    @XmlElement(required=true)
     private Date submitTime;
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
     @ManyToOne(optional = false)
