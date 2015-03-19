@@ -8,9 +8,9 @@
 
     <ui:define name="body">
 
-        <h1>Find All - Enity Graph</h1>
-
-        <h4>Entity Graph Message: #{persistenceBean.message.userId.username}</h4>
+        <h3>Entity Graph Message</h3>
+        
+        <p>Entity Graph Message: <b>#{persistenceBean.message.userId.username}</b></p>
 
         <h3>Messages</h3>
 
@@ -21,14 +21,14 @@
             <h:column>#{message.message}</h:column>
         </h:dataTable>
 
-        <h3>Users</h3>
+        <h3>Users from BE</h3>
 
         <h:dataTable id="users" value="#{persistenceBean.users3}" var="user">
             <h:column>#{user.userId}</h:column>
             <h:column>#{user.username}</h:column>
             <h:column>#{user.firstname}</h:column>
             <h:column>#{user.lastname}</h:column>
-            <h:column>#{user.countryId.countryName}</h:column>
+            <h:column>#{user.country.countryName}</h:column>
         </h:dataTable>
 
 

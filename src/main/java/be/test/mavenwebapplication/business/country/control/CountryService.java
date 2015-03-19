@@ -43,5 +43,9 @@ public class CountryService {
     public void save(CountryEntity entity) {
         em.persist(entity);
     }
+    
+    public CountryEntity findById(Long countryId) {
+        return em.find(CountryEntity.class, countryId);
+    }
 
 }

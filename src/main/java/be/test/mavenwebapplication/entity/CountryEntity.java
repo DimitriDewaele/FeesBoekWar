@@ -12,6 +12,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -21,7 +24,8 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "COUNTRIES")
-@XmlRootElement
+@XmlRootElement(name="country")
+@XmlAccessorType(XmlAccessType.FIELD)
 @NamedQueries({
     @NamedQuery(name = "CountryEntity.findAll", query = "SELECT c FROM CountryEntity c"),
     @NamedQuery(name = "CountryEntity.findByCountryId", query = "SELECT c FROM CountryEntity c WHERE c.countryId = :countryId"),
@@ -38,13 +42,16 @@ public class CountryEntity implements Serializable {
     @NotNull
     @Size(min = 1, max = 2)
     @Column(name = "COUNTRY_ISO_CODE")
+    @XmlElement(required=true)
     private String countryIsoCode;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 256)
     @Column(name = "COUNTRY_NAME")
+    @XmlElement(required=true)
     private String countryName;
-    @OneToMany(mappedBy = "countryId")
+    @OneToMany(mappedBy = "country")
+    @XmlTransient
     private Collection<UserEntity> userEntityCollection;
 
     public CountryEntity() {

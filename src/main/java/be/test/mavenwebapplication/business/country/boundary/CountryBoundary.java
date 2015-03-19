@@ -34,4 +34,8 @@ public class CountryBoundary implements Serializable{
     public void save(CountryEntity entity) {
         countryService.save(entity);
     }
+    
+    public CountryEntity findById(Long countryId) {
+        return countryService.findById(countryId);
+    }
 }

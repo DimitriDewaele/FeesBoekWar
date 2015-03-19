@@ -1,5 +1,7 @@
 package be.test.mavenwebapplication.beans;
 
+import be.test.mavenwebapplication.business.cache.CacheBoundary;
+import be.test.mavenwebapplication.business.cache.EntityCache;
 import be.test.mavenwebapplication.business.country.boundary.CountryBoundary;
 import be.test.mavenwebapplication.business.message.boundary.MessageBoundary;
 import be.test.mavenwebapplication.business.user.boundary.UserBoundary;
@@ -9,6 +11,7 @@ import be.test.mavenwebapplication.entity.UserEntity;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -18,7 +21,7 @@ import javax.inject.Named;
  * @author dimitridw
  */
 @Named
-@SessionScoped
+@RequestScoped
 public class PersistenceBean implements Serializable {
 
     private static final Long serialVersionUID = 1L;
@@ -29,7 +32,7 @@ public class PersistenceBean implements Serializable {
     private String username;
     private String firstname;
     private String lastname;
-    private CountryEntity country;
+    private Long countryId;
     
     private String first;
     private MessageEntity message;
@@ -50,6 +53,8 @@ public class PersistenceBean implements Serializable {
     UserBoundary userBoundary;
     @Inject
     MessageBoundary messageBoundary;
+    @Inject
+    CacheBoundary cacheBoundary;
 
     PersistenceBean() {
     }
@@ -57,6 +62,8 @@ public class PersistenceBean implements Serializable {
     @PostConstruct
     public void postConstruct() {
         LOGGER.trace("MessageBean PostConstruct");
+        
+        userId = userBoundary.findMaxId() + 1;
         
         countries = countryBoundary.findAllByBuilder();
         
@@ -66,12 +73,23 @@ public class PersistenceBean implements Serializable {
         
         setUsers1(userBoundary.findAllByNamedQuery());
         setUsers2(userBoundary.findAllByBuilder());
-        setUsers3(userBoundary.findAllByBuilder());
+        //setUsers3(userBoundary.findAllFromCountry("BE"));
+        setUsers3(userBoundary.findAllFromCountryModel("BE"));
 
         setMessage(messageBoundary.findByFetchGraph(1L));
     }
     
-    public String createUser() {
+    public void reset() {
+        LOGGER.debug("Reset User");
+        
+        userId = userBoundary.findMaxIdModel()+ 1;
+        username = null;
+        firstname = null;
+        lastname = null;
+        countryId = null;
+    }
+    
+    public void createUser() {
         LOGGER.debug("Create User: {}", username);
         
         UserEntity user = new UserEntity();
@@ -79,11 +97,29 @@ public class PersistenceBean implements Serializable {
         user.setUsername(username);
         user.setFirstname(firstname);
         user.setLastname(lastname);
-        user.setCountryId(country);
+        user.setCountry(countryBoundary.findById(countryId));
         
         userBoundary.save(user);
-        
-        return "";
+    }
+    
+    public void cacheClear(int target) {
+        // Expression Language can not access enum's directly, so map:
+        switch (target) {
+            case 0 :
+                cacheBoundary.clearCache();
+                break;
+            case 1 :
+                cacheBoundary.clearCacheEntity(EntityCache.USER);
+                break;
+            case 2 :
+                cacheBoundary.clearCacheEntity(EntityCache.COUNTRY);
+                break;
+            case 3 :
+                cacheBoundary.clearCacheEntity(EntityCache.MESSAGE);
+                break;
+            default:
+                break;
+        }
     }
     
     //Getters and Setters
@@ -271,16 +307,16 @@ public class PersistenceBean implements Serializable {
     }
 
     /**
-     * @return the country
+     * @return the countryId
      */
-    public CountryEntity getCountry() {
-        return country;
+    public Long getCountry() {
+        return countryId;
     }
 
     /**
-     * @param country the country to set
+     * @param country the countryId to set
      */
-    public void setCountry(CountryEntity country) {
-        this.country = country;
+    public void setCountry(Long countryId) {
+        this.countryId = countryId;
     }
 }
