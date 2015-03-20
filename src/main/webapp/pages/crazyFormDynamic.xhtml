@@ -8,34 +8,33 @@
 
     <ui:define name="body">
 
-        <h:form id="crazyform">
+        <h:form id="crazyFormDynamic">
+
+            <h2>Crazy Form with PrimeFaces - Loaded Dynamically</h2>
 
             <!-- Focus on first field, or first field with error -->
-            <p:focus context="crazyform"/>
+            <p:focus context="crazyFormDynamic"/>
 
             <!-- Default button when pressing enter -->
             <p:defaultCommand target="count"/>
 
-            <p:panelGrid columns="2">
+            <p:panelGrid columns="1">
 
-                <p:outputLabel value="Switcher" />
-                <p:inputSwitch value="#{crazyBean.switcher}" />
+                <h:panelGroup binding="#{crazyBean.htmlText}"/>
 
-                <p:outputLabel value="Spinner" />
-                <p:spinner value="#{crazyBean.spin}" />
+                <h:panelGroup binding="#{crazyBean.htmlTextArea}"/>
 
-                <p:outputLabel value="Slider" />
-                <h:panelGroup>
-                    <p:slider for="slideMin, slideMax" range="true" />
-                    <h:inputHidden id="slideMin" value="#{crazyBean.slideMin}" />
-                    <h:inputHidden id="slideMax" value="#{crazyBean.slideMax}" />
-                </h:panelGroup>
+                <h:panelGroup binding="#{crazyBean.htmlCheck}"/>
+                
+                <h:panelGroup binding="#{crazyBean.htmlSwitch}"/>
+                
+                <h:panelGroup binding="#{crazyBean.htmlSpinner}"/>
 
-                <p:outputLabel value="Count" />
-                <p:outputLabel value="#{crazyBean.count}" id="counter"/>
-
-                <p:outputLabel value="" />
-                <p:commandButton id="count" value="Count" actionListener="#{crazyBean.increment()}" update="counter" />
+                <p:panelGrid columns="3">
+                    <p:outputLabel value="#{crazyBean.count}" id="counter"/>
+                    <p:commandButton id="count" value="Count" actionListener="#{crazyBean.increment()}" update="counter" />
+                    <p:commandButton id="save" value="Save" actionListener="#{crazyBean.save()}" update="counter" ajax="false"/>
+                </p:panelGrid>
 
             </p:panelGrid>
 

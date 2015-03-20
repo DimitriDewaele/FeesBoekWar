@@ -8,34 +8,53 @@
 
     <ui:define name="body">
 
-        <h:form id="crazyform">
+        <h:form id="crazyFormPrime">
+            
+            <h2>Crazy Form with PrimeFaces</h2>
 
             <!-- Focus on first field, or first field with error -->
-            <p:focus context="crazyform"/>
+            <p:focus context="crazyFormPrime"/>
 
             <!-- Default button when pressing enter -->
             <p:defaultCommand target="count"/>
 
-            <p:panelGrid columns="2">
+            <p:panelGrid columns="3">
 
-                <p:outputLabel value="Switcher" />
-                <p:inputSwitch value="#{crazyBean.switcher}" />
+                <p:outputLabel for="text" value="Text" />
+                <p:inputText id="text" value="#{crazyBean.text}" placeholder="type text"/>
+                <p:message for="text"/>
+                
+                <p:outputLabel for="textArea" value="TextArea" />
+                <p:inputTextarea id="textArea" value="#{crazyBean.textArea}" placeholder="type a lot"/>
+                <p:message for="textArea"/>
+                
+                <p:outputLabel for="check" value="CheckBox" />
+                <p:selectBooleanCheckbox id="check" value="#{crazyBean.check}"/>
+                <p:message for="check"/>
+                
+                <p:outputLabel for="switcher" value="Switcher" />
+                <p:inputSwitch id="switcher" value="#{crazyBean.switcher}" />
+                <p:message for="switcher"/>
 
-                <p:outputLabel value="Spinner" />
-                <p:spinner value="#{crazyBean.spin}" />
+                <p:outputLabel for="spinner" value="Spinner" />
+                <p:spinner id="spinner" value="#{crazyBean.spinner}" />
+                <p:message for="spinner"/>
 
-                <p:outputLabel value="Slider" />
+                <p:outputLabel for="slider" value="Slider" />
                 <h:panelGroup>
-                    <p:slider for="slideMin, slideMax" range="true" />
+                    <p:slider id="slider" for="slideMin, slideMax" range="true" />
                     <h:inputHidden id="slideMin" value="#{crazyBean.slideMin}" />
                     <h:inputHidden id="slideMax" value="#{crazyBean.slideMax}" />
                 </h:panelGroup>
+                <p:message for="slider"/>
 
                 <p:outputLabel value="Count" />
                 <p:outputLabel value="#{crazyBean.count}" id="counter"/>
+                <h:panelGroup/>
 
-                <p:outputLabel value="" />
                 <p:commandButton id="count" value="Count" actionListener="#{crazyBean.increment()}" update="counter" />
+                <p:commandButton id="save" value="Save" actionListener="#{crazyBean.save()}" update="counter" ajax="false"/>
+                <h:panelGroup/>
 
             </p:panelGrid>
 
