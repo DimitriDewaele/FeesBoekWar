@@ -4,9 +4,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/beans_1_2.xsd">
     <!--    <alternatives>
-        <class>be.test.mavenwebapplication.business.CoderImplAlternative</class>
+        <class>be.test.feesboek.business.CoderImplAlternative</class>
     </alternatives>-->
     <interceptors>
-        <class>be.test.mavenwebapplication.interceptor.LoggedInterceptor</class>
+        <class>be.test.feesboek.interceptor.LoggedInterceptor</class>
     </interceptors>
 </beans>
