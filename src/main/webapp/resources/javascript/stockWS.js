@@ -1,7 +1,7 @@
 var wsocket;
 
 function connect() {
-    wsocket = new WebSocket("ws://localhost:8080/MavenWebApplication-1.0-SNAPSHOT/stockWSEndPoint");
+    wsocket = new WebSocket("ws://localhost:8080/FeesBoekWar-1.0-SNAPSHOT/stockWSEndPoint");
     wsocket.onmessage = onMessage;
 }
 
