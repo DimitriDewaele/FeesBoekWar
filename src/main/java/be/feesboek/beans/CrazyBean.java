@@ -1,13 +1,18 @@
 package be.feesboek.beans;
 
+import be.feesboek.gridform.component.MyGridCounter;
+import be.feesboek.gridform.component.MyGridDate;
+import be.feesboek.gridform.component.MyGridDropdown;
 import be.feesboek.gridform.component.MyGridInputSwitch;
 import be.feesboek.gridform.component.MyGridInputText;
 import be.feesboek.gridform.component.MyGridInputTextArea;
+import be.feesboek.gridform.component.MyGridRadio;
 import be.feesboek.gridform.component.MyGridSelectBooleanCheckbox;
 import be.feesboek.gridform.component.MyGridSpinner;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.faces.component.html.HtmlPanelGroup;
 
@@ -29,14 +34,19 @@ public class CrazyBean implements Serializable {
     private boolean switcher = true;
     private int spinner = 10;
     private int count = 0;
-    private int slideMin = 25;
-    private int slideMax = 75;
+    private String radio = "B";
+    private String dropdown = "B";
+    private Date date;
 
     private transient HtmlPanelGroup htmlText;
     private transient HtmlPanelGroup htmlTextArea;
     private transient HtmlPanelGroup htmlCheck;
     private transient HtmlPanelGroup htmlSwitch;
     private transient HtmlPanelGroup htmlSpinner;
+    private transient HtmlPanelGroup htmlCounter;
+    private transient HtmlPanelGroup htmlRadio;
+    private transient HtmlPanelGroup htmlDropdown;
+    private transient HtmlPanelGroup htmlDate;
 
     /**
      * Creates a new instance of CrazyForm
@@ -52,6 +62,10 @@ public class CrazyBean implements Serializable {
         htmlCheck = MyGridSelectBooleanCheckbox.generate();
         htmlSwitch = MyGridInputSwitch.generate();
         htmlSpinner = MyGridSpinner.generate();
+        htmlCounter = MyGridCounter.generate();
+        htmlRadio = MyGridRadio.generate();
+        htmlDropdown = MyGridDropdown.generate();
+        htmlDate = MyGridDate.generate();
     }
 
     public void increment() {
@@ -87,34 +101,6 @@ public class CrazyBean implements Serializable {
      */
     public void setSwitcher(boolean switcher) {
         this.switcher = switcher;
-    }
-
-    /**
-     * @return the slideMin
-     */
-    public int getSlideMin() {
-        return slideMin;
-    }
-
-    /**
-     * @param slideMin the slideMin to set
-     */
-    public void setSlideMin(int slideMin) {
-        this.slideMin = slideMin;
-    }
-
-    /**
-     * @return the slideMax
-     */
-    public int getSlideMax() {
-        return slideMax;
-    }
-
-    /**
-     * @param slideMax the slideMax to set
-     */
-    public void setSlideMax(int slideMax) {
-        this.slideMax = slideMax;
     }
 
     /**
@@ -241,6 +227,104 @@ public class CrazyBean implements Serializable {
      */
     public void setSpinner(int spinner) {
         this.spinner = spinner;
+    }
+
+    /**
+     * @return the htmlCounter
+     */
+    public HtmlPanelGroup getHtmlCounter() {
+        return htmlCounter;
+    }
+
+    /**
+     * @param htmlCounter the htmlCounter to set
+     */
+    public void setHtmlCounter(HtmlPanelGroup htmlCounter) {
+        this.htmlCounter = htmlCounter;
+    }
+
+    /**
+     * @return the htmlRadio
+     */
+    public HtmlPanelGroup getHtmlRadio() {
+        return htmlRadio;
+    }
+
+    /**
+     * @param htmlRadio the htmlRadio to set
+     */
+    public void setHtmlRadio(HtmlPanelGroup htmlRadio) {
+        this.htmlRadio = htmlRadio;
+    }
+
+    /**
+     * @return the htmlDropdown
+     */
+    public HtmlPanelGroup getHtmlDropdown() {
+        return htmlDropdown;
+    }
+
+    /**
+     * @param htmlDropdown the htmlDropdown to set
+     */
+    public void setHtmlDropdown(HtmlPanelGroup htmlDropdown) {
+        this.htmlDropdown = htmlDropdown;
+    }
+
+    /**
+     * @return the radio
+     */
+    public String getRadio() {
+        return radio;
+    }
+
+    /**
+     * @param radio the radio to set
+     */
+    public void setRadio(String radio) {
+        this.radio = radio;
+    }
+
+    /**
+     * @return the dropdown
+     */
+    public String getDropdown() {
+        return dropdown;
+    }
+
+    /**
+     * @param dropdown the dropdown to set
+     */
+    public void setDropdown(String dropdown) {
+        this.dropdown = dropdown;
+    }
+
+    /**
+     * @return the date
+     */
+    public Date getDate() {
+        return date;
+    }
+
+    /**
+     * @param date the date to set
+     */
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    /**
+     * @return the htmlDate
+     */
+    public HtmlPanelGroup getHtmlDate() {
+        return htmlDate;
+    }
+
+    /**
+     * @param htmlDate the htmlDate to set
+     */
+    public void setHtmlDate(HtmlPanelGroup htmlDate) {
+        this.htmlDate = htmlDate;
     }
 
 }

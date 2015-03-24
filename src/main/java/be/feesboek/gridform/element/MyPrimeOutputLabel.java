@@ -1,5 +1,6 @@
 package be.feesboek.gridform.element;
 
+import be.feesboek.gridform.Utility;
 import org.primefaces.component.outputlabel.OutputLabel;
 
 public final class MyPrimeOutputLabel {
@@ -19,6 +20,15 @@ public final class MyPrimeOutputLabel {
         OutputLabel element = new OutputLabel();
         element.setValue(inputLabel);
         element.setFor(id);
+
+        return element;
+    }
+    
+    public static OutputLabel generateWithId(String expression, String id) {
+
+        OutputLabel element = new OutputLabel();
+        element.setValueExpression("value", Utility.createValueExpression(expression, String.class));
+        element.setId(id);
 
         return element;
     }
