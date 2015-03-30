@@ -1,5 +1,6 @@
 package be.feesboek.beans;
 
+import be.feesboek.gridform.component.MyGridComplex;
 import be.feesboek.gridform.component.MyGridCounter;
 import be.feesboek.gridform.component.MyGridDate;
 import be.feesboek.gridform.component.MyGridDropdown;
@@ -15,6 +16,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.faces.component.html.HtmlPanelGroup;
+import javax.inject.Inject;
 
 /**
  *
@@ -37,6 +39,7 @@ public class CrazyBean implements Serializable {
     private String radio = "B";
     private String dropdown = "B";
     private Date date;
+    private ComplexVO complexVO;
 
     private transient HtmlPanelGroup htmlText;
     private transient HtmlPanelGroup htmlTextArea;
@@ -47,6 +50,7 @@ public class CrazyBean implements Serializable {
     private transient HtmlPanelGroup htmlRadio;
     private transient HtmlPanelGroup htmlDropdown;
     private transient HtmlPanelGroup htmlDate;
+    private transient HtmlPanelGroup htmlComplex;
 
     /**
      * Creates a new instance of CrazyForm
@@ -57,6 +61,7 @@ public class CrazyBean implements Serializable {
 
     @PostConstruct
     public void start() {
+        complexVO = new ComplexVO();
         htmlText = MyGridInputText.generate();
         htmlTextArea = MyGridInputTextArea.generate();
         htmlCheck = MyGridSelectBooleanCheckbox.generate();
@@ -66,6 +71,7 @@ public class CrazyBean implements Serializable {
         htmlRadio = MyGridRadio.generate();
         htmlDropdown = MyGridDropdown.generate();
         htmlDate = MyGridDate.generate();
+        htmlComplex = MyGridComplex.generate();
     }
 
     public void increment() {
@@ -325,6 +331,34 @@ public class CrazyBean implements Serializable {
      */
     public void setHtmlDate(HtmlPanelGroup htmlDate) {
         this.htmlDate = htmlDate;
+    }
+
+    /**
+     * @return the complexVO
+     */
+    public ComplexVO getComplexVO() {
+        return complexVO;
+    }
+
+    /**
+     * @param complexVO the complexVO to set
+     */
+    public void setComplexVO(ComplexVO complexVO) {
+        this.complexVO = complexVO;
+    }
+
+    /**
+     * @return the htmlComplex
+     */
+    public HtmlPanelGroup getHtmlComplex() {
+        return htmlComplex;
+    }
+
+    /**
+     * @param htmlComplex the htmlComplex to set
+     */
+    public void setHtmlComplex(HtmlPanelGroup htmlComplex) {
+        this.htmlComplex = htmlComplex;
     }
 
 }

@@ -3,7 +3,7 @@ package be.feesboek.gridform;
 import org.primefaces.component.panelgrid.PanelGrid;
 
 public class MyPrimePanelGrid {
-    
+
     private MyPrimePanelGrid() {
     }
 
@@ -16,7 +16,16 @@ public class MyPrimePanelGrid {
 
         PanelGrid panelGrid = new PanelGrid();
         panelGrid.setColumns(columns);
-        
+
+        return panelGrid;
+    }
+
+    public static PanelGrid generateResponsiveWithId(int columns, String id) {
+
+        PanelGrid panelGrid = new PanelGrid();
+        panelGrid.setColumns(columns);
+        panelGrid.setId(id);
+
         return panelGrid;
     }
 }

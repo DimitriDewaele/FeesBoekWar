@@ -58,10 +58,22 @@
                     <f:selectItem itemValue="D" itemLabel="Item D"/>
                 </p:selectOneMenu>
                 <p:message for="dropdown"/>
-                
+
                 <p:outputLabel for="date" value="Date" />
                 <p:calendar id="date" value="#{crazyBean.date}" pattern="dd-MM-yyyy"/>
                 <p:message for="date"/>
+
+                <p:outputLabel for="complex" value="Complex" />
+                <p:panelGrid id="complex" columns="1">
+                    <p:inputText id="complex-text" value="#{crazyBean.complexVO.text}"/>
+                    <p:selectOneMenu id="complex-dropdown" value="#{crazyBean.complexVO.drop}">
+                        <f:selectItem itemValue="A" itemLabel="Item A"/>
+                        <f:selectItem itemValue="B" itemLabel="Item B"/>
+                        <f:selectItem itemValue="C" itemLabel="Item C"/>
+                        <f:selectItem itemValue="D" itemLabel="Item D"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                <p:message for="complex"/>
 
                 <p:outputLabel value="Count" />
                 <p:outputLabel value="#{crazyBean.count}" id="counter"/>
