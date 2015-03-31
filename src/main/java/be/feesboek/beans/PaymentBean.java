@@ -80,7 +80,7 @@ public class PaymentBean implements Serializable{
             default:
                 LOGGER.error("Invalid payment option!");
         }
-        return "/pages/observer.xhtml";
+        return "/pages/cdi/observer.xhtml";
     }
 
     @Logged

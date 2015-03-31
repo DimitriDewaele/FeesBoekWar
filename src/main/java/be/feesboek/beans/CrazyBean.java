@@ -16,7 +16,6 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.faces.component.html.HtmlPanelGroup;
-import javax.inject.Inject;
 
 /**
  *
