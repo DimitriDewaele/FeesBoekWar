@@ -1,0 +1,40 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Message Sender</ui:define>
+
+    <ui:define name="body">
+        <h2>Message Sender</h2>
+        
+        <p>A component private queue is created with: @JMSDestinationDefinition</p>
+
+        <h:form>
+            <p>Enter your message in the Message Text field.</p>
+            <h:outputLabel for="messagetext" value="Message Text: "  />
+            <h:inputText id="messagetext"
+                         title="Message text"
+                         value="#{senderBean.messageText}"
+                         required="true"
+                         requiredMessage="Error: Message text is required."
+                         maxlength="128"
+                         size="32" />
+            <p></p>
+            <h:commandButton value="Send Message" 
+                             action="#{senderBean.sendMessage}" />
+            <h:commandButton value="Go to Receive Page" 
+                             action="receiver" />
+
+        </h:form>
+        <div>
+            <h:messages showSummary="true" 
+                        showDetail="false"
+                        errorStyle="color: #d20005" 
+                        infoStyle="color: blue"/>
+        </div>
+    </ui:define>
+
+</ui:composition>
