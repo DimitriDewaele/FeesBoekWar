@@ -14,10 +14,14 @@ import org.primefaces.component.panelgrid.PanelGrid;
 public class MyGridDate {
     
     public static HtmlPanelGroup generate() {
-
         String inputLabel = "date";
         String id = "date";
         String expression = "#{crazyBean.date}";
+        
+        return generate(inputLabel, id, expression);
+    }
+    
+    public static HtmlPanelGroup generate(String inputLabel, String id, String expression) {
 
         // Group to fit the all in
         HtmlPanelGroup panelGroup = MyPanelGroup.generateResponsive();
@@ -26,7 +30,7 @@ public class MyGridDate {
         PanelGrid panelGrid = MyPrimePanelGrid.generateResponsive(3);
 
         // Create a label component
-        OutputLabel label = MyPrimeOutputLabel.generate(inputLabel, id);
+        OutputLabel label = MyPrimeOutputLabel.generateFor(inputLabel, id);
 
         // Create the calendar
         Calendar element = MyPrimeDate.generate(id, expression);

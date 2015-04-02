@@ -14,9 +14,8 @@ import org.primefaces.component.panelgrid.PanelGrid;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
 
 public class MyGridComplex {
-    
-    public static HtmlPanelGroup generate() {
 
+    public static HtmlPanelGroup generate() {
         String inputLabel = "complex";
         String placeHolder = "complex";
         String id = "complex";
@@ -25,6 +24,18 @@ public class MyGridComplex {
         String expression1 = "#{crazyBean.complexVO.text}";
         String expression2 = "#{crazyBean.complexVO.drop}";
 
+        return generate(inputLabel, placeHolder, id, idtext, iddrop, expression1, expression2);
+    }
+
+    public static HtmlPanelGroup generate(
+            String inputLabel,
+            String placeHolder,
+            String id,
+            String idtext,
+            String iddrop,
+            String expression1,
+            String expression2) {
+
         // Group to fit the all in
         HtmlPanelGroup panelGroup = MyPanelGroup.generateResponsive();
 
@@ -32,10 +43,10 @@ public class MyGridComplex {
         PanelGrid panelGrid = MyPrimePanelGrid.generateResponsive(3);
 
         // Create a label component
-        OutputLabel label = MyPrimeOutputLabel.generate(inputLabel, id);
+        OutputLabel label = MyPrimeOutputLabel.generateFor(inputLabel, id);
 
         // Create the complex component
-        PanelGrid complexGrid = MyPrimePanelGrid.generateResponsiveWithId(1,id);
+        PanelGrid complexGrid = MyPrimePanelGrid.generateResponsiveWithId(1, id);
         InputText text = MyPrimeInputText.generate(idtext, inputLabel, expression1, placeHolder);
         SelectOneMenu drop = MyPrimeDropdown.generate(iddrop, expression2);
         complexGrid.getChildren().add(text);
@@ -52,5 +63,5 @@ public class MyGridComplex {
 
         return panelGroup;
     }
-    
+
 }
