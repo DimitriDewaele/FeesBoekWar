@@ -36,6 +36,11 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.10</version>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.jms</groupId>
+            <artifactId>jboss-jms-api_2.0_spec</artifactId>
+            <version>1.0.0.Final</version>
+        </dependency>
     </dependencies>
 
     <build>

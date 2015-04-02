@@ -1,0 +1,92 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Crazy Form</ui:define>
+
+    <ui:define name="body">
+
+        <h:form id="crazyFormPrime">
+
+            <h2>Crazy Form with PrimeFaces</h2>
+
+            <!-- Focus on first field, or first field with error -->
+            <p:focus context="crazyFormPrime"/>
+
+            <!-- Default button when pressing enter -->
+            <p:defaultCommand target="count"/>
+
+            <p:panelGrid columns="3">
+
+                <p:outputLabel for="text" value="Text" />
+                <p:inputText id="text" value="#{crazyBean.text}" placeholder="type text"/>
+                <p:message for="text"/>
+
+                <p:outputLabel for="textArea" value="TextArea" />
+                <p:inputTextarea id="textArea" value="#{crazyBean.textArea}" placeholder="type a lot"/>
+                <p:message for="textArea"/>
+
+                <p:outputLabel for="check" value="CheckBox" />
+                <p:selectBooleanCheckbox id="check" value="#{crazyBean.check}"/>
+                <p:message for="check"/>
+
+                <p:outputLabel for="switcher" value="Switcher" />
+                <p:inputSwitch id="switcher" value="#{crazyBean.switcher}" />
+                <p:message for="switcher"/>
+
+                <p:outputLabel for="spinner" value="Spinner" />
+                <p:spinner id="spinner" value="#{crazyBean.spinner}" />
+                <p:message for="spinner"/>
+
+                <p:outputLabel value="Radio" />
+                <p:selectOneRadio id="radio" value="#{crazyBean.radio}">
+                    <f:selectItem itemValue="A" itemLabel="Item A"/>
+                    <f:selectItem itemValue="B" itemLabel="Item B"/>
+                    <f:selectItem itemValue="C" itemLabel="Item C"/>
+                    <f:selectItem itemValue="D" itemLabel="Item D"/>
+                </p:selectOneRadio>
+                <p:message for="radio"/>
+
+                <p:outputLabel value="Dropdown" />
+                <p:selectOneMenu id="dropdown" value="#{crazyBean.dropdown}">
+                    <f:selectItem itemValue="A" itemLabel="Item A"/>
+                    <f:selectItem itemValue="B" itemLabel="Item B"/>
+                    <f:selectItem itemValue="C" itemLabel="Item C"/>
+                    <f:selectItem itemValue="D" itemLabel="Item D"/>
+                </p:selectOneMenu>
+                <p:message for="dropdown"/>
+
+                <p:outputLabel for="date" value="Date" />
+                <p:calendar id="date" value="#{crazyBean.date}" pattern="dd-MM-yyyy"/>
+                <p:message for="date"/>
+
+                <p:outputLabel for="complex" value="Complex" />
+                <p:panelGrid id="complex" columns="1">
+                    <p:inputText id="complex-text" value="#{crazyBean.complexVO.text}"/>
+                    <p:selectOneMenu id="complex-dropdown" value="#{crazyBean.complexVO.drop}">
+                        <f:selectItem itemValue="A" itemLabel="Item A"/>
+                        <f:selectItem itemValue="B" itemLabel="Item B"/>
+                        <f:selectItem itemValue="C" itemLabel="Item C"/>
+                        <f:selectItem itemValue="D" itemLabel="Item D"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                <p:message for="complex"/>
+
+                <p:outputLabel value="Count" />
+                <p:outputLabel value="#{crazyBean.count}" id="counter"/>
+                <h:panelGroup/>
+
+                <p:commandButton id="count" value="Count" actionListener="#{crazyBean.increment()}" update="counter" />
+                <p:commandButton id="save" value="Save" actionListener="#{crazyBean.save()}" update="counter" ajax="false"/>
+                <h:panelGroup/>
+
+            </p:panelGrid>
+
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>

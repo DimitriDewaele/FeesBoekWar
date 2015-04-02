@@ -1,0 +1,71 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Crazy Form</ui:define>
+
+    <ui:define name="body">
+
+        <style>
+            .crazyFormDynamicTable {
+                width: 600px;
+            }
+            .crazyFormDynamicTable>tbody>tr>td>table {
+                width: 600px;
+            }
+            .crazyFormDynamicTable>tbody>tr>td>table>tbody>tr>td:first-child {
+                width: 130px;
+            }
+            .crazyFormDynamicTable>tbody>tr>td>table>tbody>tr>td:last-child {
+                width: 10px;
+            }
+        </style>
+        
+        <h:form id="crazyFormDynamic">
+
+            <h2>Crazy Form with PrimeFaces - Loaded Dynamically</h2>
+
+            <!-- Focus on first field, or first field with error -->
+            <p:focus context="crazyFormDynamic"/>
+
+            <!-- Default button when pressing enter -->
+            <p:defaultCommand target="count"/>
+
+            <p:panelGrid columns="1" class="crazyFormDynamicTable">
+
+                <h:panelGroup binding="#{crazyBean.htmlText}"/>
+
+                <h:panelGroup binding="#{crazyBean.htmlTextArea}"/>
+
+                <h:panelGroup binding="#{crazyBean.htmlCheck}"/>
+                
+                <h:panelGroup binding="#{crazyBean.htmlSwitch}"/>
+                
+                <h:panelGroup binding="#{crazyBean.htmlSpinner}"/>
+                
+                <h:panelGroup binding="#{crazyBean.htmlCounter}"/>
+                
+                <h:panelGroup binding="#{crazyBean.htmlRadio}"/>
+                
+                <h:panelGroup binding="#{crazyBean.htmlDropdown}"/>
+                
+                <h:panelGroup binding="#{crazyBean.htmlDate}"/>
+                
+                <h:panelGroup binding="#{crazyBean.htmlComplex}"/>
+
+                <p:panelGrid columns="3">
+                    <p:commandButton id="count" value="Count" actionListener="#{crazyBean.increment()}" update="counter"/>
+                    <p:commandButton id="save" value="Save" actionListener="#{crazyBean.save()}" update="counter" ajax="false"/>
+                    <h:panelGroup/>
+                </p:panelGrid>
+
+            </p:panelGrid>
+
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>
