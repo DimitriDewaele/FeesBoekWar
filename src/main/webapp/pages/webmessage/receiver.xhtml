@@ -1,0 +1,32 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Message Receiver</ui:define>
+
+    <ui:define name="body">
+        <h2>Message Receiver</h2>
+
+        <h:form>
+            <p>Click Receive Message to receive the message.</p>
+            <p></p>
+            <h:commandButton id="back" value="Receive Message" 
+                             action="#{receiverBean.getMessage}" />
+            <h:commandButton id="send" value="Send Another Message" 
+                             action="sender" />
+            <p>
+            <h:outputText value ="Message text below:" /></p>
+        </h:form>
+        <div>
+            <h:messages showSummary="true" 
+                        showDetail="false"
+                        errorStyle="color: #d20005" 
+                        infoStyle="color: blue"/>
+        </div>
+        
+    </ui:define>
+
+</ui:composition>

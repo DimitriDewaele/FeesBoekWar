@@ -43,19 +43,23 @@
                             <p:submenu label="Pages">
                                 <p:menuitem value="Index" url="/index.xhtml" />
                                 <p:menuitem value="Feesboek" outcome="/pages/feesboek" />
-                                <p:menuitem value="Crazy Form Form" outcome="/pages/crazyFormPrime" />
-                                <p:menuitem value="Crazy Form Dynamic" outcome="/pages/crazyFormDynamic" />
+                                <p:menuitem value="Crazy Form Form" outcome="/pages/crazy/crazyFormPrime" />
+                                <p:menuitem value="Crazy Form Dynamic" outcome="/pages/crazy/crazyFormDynamic" />
+                            </p:submenu>
+                            <p:submenu label="Messaging">
+                                <p:menuitem value="Sender" outcome="/pages/webmessage/sender" />
+                                <p:menuitem value="Receiver" outcome="/pages/webmessage/receiver" />
                             </p:submenu>
                             <p:submenu label="Persistence">
-                                <p:menuitem value="Persistence" outcome="/pages/persistence" />
-                                <p:menuitem value="Find All 1" outcome="/pages/findall1" />
-                                <p:menuitem value="Find All 2" outcome="/pages/findall2" />
-                                <p:menuitem value="Find All 3" outcome="/pages/findall3" />
+                                <p:menuitem value="Persistence" outcome="/pages/persistence/persistence" />
+                                <p:menuitem value="Find All 1" outcome="/pages/persistence/findall1" />
+                                <p:menuitem value="Find All 2" outcome="/pages/persistence/findall2" />
+                                <p:menuitem value="Find All 3" outcome="/pages/persistence/findall3" />
                             </p:submenu>
                             <p:submenu label="CDI">
-                                <p:menuitem value="Alternative" outcome="/pages/alternative" />
-                                <p:menuitem value="Producer" outcome="/pages/producer" />
-                                <p:menuitem value="Observer" outcome="/pages/observer" />
+                                <p:menuitem value="Alternative" outcome="/pages/cdi/alternative" />
+                                <p:menuitem value="Producer" outcome="/pages/cdi/producer" />
+                                <p:menuitem value="Observer" outcome="/pages/cdi/observer" />
                             </p:submenu>
                             <p:submenu label="Flows">
                                 <p:menuitem value="Simple Flow" action="simple-flow" ajax="false"/>

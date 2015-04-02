@@ -6,51 +6,69 @@
                 xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="title">JSF test page</ui:define>
+    <ui:define name="title">Pure JSF</ui:define>
 
     <ui:define name="body">
-        <h2>Hello from Feesboek</h2>
-        
+        <h2>Feesboek - Pure JSF</h2>
+
         <p>With focus on first input field or first error field, and default submit after enter-pressed.</p>
 
         <h:form id="feesboek">
-            
+
             <!-- Focus on first field, or first field with error -->
             <p:focus context="feesboek"/>
-            
+
             <!-- Default button when pressing enter -->
             <p:defaultCommand target="submit"/>
-            
+
             <h:panelGrid columns="3">
-                
+
                 <h:outputLabel for="user" value="User"/>
                 <h:inputText id="user" value="#{messageBean.user}"></h:inputText>
                 <h:message for="user"/>
-                
+
                 <h:outputLabel for="message" value="Message"/>
                 <h:inputTextarea id="message" value="#{messageBean.message}"></h:inputTextarea>
                 <h:message for="message"/>
-                
+
                 <h:outputLabel for="age" value="Age"/>
                 <h:inputText id="age" value="#{messageBean.age}">
                     <f:validateLongRange minimum="0" maximum="10"/>
                 </h:inputText>
                 <h:message for="age"/>
 
-                <h:outputLabel for="lastFriday" value="Last friday"/>
-                <h:inputText id="lastFriday" value="#{messageBean.lastFriday}">
+                <h:outputLabel for="datetime" value="Date and time"/>
+                <h:inputText id="datetime" value="#{messageBean.lastFriday}">
+                    <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+                </h:inputText>
+                <h:message for="datetime"/>
+
+                <h:outputLabel for="date" value="Full date"/>
+                <h:inputText id="date" value="#{messageBean.lastFriday}">
                     <f:convertDateTime type="date" dateStyle="full" />
                 </h:inputText>
-                <h:message for="lastFriday"/>
-                
+                <h:message for="date"/>
+
+                <h:outputLabel for="time" value="time"/>
+                <h:inputText id="lastFriday" value="#{messageBean.lastFriday}">
+                    <f:convertDateTime pattern="HH:mm" />
+                </h:inputText>
+                <h:message for="time"/>
+
+                <h:outputLabel for="timetest" value="test time"/>
+                <h:inputText id="timetest" value="#{messageBean.lastFriday}">
+                    <f:convertDateTime pattern="MM/yyyy HH:mm" />
+                </h:inputText>
+                <h:message for="timetest"/>
+
                 <h:outputLabel for="price" value="price"/>
                 <h:inputText id="price" value="#{messageBean.price}"/>
                 <h:message for="price"/>
-                
+
                 <h:outputLabel for="email" value="Custom field:"/>
                 <em:email id="email" value="#{messageBean.email}"/>
                 <h:message for="email"/>
-                
+
                 <h:commandButton id="reset" value="Reset" action="#{messageBean.reset()}"/>
                 <h:commandButton id="submit" value="Message" action="feesboek"/>
                 <h:panelGroup/>
@@ -83,8 +101,8 @@
         </h:panelGrid>
 
         <h:messages />
-        
-                
+
+
         <p>JSF page for bean testing</p>
         <ul>
             <li>JSF Validator</li>
@@ -92,7 +110,7 @@
             <li>Convertor</li>
             <li>Messages</li>
         </ul>
-        
+
     </ui:define>
 
 </ui:composition>
