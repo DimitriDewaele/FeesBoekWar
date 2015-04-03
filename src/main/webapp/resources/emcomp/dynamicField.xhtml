@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:emcomp="http://xmlns.jcp.org/jsf/composite/emcomp">
+
+    <cc:interface>
+        <cc:attribute name="field" required="true" type="be.feesboek.dynamic.form.Field"/>
+    </cc:interface>
+
+    <cc:implementation>
+        <emcomp:feesboekInputText id="text"
+                                  rendered="#{cc.attrs.field.type eq 'TEXT'}"
+                                  label="#{cc.attrs.field.name}"
+                                  value="#{cc.attrs.field.base[cc.attrs.field.property]}"
+                                  placeholder="text"/>
+        <emcomp:feesboekCalendar id="calendar"
+                                 rendered="#{cc.attrs.field.type eq 'CALENDAR'}"
+                                 label="#{cc.attrs.field.name}"
+                                 value="#{cc.attrs.field.base[cc.attrs.field.property]}"
+                                 pattern="dd-MM-yyyy"/>
+        <emcomp:feesboekSelectOneMenu id="radio"
+                                 rendered="#{cc.attrs.field.type eq 'RADIO'}"
+                                 label="#{cc.attrs.field.name}"
+                                 value="#{cc.attrs.field.base[cc.attrs.field.property]}"/>
+        <emcomp:feesboekComplex id="complex"
+                                 rendered="#{cc.attrs.field.type eq 'COMPLEX'}"
+                                 label="#{cc.attrs.field.name}"
+                                 value="#{cc.attrs.field.base[cc.attrs.field.property]}"/>
+        <emcomp:feesboekInputText id="custom"
+                                  rendered="#{cc.attrs.field.type eq 'CUSTOM'}"
+                                  label="#{cc.attrs.field.name}"
+                                  value="#{cc.attrs.field.base[cc.attrs.field.property]}"
+                                  placeholder="text"/>
+    </cc:implementation>
+</html>

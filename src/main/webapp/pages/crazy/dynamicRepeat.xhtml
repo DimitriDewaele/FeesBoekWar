@@ -17,18 +17,24 @@
             <p:focus context="feesboek"/>
 
             <!-- Default button when pressing enter -->
-            <p:defaultCommand target="submit"/>
+            <p:defaultCommand target="save"/>
 
-            <h:panelGrid columns="3">
+            <!-- Repeat over the FormModel-->
+            <ui:repeat value="#{dynamicBean.dynamicFormVO.blocks}" var="block">
+                <p:outputLabel value="#{block.name}"/>
+                <ui:repeat value="#{block.columns}" var="column">
+                    <p:outputLabel value="#{column.name}"/>
+                    <ui:repeat value="#{column.fields}" var="field">
+                        <em:dynamicField id="field" field="#{field}"/>
+                    </ui:repeat>
+                </ui:repeat>
+            </ui:repeat>
 
-                <h:outputLabel for="email" value="Custom field:"/>
-                <em:email id="email" value="#{messageBean.email}"/>
-                <h:message for="email"/>
-
-                <h:commandButton id="reset" value="Reset" action="#{messageBean.reset()}"/>
-                <h:commandButton id="submit" value="Message" action="feesboek"/>
+            <p:panelGrid columns="3">
                 <h:panelGroup/>
-            </h:panelGrid>
+                <p:commandButton id="reset" value="Reset" actionListener="#{dynamicBean.reset()}" update="feesboek"/>
+                <p:commandButton id="save" value="Save" actionListener="#{dynamicBean.save()}" update="feesboek" ajax="false"/>
+            </p:panelGrid>
         </h:form>
 
         <h:panelGrid columns="2">

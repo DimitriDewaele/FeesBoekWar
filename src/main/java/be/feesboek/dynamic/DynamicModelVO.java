@@ -3,7 +3,6 @@ package be.feesboek.dynamic;
 import be.feesboek.beans.ComplexVO;
 import java.util.Date;
 import java.util.List;
-import javax.validation.constraints.NotNull;
 
 public class DynamicModelVO {
 

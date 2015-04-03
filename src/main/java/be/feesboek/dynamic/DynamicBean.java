@@ -4,14 +4,12 @@ import be.feesboek.beans.ComplexVO;
 import be.feesboek.dynamic.form.Column;
 import be.feesboek.dynamic.form.Block;
 import be.feesboek.dynamic.form.Field;
-import be.feesboek.dynamic.FieldType;
 import be.feesboek.gridform.MyPanelGroup;
 import be.feesboek.gridform.MyPrimePanelGrid;
 import be.feesboek.gridform.component.MyGridComplex;
 import be.feesboek.gridform.component.MyGridDate;
 import be.feesboek.gridform.component.MyGridInputText;
 import be.feesboek.gridform.component.MyGridRadio;
-import be.feesboek.gridform.component.MyGridSelectBooleanCheckbox;
 import be.feesboek.gridform.element.MyPrimeOutputLabel;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -38,125 +36,46 @@ public class DynamicBean implements Serializable {
 
     private DynamicFormVO dynamicFormVO;
     private DynamicModelVO dynamicModelVO;
-
     private transient HtmlPanelGroup formFromCode;
+
+    private DynamicFormVO dynamicFormVO2;
+    private DynamicModelVO dynamicModelVO2;
+    private transient HtmlPanelGroup formFromCode2;
 
     @PostConstruct
     public void init() {
 
-        // create dynamic form Model
-        createDynamicFormModel();
+        // initialize the form Model
+        initFormModel();
 
+        // initialize the data Model
         initDataModel();
 
-        //create form, b
-        formFromCode = MyPanelGroup.generateResponsive();
-        //TODO run over FormModel and create all.
+        // create the from object
+        formFromCode = createForm(dynamicFormVO,1);
 
-        LOGGER.debug("START");
-        int i = 0;
-        for (Block block : dynamicFormVO.getBlocks()) {
-            PanelGrid gridBlock = MyPrimePanelGrid.generateResponsive(1);
+        //Test for alternative model with other user (limited model)
+        // initialize the form Model
+        initFormModel2();
 
-            LOGGER.debug("-BLOCK = {}", i);
+        // initialize the data Model
+        initDataModel2();
 
-            String blockId = "block-id-" + i;
-            OutputLabel labelBlock = MyPrimeOutputLabel.generateWithIdAndLabel(block.getName(), blockId);
-            gridBlock.getChildren().add(labelBlock);
-
-            // Create a grid to put all columns next to eachother.
-            PanelGrid gridBlockColumns = MyPrimePanelGrid.generateResponsive(block.getColumns().size());
-
-            int j = 0;
-            for (Column column : block.getColumns()) {
-                PanelGrid gridColumn = MyPrimePanelGrid.generateResponsive(1);
-                LOGGER.debug("---COLUMN = {}-{}", i, j);
-
-                String columnId = "column-id-" + i + "-" + j;
-                OutputLabel labelColumn = MyPrimeOutputLabel.generateWithIdAndLabel(column.getName(), columnId);
-                gridColumn.getChildren().add(labelColumn);
-
-                int z = 0;
-                for (Field field : column.getFields()) {
-                    PanelGrid gridField = MyPrimePanelGrid.generateResponsive(1);
-
-                    LOGGER.debug("-----FIELD = {}-{}-{} for type: {}", i, j, z, field.getType());
-                    String fieldId = "field-id-" + i + "-" + j + "-" + z;
-                    String elementId = "element-id-" + i + "-" + j + "-" + z;
-
-                    //Not necessary to add label of the field above the field
-//                    OutputLabel labelField = MyPrimeOutputLabel.generateWithIdAndLabel(field.getName(), fieldId);
-//                    gridField.getChildren().add(labelField);
-                    //TODO: wat met expression? hoort toch bij model?
-                    //Waarom expression opbouwen bij form en doorverwijzen naar model?
-                    //alhoewel: form hoort de expression te bevatten, want linkt met model.
-                    //hoe oplossen met complexVO type? expression in 2 opdelen? of een composite maken?
-                    ///hmm:misschien niet expression noemen, maar object waar naartoe.
-                    // dan bij opbouwen object: als type = complex-> toevoegen.
-                    String expression = "";
-                    HtmlPanelGroup element;
-                    switch (field.getType()) {
-                        case TEXT:
-                            expression = "#{dynamicBean.dynamicModelVO." + field.getModel() + "}";
-                            element = MyGridInputText.generate(field.getName(), "text", elementId, expression);
-                            break;
-                        case CALENDAR:
-                            expression = "#{dynamicBean.dynamicModelVO." + field.getModel() + "}";
-                            element = MyGridDate.generate(field.getName(), elementId, expression);
-                            break;
-                        case RADIO:
-                            expression = "#{dynamicBean.dynamicModelVO." + field.getModel() + "}";
-                            element = MyGridRadio.generate(field.getName(), elementId, expression);
-                            break;
-                        case COMPLEX:
-                            String expressionText = "#{dynamicBean.dynamicModelVO." + field.getModel() + ".text}";
-                            String expressionDrop = "#{dynamicBean.dynamicModelVO." + field.getModel() + ".drop}";
-                            element = MyGridComplex.generate(field.getName(),
-                                    "complex",
-                                    elementId,
-                                    "text" + elementId,
-                                    "drop" + elementId,
-                                    expressionText,
-                                    expressionDrop);
-                            break;
-                        case CUSTOM:
-                            expression = "#{dynamicBean.dynamicModelVO." + field.getModel() + "}";
-                            element = MyGridInputText.generate(field.getName(), "text", elementId, expression);
-                            break;                            
-                        default:
-                            expression = "#{dynamicBean.dynamicModelVO." + field.getModel() + "}";
-                            element = MyGridInputText.generate(field.getName(), "text", elementId, expression);
-                            break;
-                    }
-                    gridField.getChildren().add(element);
-
-                    gridColumn.getChildren().add(gridField);
-                    z++;
-                }
-
-                gridBlockColumns.getChildren().add(gridColumn);
-
-                j++;
-            }
-
-            gridBlock.getChildren().add(gridBlockColumns);
-
-            formFromCode.getChildren().add(gridBlock);
-            i++;
-        }
-
+        // create the from object
+        formFromCode2 = createForm(dynamicFormVO2,2);
     }
 
     public void reset() {
         //TODO reset values
         dynamicModelVO = new DynamicModelVO();
+        dynamicModelVO2 = new DynamicModelVO();
     }
 
     public void save() {
         //TODO save to DB
     }
 
-    private void createDynamicFormModel() {
+    private void initFormModel() {
         //create DynamicFormVO in code
         Field fieldA1a = new Field();
         Field fieldA1b = new Field();
@@ -183,29 +102,29 @@ public class DynamicBean implements Serializable {
         Field fieldB2g = new Field();
 
         //Name
-        fieldA1a.setName("Field A1a");
-        fieldA1b.setName("Field A1b");
-        fieldA1c.setName("Field A1c");
+        fieldA1a.setName("Firstname");
+        fieldA1b.setName("Middlename");
+        fieldA1c.setName("Lastname");
 
-        fieldA2a.setName("Field A2a");
-        fieldA2b.setName("Field A2b");
+        fieldA2a.setName("Country");
+        fieldA2b.setName("City");
 
-        fieldA3a.setName("Field A3a");
-        fieldA3b.setName("Field A3b");
-        fieldA3c.setName("Field A3c");
+        fieldA3a.setName("Street");
+        fieldA3b.setName("Number");
+        fieldA3c.setName("Appendix");
 
-        fieldB1a.setName("Field B1a");
-        fieldB1b.setName("Field B1b");
-        fieldB1c.setName("Field B1c");
-        fieldB1d.setName("Field B1d");
+        fieldB1a.setName("Ordername");
+        fieldB1b.setName("Date");
+        fieldB1c.setName("Select order");
+        fieldB1d.setName("Amount");
 
-        fieldB2a.setName("Field B2a");
-        fieldB2b.setName("Field B2b");
-        fieldB2c.setName("Field B2c");
-        fieldB2d.setName("Field B2d");
-        fieldB2e.setName("Field B2e");
-        fieldB2f.setName("Field B2f");
-        fieldB2g.setName("Field B2g");
+        fieldB2a.setName("Delivery country");
+        fieldB2b.setName("Delivery city");
+        fieldB2c.setName("Delivery street");
+        fieldB2d.setName("Delivery number");
+        fieldB2e.setName("Delivery appendix");
+        fieldB2f.setName("Custom field 1");
+        fieldB2g.setName("Custom field 2");
 
         //Type
         fieldA1a.setType(FieldType.TEXT);
@@ -229,8 +148,8 @@ public class DynamicBean implements Serializable {
         fieldB2c.setType(FieldType.TEXT);
         fieldB2d.setType(FieldType.TEXT);
         fieldB2e.setType(FieldType.TEXT);
-        fieldB2f.setType(FieldType.CUSTOM); //Make a custom fields
-        fieldB2g.setType(FieldType.CUSTOM); //Make a custom fields
+        fieldB2f.setType(FieldType.CUSTOM);
+        fieldB2g.setType(FieldType.CUSTOM);
 
         //Field of the model
         fieldA1a.setModel("firstname");
@@ -247,7 +166,7 @@ public class DynamicBean implements Serializable {
         fieldB1a.setModel("ordername");
         fieldB1b.setModel("date");
         fieldB1c.setModel("selectorder");
-        fieldB1d.setModel("amount");//TODO: hot to split expression? or not?
+        fieldB1d.setModel("amount");
 
         fieldB2a.setModel("deliverycountry");
         fieldB2b.setModel("deliverycity");
@@ -345,9 +264,259 @@ public class DynamicBean implements Serializable {
         dynamicModelVO.setDate(new Date());
         dynamicModelVO.setAmount(new ComplexVO());
         List<String> l = new ArrayList<>();
-        l.add("");
-        l.add("");
+        l.add("AAA");
+        l.add("BBB");
         dynamicModelVO.setCustomFields(l);
+    }
+
+    private void initFormModel2() {
+        //create DynamicFormVO in code
+        Field fieldA1a = new Field();
+        Field fieldA1b = new Field();
+        Field fieldA1c = new Field();
+        Field fieldA1d = new Field();
+        Field fieldA1e = new Field();
+
+        Field fieldB1a = new Field();
+        Field fieldB1b = new Field();
+        Field fieldB1c = new Field();
+        Field fieldB1d = new Field();
+
+        Field fieldB2a = new Field();
+        Field fieldB2b = new Field();
+        Field fieldB2c = new Field();
+        Field fieldB2d = new Field();
+
+        //Name
+        fieldA1a.setName("Firstname");
+        fieldA1b.setName("Middlename");
+        fieldA1c.setName("Lastname");
+        fieldA1d.setName("Country");
+        fieldA1e.setName("City");
+
+        fieldB1a.setName("Ordername");
+        fieldB1b.setName("Date");
+        fieldB1c.setName("Select order");
+        fieldB1d.setName("Amount");
+
+        fieldB2a.setName("Custom field 1");
+        fieldB2b.setName("Custom field 2");
+        fieldB2c.setName("Custom field 3");
+        fieldB2d.setName("Custom field 4");
+
+        //Type
+        fieldA1a.setType(FieldType.TEXT);
+        fieldA1b.setType(FieldType.TEXT);
+        fieldA1c.setType(FieldType.TEXT);
+        fieldA1d.setType(FieldType.TEXT);
+        fieldA1e.setType(FieldType.TEXT);
+
+        fieldB1a.setType(FieldType.TEXT);
+        fieldB1b.setType(FieldType.CALENDAR);
+        fieldB1c.setType(FieldType.RADIO);
+        fieldB1d.setType(FieldType.COMPLEX);
+
+        fieldB2a.setType(FieldType.CUSTOM);
+        fieldB2b.setType(FieldType.CUSTOM);
+        fieldB2c.setType(FieldType.CUSTOM);
+        fieldB2d.setType(FieldType.CUSTOM);
+
+        //Field of the model
+        fieldA1a.setModel("firstname");
+        fieldA1b.setModel("middlename");
+        fieldA1c.setModel("lastname");
+        fieldA1d.setModel("country");
+        fieldA1e.setModel("city");
+
+        fieldB1a.setModel("ordername");
+        fieldB1b.setModel("date");
+        fieldB1c.setModel("selectorder");
+        fieldB1d.setModel("amount");
+
+        fieldB2a.setModel("customFields[0]");
+        fieldB2b.setModel("customFields[1]");
+        fieldB2c.setModel("customFields[2]");
+        fieldB2d.setModel("customFields[3]");
+
+        List<Field> fieldsA1 = new ArrayList<>();
+        List<Field> fieldsB1 = new ArrayList<>();
+        List<Field> fieldsB2 = new ArrayList<>();
+
+        fieldsA1.add(fieldA1a);
+        fieldsA1.add(fieldA1b);
+        fieldsA1.add(fieldA1c);
+        fieldsA1.add(fieldA1d);
+        fieldsA1.add(fieldA1e);
+
+        fieldsB1.add(fieldB1a);
+        fieldsB1.add(fieldB1b);
+        fieldsB1.add(fieldB1c);
+        fieldsB1.add(fieldB1d);
+
+        fieldsB2.add(fieldB2a);
+        fieldsB2.add(fieldB2b);
+        fieldsB2.add(fieldB2c);
+        fieldsB2.add(fieldB2d);
+
+        Column columnA1 = new Column();
+        Column columnB1 = new Column();
+        Column columnB2 = new Column();
+
+        columnA1.setName("Column A1");
+        columnB1.setName("Column B1");
+        columnB2.setName("Column B2");
+
+        columnA1.setFields(fieldsA1);
+        columnB1.setFields(fieldsB1);
+        columnB2.setFields(fieldsB2);
+
+        List<Column> columnsA = new ArrayList<>();
+        List<Column> columnsB = new ArrayList<>();
+        columnsA.add(columnA1);
+        columnsB.add(columnB1);
+        columnsB.add(columnB2);
+
+        Block blockA = new Block();
+        Block blockB = new Block();
+
+        blockA.setName("Block A");
+        blockB.setName("Block B");
+
+        blockA.setColumns(columnsA);
+        blockB.setColumns(columnsB);
+
+        List<Block> blocks = new ArrayList<>();
+        blocks.add(blockA);
+        blocks.add(blockB);
+
+        dynamicFormVO2 = new DynamicFormVO();
+        dynamicFormVO2.setName("Complete alternative form");
+        dynamicFormVO2.setBlocks(blocks);
+    }
+
+    private void initDataModel2() {
+        //TODO: init data in DunamicModelVO
+        dynamicModelVO2 = new DynamicModelVO();
+        //Initialize values
+        dynamicModelVO2.setFirstname("Jeanne");
+        dynamicModelVO2.setMiddlename("Ente");
+        dynamicModelVO2.setLastname("Van Den Putte");
+
+        dynamicModelVO2.setCity("Holland");
+        dynamicModelVO2.setCity("Vlissingen");
+
+        dynamicModelVO2.setDate(new Date());
+        dynamicModelVO2.setAmount(new ComplexVO());
+        List<String> l = new ArrayList<>();
+        l.add("111");
+        l.add("222");
+        l.add("333");
+        l.add("444");
+        dynamicModelVO2.setCustomFields(l);
+    }
+
+    private HtmlPanelGroup createForm(DynamicFormVO formModel, int count) {
+        //create form, b
+        HtmlPanelGroup form = MyPanelGroup.generateResponsive();
+        //TODO run over FormModel and create all.
+
+        LOGGER.debug("START");
+        int i = 0;
+        for (Block block : formModel.getBlocks()) {
+            PanelGrid gridBlock = MyPrimePanelGrid.generateResponsive(1);
+
+            LOGGER.debug("-BLOCK = {}", i);
+
+            String blockId = "block-id-" + i;
+            OutputLabel labelBlock = MyPrimeOutputLabel.generateWithIdAndLabel(block.getName(), blockId);
+            gridBlock.getChildren().add(labelBlock);
+
+            // Create a grid to put all columns next to eachother.
+            PanelGrid gridBlockColumns = MyPrimePanelGrid.generateResponsive(block.getColumns().size());
+
+            int j = 0;
+            for (Column column : block.getColumns()) {
+                PanelGrid gridColumn = MyPrimePanelGrid.generateResponsive(1);
+                LOGGER.debug("---COLUMN = {}-{}", i, j);
+
+                String columnId = "column-id-" + i + "-" + j;
+                OutputLabel labelColumn = MyPrimeOutputLabel.generateWithIdAndLabel(column.getName(), columnId);
+                gridColumn.getChildren().add(labelColumn);
+
+                int z = 0;
+                for (Field field : column.getFields()) {
+                    PanelGrid gridField = MyPrimePanelGrid.generateResponsive(1);
+
+                    LOGGER.debug("-----FIELD = {}-{}-{} for type: {}", i, j, z, field.getType());
+                    String fieldId = "field-id-" + i + "-" + j + "-" + z;
+                    String elementId = "element-id-" + i + "-" + j + "-" + z;
+
+                    //Not necessary to add label of the field above the field
+//                    OutputLabel labelField = MyPrimeOutputLabel.generateWithIdAndLabel(field.getName(), fieldId);
+//                    gridField.getChildren().add(labelField);
+                    //TODO: wat met expression? hoort toch bij model?
+                    //Waarom expression opbouwen bij form en doorverwijzen naar model?
+                    //alhoewel: form hoort de expression te bevatten, want linkt met model.
+                    //hoe oplossen met complexVO type? expression in 2 opdelen? of een composite maken?
+                    ///hmm:misschien niet expression noemen, maar object waar naartoe.
+                    // dan bij opbouwen object: als type = complex-> toevoegen.
+                    String expression = "";
+                    String base = "#{dynamicBean.dynamicModelVO.";
+                    if (count == 2 ) {
+                        base = "#{dynamicBean.dynamicModelVO2.";    
+                    }                    
+                    HtmlPanelGroup element;
+                    switch (field.getType()) {
+                        case TEXT:
+                            expression = base + field.getModel() + "}";
+                            element = MyGridInputText.generate(field.getName(), "text", elementId, expression);
+                            break;
+                        case CALENDAR:
+                            expression = base + field.getModel() + "}";
+                            element = MyGridDate.generate(field.getName(), elementId, expression);
+                            break;
+                        case RADIO:
+                            expression = base + field.getModel() + "}";
+                            element = MyGridRadio.generate(field.getName(), elementId, expression);
+                            break;
+                        case COMPLEX:
+                            String expressionText = base + field.getModel() + ".text}";
+                            String expressionDrop = base + field.getModel() + ".drop}";
+                            element = MyGridComplex.generate(field.getName(),
+                                    "complex",
+                                    elementId,
+                                    "text" + elementId,
+                                    "drop" + elementId,
+                                    expressionText,
+                                    expressionDrop);
+                            break;
+                        case CUSTOM:
+                            expression = base + field.getModel() + "}";
+                            element = MyGridInputText.generate(field.getName(), "text", elementId, expression);
+                            break;
+                        default:
+                            expression = base + field.getModel() + "}";
+                            element = MyGridInputText.generate(field.getName(), "text", elementId, expression);
+                            break;
+                    }
+                    gridField.getChildren().add(element);
+
+                    gridColumn.getChildren().add(gridField);
+                    z++;
+                }
+
+                gridBlockColumns.getChildren().add(gridColumn);
+
+                j++;
+            }
+
+            gridBlock.getChildren().add(gridBlockColumns);
+
+            form.getChildren().add(gridBlock);
+            i++;
+        }
+        
+        return form;
     }
 
     /**
@@ -390,6 +559,48 @@ public class DynamicBean implements Serializable {
      */
     public void setFormFromCode(HtmlPanelGroup formFromCode) {
         this.formFromCode = formFromCode;
+    }
+
+    /**
+     * @return the dynamicFormVO2
+     */
+    public DynamicFormVO getDynamicFormVO2() {
+        return dynamicFormVO2;
+    }
+
+    /**
+     * @param dynamicFormVO2 the dynamicFormVO2 to set
+     */
+    public void setDynamicFormVO2(DynamicFormVO dynamicFormVO2) {
+        this.dynamicFormVO2 = dynamicFormVO2;
+    }
+
+    /**
+     * @return the dynamicModelVO2
+     */
+    public DynamicModelVO getDynamicModelVO2() {
+        return dynamicModelVO2;
+    }
+
+    /**
+     * @param dynamicModelVO2 the dynamicModelVO2 to set
+     */
+    public void setDynamicModelVO2(DynamicModelVO dynamicModelVO2) {
+        this.dynamicModelVO2 = dynamicModelVO2;
+    }
+
+    /**
+     * @return the formFromCode2
+     */
+    public HtmlPanelGroup getFormFromCode2() {
+        return formFromCode2;
+    }
+
+    /**
+     * @param formFromCode2 the formFromCode2 to set
+     */
+    public void setFormFromCode2(HtmlPanelGroup formFromCode2) {
+        this.formFromCode2 = formFromCode2;
     }
 
 }
