@@ -14,17 +14,14 @@
             <cc:attribute name="id" required="false" type="java.lang.String"/>
             <cc:attribute name="label" required="false"/>
             <cc:attribute name="value" required="false"/>
-            <cc:attribute name="select" required="false"/>
-            <cc:attribute name="selectItems" required="false"/>
-            <cc:attribute name="converterId" required="false"/>
         </cc:interface>
         <cc:implementation>
             <p:panelGrid columns="1">
                 <p:outputLabel for="#{cc.attrs.id}" value="#{cc.attrs.label}" />
                 <p:panelGrid id="#{cc.attrs.id}" columns="1">
-                    <p:inputText value="#{cc.attrs.value}"/>
-                    <p:selectOneMenu value="#{cc.attrs.select}">
-                        <f:selectItems value="#{cc.attrs.selectItems}" />
+                    <p:inputText value="#{cc.attrs.value.text}"/>
+                    <p:selectOneMenu value="#{cc.attrs.value.drop}">
+                        <f:selectItems value="#{itemsBean.items}" />
                     </p:selectOneMenu>
                 </p:panelGrid>
                 <p:message for="#{cc.attrs.id}" />

@@ -11,6 +11,5 @@ public enum FieldType {
     CALENDAR,
     COMPLEX,
     CUSTOM
-    //TODOD: custom fields
     
 }

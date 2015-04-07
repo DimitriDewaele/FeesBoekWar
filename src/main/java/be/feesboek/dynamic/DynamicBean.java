@@ -416,11 +416,11 @@ public class DynamicBean implements Serializable {
     }
 
     private HtmlPanelGroup createForm(DynamicFormVO formModel, int count) {
-        //create form, b
+        //Create basic form
         HtmlPanelGroup form = MyPanelGroup.generateResponsive();
-        //TODO run over FormModel and create all.
-
-        LOGGER.debug("START");
+        
+        //Run over the FormModel and create all form elements
+        LOGGER.debug("START CREATE FORM");
         int i = 0;
         for (Block block : formModel.getBlocks()) {
             PanelGrid gridBlock = MyPrimePanelGrid.generateResponsive(1);
@@ -431,7 +431,7 @@ public class DynamicBean implements Serializable {
             OutputLabel labelBlock = MyPrimeOutputLabel.generateWithIdAndLabel(block.getName(), blockId);
             gridBlock.getChildren().add(labelBlock);
 
-            // Create a grid to put all columns next to eachother.
+            // Create a grid to put all columns next to each other.
             PanelGrid gridBlockColumns = MyPrimePanelGrid.generateResponsive(block.getColumns().size());
 
             int j = 0;
@@ -448,18 +448,16 @@ public class DynamicBean implements Serializable {
                     PanelGrid gridField = MyPrimePanelGrid.generateResponsive(1);
 
                     LOGGER.debug("-----FIELD = {}-{}-{} for type: {}", i, j, z, field.getType());
-                    String fieldId = "field-id-" + i + "-" + j + "-" + z;
+                    
                     String elementId = "element-id-" + i + "-" + j + "-" + z;
 
-                    //Not necessary to add label of the field above the field
-//                    OutputLabel labelField = MyPrimeOutputLabel.generateWithIdAndLabel(field.getName(), fieldId);
-//                    gridField.getChildren().add(labelField);
-                    //TODO: wat met expression? hoort toch bij model?
-                    //Waarom expression opbouwen bij form en doorverwijzen naar model?
-                    //alhoewel: form hoort de expression te bevatten, want linkt met model.
-                    //hoe oplossen met complexVO type? expression in 2 opdelen? of een composite maken?
-                    ///hmm:misschien niet expression noemen, maar object waar naartoe.
-                    // dan bij opbouwen object: als type = complex-> toevoegen.
+                    //Don't add the field name above the field - this is added with the field.
+                    //String fieldId = "field-id-" + i + "-" + j + "-" + z;
+                    //OutputLabel labelField = MyPrimeOutputLabel.generateWithIdAndLabel(field.getName(), fieldId);
+                    //gridField.getChildren().add(labelField);
+                    
+
+                    //Create field component
                     String expression = "";
                     String base = "#{dynamicBean.dynamicModelVO.";
                     if (count == 2 ) {
