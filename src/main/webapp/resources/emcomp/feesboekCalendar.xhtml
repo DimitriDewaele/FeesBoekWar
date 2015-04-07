@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>FeesBoek composite component for calendar</title>
+    </h:head>
+    <h:body>
+        <cc:interface shortDescription="FeesBoek primefaces calendar with label and message.">
+            <cc:attribute name="id" required="false" type="java.lang.String"/>
+            <cc:attribute name="label" required="false"/>
+            <cc:attribute name="value" required="false"/>
+            <cc:attribute name="pattern" required="false"/>
+            <cc:attribute name="locale" required="false"/>
+        </cc:interface>
+        <cc:implementation>
+            <p:panelGrid columns="1">
+                <p:outputLabel for="#{cc.attrs.id}" value="#{cc.attrs.label}" />
+                <p:calendar id="#{cc.attrs.id}"
+                            value="#{cc.attrs.value}"
+                            label="#{cc.attrs.label}"
+                            pattern="#{cc.attrs.pattern}"
+                            timeZone="UTC"
+                            locale="#{cc.attrs.locale}" />
+                <p:message for="#{cc.attrs.id}" />
+            </p:panelGrid>
+        </cc:implementation>
+    </h:body>
+</html>

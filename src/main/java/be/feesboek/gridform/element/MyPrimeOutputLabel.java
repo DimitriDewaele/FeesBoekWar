@@ -8,18 +8,20 @@ public final class MyPrimeOutputLabel {
     private MyPrimeOutputLabel() {
     }
 
-    /**
-     * Create a label
-     *
-     * @param inputLabel the text to put on the label
-     * @param id id belonging to the input field
-     * @return PanelGroup
-     */
-    public static OutputLabel generate(String inputLabel, String id) {
+    public static OutputLabel generateFor(String inputLabel, String id) {
 
         OutputLabel element = new OutputLabel();
         element.setValue(inputLabel);
         element.setFor(id);
+
+        return element;
+    }
+    
+    public static OutputLabel generateWithIdAndLabel(String label, String id) {
+
+        OutputLabel element = new OutputLabel();
+        element.setValue(label);
+        element.setId(id);
 
         return element;
     }

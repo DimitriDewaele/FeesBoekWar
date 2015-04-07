@@ -27,7 +27,7 @@ public class MyGridInputTextArea {
         PanelGrid panelGrid = MyPrimePanelGrid.generateResponsive(3);
 
         // Create a label component
-        OutputLabel label = MyPrimeOutputLabel.generate(inputLabel, id);
+        OutputLabel label = MyPrimeOutputLabel.generateFor(inputLabel, id);
 
         // Create the input text.
         InputTextarea textArea = MyPrimeInputTextArea.generate(id, inputLabel, expression, placeHolder);

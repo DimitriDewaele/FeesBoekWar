@@ -14,10 +14,14 @@ import org.primefaces.component.selectbooleancheckbox.SelectBooleanCheckbox;
 public class MyGridSelectBooleanCheckbox {
 
     public static HtmlPanelGroup generate() {
-
         String inputLabel = "check";
         String id = "check";
         String expression = "#{crazyBean.check}";
+
+        return generate(inputLabel, id, expression);
+    }
+
+    public static HtmlPanelGroup generate(String inputLabel, String id, String expression) {
 
         // Group to fit the all in
         HtmlPanelGroup panelGroup = MyPanelGroup.generateResponsive();
@@ -26,7 +30,7 @@ public class MyGridSelectBooleanCheckbox {
         PanelGrid panelGrid = MyPrimePanelGrid.generateResponsive(3);
 
         // Create a label component
-        OutputLabel label = MyPrimeOutputLabel.generate(inputLabel, id);
+        OutputLabel label = MyPrimeOutputLabel.generateFor(inputLabel, id);
 
         // Create the input text.
         SelectBooleanCheckbox selectBooleanCheckbox = MyPrimeSelectBooleanCheckbox.generate(id, inputLabel, expression);
