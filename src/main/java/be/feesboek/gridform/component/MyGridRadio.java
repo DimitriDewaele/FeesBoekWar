@@ -14,10 +14,14 @@ import org.primefaces.component.selectoneradio.SelectOneRadio;
 public class MyGridRadio {
     
     public static HtmlPanelGroup generate() {
-
         String inputLabel = "radio";
         String id = "radio";
         String expression = "#{crazyBean.radio}";
+
+        return generate(inputLabel, id, expression);
+    }
+    
+    public static HtmlPanelGroup generate(String inputLabel, String id, String expression) {
 
         // Group to fit the all in
         HtmlPanelGroup panelGroup = MyPanelGroup.generateResponsive();
@@ -26,7 +30,7 @@ public class MyGridRadio {
         PanelGrid panelGrid = MyPrimePanelGrid.generateResponsive(3);
 
         // Create a label component
-        OutputLabel label = MyPrimeOutputLabel.generate(inputLabel, id);
+        OutputLabel label = MyPrimeOutputLabel.generateFor(inputLabel, id);
 
         // Create the radio button.
         SelectOneRadio radio = MyPrimeRadio.generate(id, expression);

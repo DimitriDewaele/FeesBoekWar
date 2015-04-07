@@ -1,5 +1,6 @@
 package be.feesboek.gridform;
 
+import javax.el.ELContext;
 import javax.el.MethodExpression;
 import javax.el.ValueExpression;
 import javax.faces.context.FacesContext;
@@ -20,6 +21,11 @@ public class Utility {
         FacesContext context = FacesContext.getCurrentInstance();
         return context.getApplication().getExpressionFactory()
                 .createMethodExpression(context.getELContext(), expression, returnType, parameterTypes);
+    }
+
+    public static ELContext getELContext() {
+        //Context for expression parsing and evaluation.
+        return FacesContext.getCurrentInstance().getELContext();
     }
 
 }

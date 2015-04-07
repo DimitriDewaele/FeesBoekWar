@@ -12,14 +12,17 @@ import org.primefaces.component.outputlabel.OutputLabel;
 import org.primefaces.component.panelgrid.PanelGrid;
 
 public class MyGridInputText {
-    
-    public static HtmlPanelGroup generate() {
 
+    public static HtmlPanelGroup generate() {
         String inputLabel = "text";
         String placeHolder = "text";
         String id = "text";
         String expression = "#{crazyBean.text}";
 
+        return generate(inputLabel, placeHolder, id, expression);
+    }
+
+    public static HtmlPanelGroup generate(String inputLabel, String placeHolder, String id, String expression) {
         // Group to fit the all in
         HtmlPanelGroup panelGroup = MyPanelGroup.generateResponsive();
 
@@ -27,7 +30,7 @@ public class MyGridInputText {
         PanelGrid panelGrid = MyPrimePanelGrid.generateResponsive(3);
 
         // Create a label component
-        OutputLabel label = MyPrimeOutputLabel.generate(inputLabel, id);
+        OutputLabel label = MyPrimeOutputLabel.generateFor(inputLabel, id);
 
         // Create the input text.
         InputText text = MyPrimeInputText.generate(id, inputLabel, expression, placeHolder);
@@ -43,5 +46,4 @@ public class MyGridInputText {
 
         return panelGroup;
     }
-    
 }

@@ -1,0 +1,44 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Dynamic Repeat</ui:define>
+
+    <ui:define name="body">
+        <h2>Dynamic Repeat</h2>
+
+        <h:form id="feesboek">
+
+            <!-- Focus on first field, or first field with error -->
+            <p:focus context="feesboek"/>
+
+            <!-- Default button when pressing enter -->
+            <p:defaultCommand target="save"/>
+
+            <!-- Repeat over the FormModel-->
+            <ui:repeat value="#{dynamicBean.dynamicFormVO.blocks}" var="block">
+                <p:outputLabel value="#{block.name}"/>
+                <ui:repeat value="#{block.columns}" var="column">
+                    <p:outputLabel value="#{column.name}"/>
+                    <ui:repeat value="#{column.fields}" var="field">
+                        <em:dynamicField id="field" field="#{field}"/>
+                    </ui:repeat>
+                </ui:repeat>
+            </ui:repeat>
+
+            <p:panelGrid columns="3">
+                <h:panelGroup/>
+                <p:commandButton id="reset" value="Reset" actionListener="#{dynamicBean.reset()}" update="feesboek"/>
+                <p:commandButton id="save" value="Save" actionListener="#{dynamicBean.save()}" update="feesboek" ajax="false"/>
+            </p:panelGrid>
+        </h:form>
+
+        <h:messages />
+
+    </ui:define>
+
+</ui:composition>

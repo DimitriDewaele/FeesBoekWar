@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>FeesBoek composite component for complex type</title>
+    </h:head>
+    <h:body>
+        <cc:interface shortDescription="FeesBoek primefaces complex type with label and message.">
+            <cc:attribute name="id" required="false" type="java.lang.String"/>
+            <cc:attribute name="label" required="false"/>
+            <cc:attribute name="value" required="false"/>
+        </cc:interface>
+        <cc:implementation>
+            <p:panelGrid columns="1">
+                <p:outputLabel for="#{cc.attrs.id}" value="#{cc.attrs.label}" />
+                <p:panelGrid id="#{cc.attrs.id}" columns="1">
+                    <p:inputText value="#{cc.attrs.value.text}"/>
+                    <p:selectOneMenu value="#{cc.attrs.value.drop}">
+                        <f:selectItems value="#{itemsBean.items}" />
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                <p:message for="#{cc.attrs.id}" />
+            </p:panelGrid>
+        </cc:implementation>
+    </h:body>
+</html>
