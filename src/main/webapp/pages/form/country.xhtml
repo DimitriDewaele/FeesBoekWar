@@ -1,0 +1,33 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Country</ui:define>
+
+    <ui:define name="body">
+        <h2>Country form</h2>
+
+        <p>To demonstrate Object to String converter</p>
+        
+        <p><b>TODO: fill in a number - change to select country from select box</b></p>
+
+        <h:form id="country">
+
+
+            <p:outputLabel value="Country"/>:
+            <p:inputText value="#{countryBean.country}" converter="#{countryConverter}"/>
+
+            <h:commandButton id="submit" value="Submit"/>
+
+        </h:form>
+
+        <p:outputLabel value="And the choise is:"/>
+        <p:outputLabel value="#{countryBean.country}"/>
+
+    </ui:define>
+
+</ui:composition>
