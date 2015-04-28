@@ -1,6 +1,6 @@
 package be.feesboek.dynamic;
 
-import be.feesboek.beans.ComplexVO;
+import be.feesboek.models.ComplexVO;
 import be.feesboek.dynamic.form.Column;
 import be.feesboek.dynamic.form.Block;
 import be.feesboek.dynamic.form.Field;

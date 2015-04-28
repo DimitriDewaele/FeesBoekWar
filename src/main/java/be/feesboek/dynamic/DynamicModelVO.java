@@ -1,22 +1,24 @@
 package be.feesboek.dynamic;
 
-import be.feesboek.beans.ComplexVO;
+import be.feesboek.models.ComplexVO;
 import java.util.Date;
 import java.util.List;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 public class DynamicModelVO {
 
-    //TODO: sterke vragen tussen link van model en form
-    // is 1 op 1 link.
-    
+    @NotNull
     private String firstname;
     private String middlename;
+    @NotNull
     private String lastname;
 
     private String country;
     private String city;
 
     private String street;
+    @Min(0)
     private String number;
     private String appendix;
 

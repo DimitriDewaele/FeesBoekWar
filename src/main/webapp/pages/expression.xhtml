@@ -1,0 +1,95 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Expression Language</ui:define>
+
+    <ui:define name="body">
+        <h2>Expression Language Examples</h2>
+
+        <p>With focus on first input field or first error field, and default submit after enter-pressed.</p>
+
+        <h:form id="expression">
+
+            <!-- Focus on first field, or first field with error -->
+            <p:focus context="expression"/>
+
+            <!-- Default button when pressing enter -->
+            <p:defaultCommand target="submit"/>
+
+            <h:panelGrid columns="2">
+
+                <h:outputLabel><b>Immediate Value expressions: $ - inline in text</b></h:outputLabel>
+                <h:panelGroup/>
+
+                <h:outputLabel value="expressionBean.person.firstName"/>
+                <h:outputLabel>${expressionBean.person.firstName}</h:outputLabel>
+
+                <h:outputLabel value="expressionBean.person[&#34;firstName&#34;]"/>
+                <h:outputLabel>${expressionBean.person["firstName"]}</h:outputLabel>
+
+                <h:outputLabel value="expressionBean[&#34;person&#34;][&#34;firstName&#34;]"/>
+                <h:outputLabel>${expressionBean["person"]["firstName"]}</h:outputLabel>
+
+                <h:outputLabel value="expressionBean.person.children[0].firstName"/>
+                <h:outputLabel>${expressionBean.person.children[0].firstName}</h:outputLabel>
+
+                <h:outputLabel value="expressionBean.person.children[1].firstName"/>
+                <h:outputLabel>${expressionBean.person.children[1].firstName}</h:outputLabel>
+
+                <h:outputLabel><b>Deferred Value expressions: # - inline text and tags</b></h:outputLabel>
+                <h:panelGroup/>
+
+                <h:outputLabel value="expressionBean.person.children[0].children[0].firstName"/>
+                <h:outputLabel>#{expressionBean.person.children[0].children[0].firstName}</h:outputLabel>
+
+                <h:outputLabel value="expressionBean.person.children[0].children[1].firstName"/>
+                <h:outputLabel>#{expressionBean.person.children[0].children[1].firstName}</h:outputLabel>
+
+                <h:outputLabel value="expressionBean.person.children[0].children[2].firstName"/>
+                <h:outputLabel>#{expressionBean.person.children[0].children[2].firstName}</h:outputLabel>
+
+                <h:outputLabel value="expressionBean.person.children[0].children[3].firstName"/>
+                <h:outputLabel value="#{expressionBean.person.children[0].children[3].firstName}"/>
+
+                <h:outputLabel value="expressionBean.person.children[0].children[4].firstName"/>
+                <h:outputLabel value="#{expressionBean.person.children[0].children[4].firstName}"/>
+
+                <h:outputLabel><b>Method expressions - always deferred: # and always in tags</b></h:outputLabel>
+                <h:panelGroup/>
+
+                <h:outputLabel value="expressionBean.grandChild - get method: getGrandChild"/>
+                <h:outputLabel value="#{expressionBean.grandChild}"/>
+
+                <h:outputLabel value="expressionBean.searchGrandChild() - call method directly"/>
+                <h:outputLabel value="#{expressionBean.searchGrandChild()}"/>
+
+                <h:outputLabel value="expressionBean.searchGrandChild(2) - call with parameter"/>
+                <h:outputLabel value="#{expressionBean.searchGrandChild(2)}"/>
+
+                <h:outputLabel><b>Operators</b></h:outputLabel>
+                <h:panelGroup/>
+
+                <h:outputLabel value="expressionBean.person.age lt 10"/>
+                <h:outputLabel value="#{expressionBean.person.age lt 10}"/>
+
+                <h:outputLabel value="expressionBean.person.children[0].age - 10"/>
+                <h:outputLabel value="#{expressionBean.person.children[0].age - 10}"/>
+
+                <h:outputLabel value="expressionBean.person.children[0].children[0].age += 10"/>
+                <h:outputLabel value="#{expressionBean.person.children[0].children[0].age += 10}"/>
+
+                <h:panelGroup/>
+                <h:commandButton id="submit" value="Submit" action="expression"/>
+            </h:panelGrid>
+        </h:form>
+
+        <h:messages />
+
+    </ui:define>
+
+</ui:composition>

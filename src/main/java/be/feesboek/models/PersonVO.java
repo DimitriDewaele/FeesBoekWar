@@ -3,35 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package be.feesboek.beans;
+package be.feesboek.models;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author dimitridw
  */
 public class PersonVO {
-    
+
+    private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(PersonVO.class);
+
     private int id;
     private String firstName;
     private String lastName;
     private String jobTitle;
     private Date birthDate;
     private int age;
+    private List<PersonVO> children;
 
     public PersonVO() {
     }
-    
-    public PersonVO(int id, String firstName, String lastName, String jobTitle, Date birthDate){
+
+    public PersonVO(int id, String firstName, String lastName, String jobTitle, Date birthDate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.jobTitle = jobTitle;
         this.birthDate = birthDate;
         this.age = (new Date()).getYear() - birthDate.getYear();
+        LOGGER.debug(this.toString());
     }
-    
+
     /**
      * @return the firstName
      */
@@ -115,6 +120,31 @@ public class PersonVO {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
+
+    /**
+     * @return the children
+     */
+    public List<PersonVO> getChildren() {
+        return children;
+    }
+
+    /**
+     * @param children the children to set
+     */
+    public void setChildren(List<PersonVO> children) {
+        this.children = children;
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        sb.append("PersonVO{");
+        sb.append(this.firstName != null ? this.firstName : "");
+        sb.append(" ");
+        sb.append(this.lastName != null ?this.lastName : "");
+        sb.append(" - age: ").append(this.age);
+        sb.append("}");
+        return sb.toString();
+    }
+
 }

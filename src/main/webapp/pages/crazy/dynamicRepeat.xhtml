@@ -19,12 +19,14 @@
             <!-- Default button when pressing enter -->
             <p:defaultCommand target="save"/>
 
+            <p:messages/>
+            
             <!-- Repeat over the FormModel-->
-            <ui:repeat value="#{dynamicBean.dynamicFormVO.blocks}" var="block">
+            <ui:repeat value="#{dynamicBean.dynamicFormVO.blocks}" var="block" id="block">
                 <p:outputLabel value="#{block.name}"/>
-                <ui:repeat value="#{block.columns}" var="column">
+                <ui:repeat value="#{block.columns}" var="column" id="column">
                     <p:outputLabel value="#{column.name}"/>
-                    <ui:repeat value="#{column.fields}" var="field">
+                    <ui:repeat value="#{column.fields}" var="field" id="field">
                         <em:dynamicField id="field" field="#{field}"/>
                     </ui:repeat>
                 </ui:repeat>

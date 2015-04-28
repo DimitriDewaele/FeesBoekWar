@@ -1,6 +1,6 @@
 package be.feesboek.dynamic.form;
 
-import be.feesboek.beans.ComplexVO;
+import be.feesboek.models.ComplexVO;
 import be.feesboek.dynamic.FieldType;
 import be.feesboek.gridform.Utility;
 import java.util.Date;
