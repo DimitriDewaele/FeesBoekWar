@@ -1,6 +1,6 @@
 package be.feesboek.dynamic.form;
 
-import be.feesboek.beans.ComplexVO;
+import be.feesboek.models.ComplexVO;
 import be.feesboek.dynamic.FieldType;
 import be.feesboek.gridform.Utility;
 import java.util.Date;
@@ -51,6 +51,9 @@ public class Field {
     }
 
     // Return the base of the ValueExpression
+    // The expression looks like: #{dynamicBean.modelVO.user.firstname}
+    // base     = dynamicBean.modelVO.user
+    // property = firstname
     public Object getBase() {
         // a reference to the value object
         ValueReference valueReference = createValueExpression().getValueReference(Utility.getELContext());
@@ -58,6 +61,9 @@ public class Field {
     }
 
     // Return the property of the Value Expression
+    // The expression looks like: #{dynamicBean.modelVO.user.firstname}
+    // base     = dynamicBean.modelVO.user
+    // property = firstname
     public Object getProperty() {
         // a reference to the value object
         ValueReference valueReference = createValueExpression().getValueReference(Utility.getELContext());

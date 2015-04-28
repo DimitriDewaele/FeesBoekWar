@@ -1,5 +1,6 @@
 package be.feesboek.beans;
 
+import be.feesboek.models.ComplexVO;
 import be.feesboek.gridform.component.MyGridComplex;
 import be.feesboek.gridform.component.MyGridCounter;
 import be.feesboek.gridform.component.MyGridDate;

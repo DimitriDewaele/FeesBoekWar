@@ -1,4 +1,4 @@
-package be.feesboek.beans;
+package be.feesboek.models;
 
 import java.io.Serializable;
 

@@ -13,7 +13,12 @@
         <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
         <param-value>true</param-value>
     </context-param>
-    
+    <context-param>
+        <description>This is a test parameter used in Servlet and JSF page.</description>
+        <param-name>myTestParam</param-name>
+        <param-value>Welcome to FEESBOEK</param-value>
+    </context-param>
+        
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

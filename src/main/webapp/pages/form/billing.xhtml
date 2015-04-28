@@ -1,0 +1,76 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Billing</ui:define>
+
+    <ui:define name="body">
+        <h2>Billing form</h2>
+
+        <h:form id="billing">
+
+            <div>
+                <p:selectOneRadio id="paymentAgreementChoice" value="#{billingBean.choise}" layout="custom" plain="true">
+                    <f:selectItem itemValue="AAA" itemLabel="#{msg.option1}"/>
+                    <f:selectItem itemValue="BBB" itemLabel="#{msg.option2}"/>
+                    <f:selectItem itemValue="CCC" itemLabel="#{msg.option3}"/>
+                    <f:selectItem itemValue="DDD" itemLabel="#{msg.option4}"/>
+                    <f:ajax render="paymentAgreementDetail"/>
+                </p:selectOneRadio>
+
+                <p:outputPanel>
+                    <p:radioButton id="paymentAgreementChoice0" for="paymentAgreementChoice" itemIndex="0" />
+                    <p:outputLabel for="paymentAgreementChoice0" value="#{msg.label1}"/>
+                </p:outputPanel>
+
+                <p:outputPanel>
+                    <p:radioButton id="paymentAgreementChoice1" for="paymentAgreementChoice" itemIndex="1" />
+                    <p:outputLabel for="paymentAgreementChoice1" value="#{msg.label2}"/>
+                </p:outputPanel>
+
+                <p:outputPanel>
+                    <p:radioButton id="paymentAgreementChoice2" for="paymentAgreementChoice" itemIndex="2" />
+                    <p:outputLabel for="paymentAgreementChoice2" value="#{msg.label3}"/>
+                </p:outputPanel>
+
+                <p:outputPanel>
+                    <p:radioButton id="paymentAgreementChoice3" for="paymentAgreementChoice" itemIndex="3" />
+                    <p:outputLabel for="paymentAgreementChoice3" value="#{msg.label4}"/>
+                </p:outputPanel>
+            </div>
+
+            <div>
+                <p:outputPanel id="paymentAgreementDetail">
+                    <p:outputPanel id="aa" rendered="#{billingBean.choise eq 'BBB'}">
+                        <p:outputLabel value="#{msg.label2}"/>:
+                        <p:inputText value="#{billingBean.firstname}"/>
+                    </p:outputPanel>
+                    <p:outputPanel id="bb" rendered="#{billingBean.choise eq 'CCC'}">
+                        <p:outputLabel value="#{msg.label3}"/>:
+                        <p:inputText value="#{billingBean.firstname}"/>-
+                        <p:inputText value="#{billingBean.lastname}"/>
+                    </p:outputPanel>
+                    <p:outputPanel id="cc" rendered="#{billingBean.choise eq 'DDD'}">
+                        <p:outputLabel value="#{msg.label4}"/>:
+                        <p:outputLabel value="#{billingBean.firstname}"/>
+                    </p:outputPanel>
+                </p:outputPanel>
+            </div>
+
+            <div>
+                <h:panelGroup/>
+                <h:commandButton id="submit" value="Message" action="feesboek"/>
+            </div>
+
+        </h:form>
+
+        <p:outputLabel value="And the choise is:"/>
+        <p:outputLabel value="#{billingBean.choise}"/>
+
+    </ui:define>
+
+</ui:composition>

@@ -1,5 +1,6 @@
 package be.feesboek.beans;
 
+import be.feesboek.models.PersonVO;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
