@@ -2,19 +2,18 @@ package be.feesboek.beans;
 
 import be.feesboek.models.PersonVO;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
 
 /**
  *
  * @author dimitridw
  */
 @Named(value = "expressionBean")
-@Dependent
+@RequestScoped
 public class ExpressionBean {
     
     private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(ExpressionBean.class);

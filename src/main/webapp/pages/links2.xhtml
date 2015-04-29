@@ -1,0 +1,60 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Links and buttons</ui:define>
+
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="viewParam1" value="#{linkBean.viewParam1}"/>
+            <f:viewParam name="viewParam2" value="#{linkBean.viewParam2}"/>
+            <f:viewParam name="viewParam3" value="default"/>
+            <f:viewParam name="viewParam4"/>
+        </f:metadata>
+    </ui:define>
+
+    <ui:define name="body">
+        <h2>Outcome page</h2>
+
+        <h:panelGrid columns="2">
+
+            <h:outputLabel><b>Results after link usage</b></h:outputLabel>
+            <h:panelGroup/>
+
+            <h:outputLabel>Request info</h:outputLabel>
+            <h:outputLabel>#{linkBean.requestInfo()}</h:outputLabel>
+
+            <h:outputLabel><b>Parameters from URL (GET)</b></h:outputLabel>
+            <h:panelGroup/>
+
+            <h:outputLabel>Param1 - Not view param:</h:outputLabel>
+            <h:outputLabel>#{param1}</h:outputLabel>
+
+            <h:outputLabel>View Parameter 1 - From and to bean:</h:outputLabel>
+            <h:outputLabel>#{linkBean.viewParam1}</h:outputLabel>
+
+            <h:outputLabel>View Parameter 2 - To bean:</h:outputLabel>
+            <h:outputText value="#{linkBean.viewParam2}"/>
+
+            <h:outputLabel>View Parameter 3 - No bean with default:</h:outputLabel>
+            <h:outputText value="#{viewParam3}"/>
+
+            <h:outputLabel>View Parameter 4 - No bean:</h:outputLabel>
+            <h:outputText value="#{viewParam4}"/>
+
+            <h:form id="linkform">
+
+                <h:panelGroup/>
+                <h:commandButton value="Back to Link page" action="links"/>
+
+            </h:form>
+
+        </h:panelGrid>
+
+    </ui:define>
+
+</ui:composition>
