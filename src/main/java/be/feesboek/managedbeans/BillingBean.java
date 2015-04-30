@@ -1,4 +1,4 @@
-package be.feesboek.beans;
+package be.feesboek.managedbeans;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;

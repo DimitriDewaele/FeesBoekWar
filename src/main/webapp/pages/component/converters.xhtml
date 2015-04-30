@@ -1,0 +1,97 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Component Functionality - Converters</ui:define>
+
+    <ui:define name="body">
+        <h2>
+            <h:outputText value="Converters"/>
+        </h2>
+
+        <h:form id="converters">
+            <h:panelGrid columns="4">
+
+                <h:outputLabel for="field1" value="No convertion: default String to bean Integer)"/>
+                <h:inputText id="field1" value="#{converterBean.field1}"/>
+                <h:outputText value="#{converterBean.field1}"/>
+                <h:message for="field1"/>
+
+                <h:outputLabel for="field2" value="Convert with nested tag"/>
+                <h:inputText id="field2" value="#{converterBean.field2}"/>
+                <h:outputText value="#{converterBean.field2}">
+                    <f:convertNumber pattern="##### €"/>
+                </h:outputText>
+                <h:message for="field2"/>
+
+                <h:outputLabel for="field3" value="Convert: also on input"/>
+                <h:inputText id="field3" value="#{converterBean.field3}">
+                    <f:convertNumber pattern="$ ###"/>
+                </h:inputText>
+                <h:outputText value="#{converterBean.field3}">
+                    <f:convertNumber pattern="$ ###"/>
+                </h:outputText>
+                <h:message for="field3"/>
+
+                <h:outputLabel for="field4" value="Convert with attribute and converterId"/>
+                <h:inputText id="field4" value="#{converterBean.field4}"/>
+                <h:outputText value="#{converterBean.field4}" converter="be.feesboek.converters.IntegerConverter"/>
+                <h:message for="field4"/>
+
+                <h:outputLabel for="field5" value="Convert with attribute and bind to managed converter bean"/>
+                <h:inputText id="field5" value="#{converterBean.field5}"/>
+                <h:outputText value="#{converterBean.field5}" converter="#{integerConverter}"/>
+                <h:message for="field5"/>
+
+                <h:outputLabel for="field6" value="Convert with nested tag to converterId"/>
+                <h:inputText id="field6" value="#{converterBean.field6}"/>
+                <h:outputText value="#{converterBean.field6}">
+                    <f:converter converterId="be.feesboek.converters.IntegerConverter"/>
+                </h:outputText>
+                <h:message for="field6"/>
+
+                <h:outputLabel for="field7" value="Convert with nested tag and bind to managed converter bean"/>
+                <h:inputText id="field7" value="#{converterBean.field7}"/>
+                <h:outputText value="#{converterBean.field7}">
+                    <f:converter binding="#{integerConverter}"/>
+                </h:outputText>
+                <h:message for="field7"/>
+
+                <h:outputLabel><b>Date conversion example (primefaces input - text output</b></h:outputLabel>
+                <h:panelGroup/>
+                <h:panelGroup/>
+                <h:panelGroup/>
+
+                <h:outputLabel for="date1" value="No conversion"/>
+                <p:calendar id="date1" value="#{converterBean.date1}"/>
+                <h:outputText value="#{converterBean.date1}"/>
+                <h:message for="date1"/>
+
+                <h:outputLabel for="date2" value="Conversion with nested tag (type and style)"/>
+                <p:calendar id="date2" value="#{converterBean.date2}"/>
+                <h:outputText value="#{converterBean.date2}">
+                    <f:convertDateTime type="date" dateStyle="full"/>
+                </h:outputText>
+                <h:message for="date2"/>
+
+
+                <h:outputLabel for="date3" value="Conversion with nested tag (pattern from bean)"/>
+                <p:calendar id="date3" value="#{converterBean.date3}"/>
+                <h:outputText value="#{converterBean.date3}">
+                    <f:convertDateTime pattern="#{converterBean.pattern}"/>
+                </h:outputText>
+                <h:message for="date3"/>
+
+                <h:panelGroup/>
+                <h:commandButton value="Submit"/>
+                <h:panelGroup/>
+                <h:panelGroup/>
+
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

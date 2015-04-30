@@ -39,7 +39,7 @@
                 <p:layoutUnit position="west" minSize="50" maxSize="300" header="Left" collapsible="true">
                     <!-- MenuAction items need a form -->
                     <h:form id="menuForm">
-                        <p:menu>
+                        <p:menu toggleable="true">
                             <p:submenu label="Pages">
                                 <p:menuitem value="Index" url="/index.xhtml" />
                                 <p:menuitem value="Feesboek" outcome="/pages/feesboek" />
@@ -54,6 +54,11 @@
                             <p:submenu label="Forms">
                                 <p:menuitem value="Billing" outcome="/pages/form/billing" />
                                 <p:menuitem value="Country" outcome="/pages/form/country" />
+                            </p:submenu>
+                            <p:submenu label="Component">
+                                <p:menuitem value="Converters" outcome="/pages/component/converters" />
+                                <p:menuitem value="Validators" outcome="/pages/component/validators" />
+                                <p:menuitem value="Listeners" outcome="/pages/component/listeners" />
                             </p:submenu>
                             <p:submenu label="Messaging">
                                 <p:menuitem value="Sender" outcome="/pages/webmessage/sender" />

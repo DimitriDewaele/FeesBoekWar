@@ -1,4 +1,4 @@
-package be.feesboek.listener;
+package be.feesboek.listeners;
 
 import be.feesboek.event.Cash;
 import be.feesboek.event.Credit;

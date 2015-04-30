@@ -1,4 +1,4 @@
-package be.feesboek.beans;
+package be.feesboek.managedbeans;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;

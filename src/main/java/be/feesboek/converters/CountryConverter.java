@@ -1,4 +1,4 @@
-package be.feesboek.converter;
+package be.feesboek.converters;
 
 import be.feesboek.business.country.boundary.CountryBoundary;
 import be.feesboek.entity.CountryEntity;

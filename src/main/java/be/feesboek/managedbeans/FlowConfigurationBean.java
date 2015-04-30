@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package be.feesboek.beans;
+package be.feesboek.managedbeans;
 
 import java.io.Serializable;
 import javax.inject.Named;

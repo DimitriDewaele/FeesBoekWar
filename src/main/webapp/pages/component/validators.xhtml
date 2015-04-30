@@ -1,0 +1,62 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Component Functionality - Validators</ui:define>
+
+    <ui:define name="body">
+        <h2>
+            <h:outputText value="Validators"/>
+        </h2>
+
+        <h:messages/>
+
+        <h:form id="validators">
+
+            <h:panelGrid columns="3">
+
+                <h:outputLabel for="field1" value="No validation"/>
+                <h:inputText id="field1" value="#{validatorBean.field1}"/>
+                <h:message for="field1"/>
+
+                <h:outputLabel for="field2" value="Validation tag - minimum 1000"/>
+                <h:inputText id="field2" value="#{validatorBean.field2}">
+                    <f:validateLongRange minimum="1000"/>
+                </h:inputText>
+                <h:message for="field2"/>
+
+                <h:outputLabel for="field3" value="Bean Validation - minimum 1000"/>
+                <h:inputText id="field3" value="#{validatorBean.field3}"/>
+                <h:message for="field3"/>
+
+                <h:outputLabel value="TODO: validate attribut to method"/>
+                <h:panelGroup/>
+                <h:panelGroup/>
+
+                <h:outputLabel for="field5" value="Validation with tag and bind to managed validatino bean"/>
+                <h:inputText value="#{converterBean.field5}" validator="#{longValidator.validate}"/>
+                <h:message for="field5"/>
+
+                <h:outputLabel for="field6" value="Validation with tag and converterId"/>
+                <h:inputText value="#{converterBean.field6}">
+                    <f:validator validatorId="be.feesboek.validators.LongValidator"/>
+                </h:inputText>
+                <h:message for="field6"/>
+
+                <h:outputLabel for="field7" value="Validation with tag and bind to managed validatino bean"/>
+                <h:inputText value="#{converterBean.field7}">
+                    <f:validator binding="#{longValidator}"/>
+                </h:inputText>
+                <h:message for="field7"/>
+
+                <h:panelGroup/>
+                <h:commandButton value="Submit"/>
+                <h:panelGroup/>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

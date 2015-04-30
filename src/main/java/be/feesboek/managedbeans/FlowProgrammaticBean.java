@@ -1,11 +1,11 @@
-package be.feesboek.beans;
+package be.feesboek.managedbeans;
 
 import be.feesboek.models.PersonVO;
 import java.io.Serializable;
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.faces.view.ViewScoped;
+import javax.faces.flow.FlowScoped;
 import javax.inject.Named;
 
 /**
@@ -13,44 +13,43 @@ import javax.inject.Named;
  * @author dimitridw
  */
 @Named
-@ViewScoped
-public class ViewScopePageBean implements Serializable{
-    private static final long serialVersionUID = 1L;
-    
-    private String value1 = "a";
-    private String value2 = "b";
-    private int counter;
-    
+@FlowScoped("flowProgrammatic")
+public class FlowProgrammaticBean implements Serializable {
+
+    private String value1;
+    private String value2;
+    private String value3;
+    private String value4;
+
     private int personId;
     private PersonVO person;
+
+    /**
+     * Creates a new instance of FlowProgrammaticBean
+     */
+    public FlowProgrammaticBean() {
+        System.out.println("CONSTRUCT");
+    }
     
+    public String getReturnValue() {
+        return "/flowProgrammaticReturn";
+    }
+
     @PostConstruct
-    private void init() {
-        System.out.println("STOP");
-        setValue1("initial value 1");
-        setValue2("initial value 2");
-        counter = 1;
+    public void start() {
+        System.out.println("START");
     }
     
     @PreDestroy
-    private void stop() {
-        System.out.println("STOP");
-    }            
-
-    ViewScopePageBean() {
-    }
-    
-    public void doit() {
-        counter++;
-        setValue1("doit 1 - " + counter);
-        setValue2("doit 2 - " + counter);
+    public void end() {
+        System.out.println("END");
     }
     
     public void loadPersonFromId() {
         System.out.println("loadPersonFromId:" + personId);
         person = new PersonVO(personId, "First", "Last", "development", new Date());
     }
-    
+
     /**
      * @return the value1
      */
@@ -80,6 +79,34 @@ public class ViewScopePageBean implements Serializable{
     }
 
     /**
+     * @return the value3
+     */
+    public String getValue3() {
+        return value3;
+    }
+
+    /**
+     * @param value3 the value3 to set
+     */
+    public void setValue3(String value3) {
+        this.value3 = value3;
+    }
+
+    /**
+     * @return the value4
+     */
+    public String getValue4() {
+        return value4;
+    }
+
+    /**
+     * @param value4 the value4 to set
+     */
+    public void setValue4(String value4) {
+        this.value4 = value4;
+    }
+
+    /**
      * @return the personId
      */
     public int getPersonId() {
@@ -105,19 +132,5 @@ public class ViewScopePageBean implements Serializable{
      */
     public void setPerson(PersonVO person) {
         this.person = person;
-    }
-
-    /**
-     * @return the counter
-     */
-    public int getCounter() {
-        return counter;
-    }
-
-    /**
-     * @param counter the counter to set
-     */
-    public void setCounter(int counter) {
-        this.counter = counter;
     }
 }
