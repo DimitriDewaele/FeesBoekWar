@@ -18,36 +18,36 @@
 
             <h:panelGrid columns="3">
 
+                <h:outputLabel><b>Integer example</b></h:outputLabel>
+                <h:panelGroup/>
+                <h:panelGroup/>
+
                 <h:outputLabel for="field1" value="No validation"/>
                 <h:inputText id="field1" value="#{validatorBean.field1}"/>
                 <h:message for="field1"/>
 
-                <h:outputLabel for="field2" value="Validation tag - minimum 1000"/>
+                <h:outputLabel for="field2" value="Validation tag (Min 1000)"/>
                 <h:inputText id="field2" value="#{validatorBean.field2}">
                     <f:validateLongRange minimum="1000"/>
                 </h:inputText>
                 <h:message for="field2"/>
 
-                <h:outputLabel for="field3" value="Bean Validation - minimum 1000"/>
+                <h:outputLabel for="field3" value="Bean Validation (Min 1000)"/>
                 <h:inputText id="field3" value="#{validatorBean.field3}"/>
                 <h:message for="field3"/>
 
-                <h:outputLabel value="TODO: validate attribut to method"/>
-                <h:panelGroup/>
-                <h:panelGroup/>
-
-                <h:outputLabel for="field5" value="Validation with tag and bind to managed validatino bean"/>
-                <h:inputText value="#{converterBean.field5}" validator="#{longValidator.validate}"/>
+                <h:outputLabel for="field5" value="Validator attribute: validator Method"/>
+                <h:inputText id="field5" value="#{converterBean.field5}" validator="#{longValidator.validate}"/>
                 <h:message for="field5"/>
 
-                <h:outputLabel for="field6" value="Validation with tag and converterId"/>
-                <h:inputText value="#{converterBean.field6}">
+                <h:outputLabel for="field6" value="Validator tag: converterId"/>
+                <h:inputText id="field6" value="#{converterBean.field6}">
                     <f:validator validatorId="be.feesboek.validators.LongValidator"/>
                 </h:inputText>
                 <h:message for="field6"/>
 
-                <h:outputLabel for="field7" value="Validation with tag and bind to managed validatino bean"/>
-                <h:inputText value="#{converterBean.field7}">
+                <h:outputLabel for="field7" value="Validator tag: bind to managed validation bean"/>
+                <h:inputText id="field7" value="#{converterBean.field7}">
                     <f:validator binding="#{longValidator}"/>
                 </h:inputText>
                 <h:message for="field7"/>
