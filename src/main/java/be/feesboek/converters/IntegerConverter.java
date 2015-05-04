@@ -15,11 +15,13 @@ public class IntegerConverter implements Converter {
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
 
-        if (value != null && !value.trim().isEmpty()) {
-            String part = value.replaceAll("Formated:", "");
-            Integer output = Integer.valueOf(part);
-        }
-        return null;
+//        if (value != null && !value.trim().isEmpty()) {
+//            String part = value.replaceAll("Formated:", "");
+//            Integer output = Integer.valueOf(part);
+//        }
+//        return null;
+        
+        return value;
     }
 
     @Override

@@ -1,11 +1,17 @@
 package be.feesboek.managedbeans;
 
+import be.feesboek.business.country.boundary.CountryBoundary;
+import be.feesboek.entity.CountryEntity;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.model.SelectItem;
+import javax.inject.Inject;
 
 /**
  *
@@ -16,6 +22,9 @@ import javax.enterprise.context.SessionScoped;
 public class ConverterBean implements Serializable {
     
     private static final long serialVersionUID = 1L;
+    
+    @Inject
+    CountryBoundary countryBoundary;
 
     private Integer field1 = 1111;
     private Integer field2 = 2222;
@@ -32,6 +41,12 @@ public class ConverterBean implements Serializable {
     private Date date5 = new Date();
     private Date date6 = new Date();
     
+    private CountryEntity country1;
+    private CountryEntity country2;
+    private CountryEntity country3;
+    
+    private List<SelectItem> countryItems;
+    
     private String pattern;
     
     /**
@@ -43,6 +58,15 @@ public class ConverterBean implements Serializable {
     @PostConstruct
     private void initialize() {
         pattern = "dd-MM-yyyy";
+        
+        List<SelectItem> selectItems = new ArrayList<>();
+        List<CountryEntity> countries = countryBoundary.findAllByBuilder();
+        for (CountryEntity country : countries) {
+            // Same label als CyberLab Classic
+            String label = country.getCountryName() + " [" + country.getCountryIsoCode() + "]";
+            selectItems.add(new SelectItem(country, label));
+        }
+        countryItems = selectItems;
     }
 
     /**
@@ -239,6 +263,62 @@ public class ConverterBean implements Serializable {
      */
     public void setField7(Integer field7) {
         this.field7 = field7;
+    }
+
+    /**
+     * @return the country1
+     */
+    public CountryEntity getCountry1() {
+        return country1;
+    }
+
+    /**
+     * @param country1 the country1 to set
+     */
+    public void setCountry1(CountryEntity country1) {
+        this.country1 = country1;
+    }
+
+    /**
+     * @return the country2
+     */
+    public CountryEntity getCountry2() {
+        return country2;
+    }
+
+    /**
+     * @param country2 the country2 to set
+     */
+    public void setCountry2(CountryEntity country2) {
+        this.country2 = country2;
+    }
+
+    /**
+     * @return the country3
+     */
+    public CountryEntity getCountry3() {
+        return country3;
+    }
+
+    /**
+     * @param country3 the country3 to set
+     */
+    public void setCountry3(CountryEntity country3) {
+        this.country3 = country3;
+    }
+
+    /**
+     * @return the countryItems
+     */
+    public List<SelectItem> getCountryItems() {
+        return countryItems;
+    }
+
+    /**
+     * @param countryItems the countryItems to set
+     */
+    public void setCountryItems(List<SelectItem> countryItems) {
+        this.countryItems = countryItems;
     }
 
 }

@@ -15,6 +15,11 @@
         <h:form id="converters">
             <h:panelGrid columns="4">
 
+                <h:outputLabel><b>Integer example</b></h:outputLabel>
+                <h:panelGroup/>
+                <h:panelGroup/>
+                <h:panelGroup/>
+
                 <h:outputLabel for="field1" value="No convertion: default String to bean Integer)"/>
                 <h:inputText id="field1" value="#{converterBean.field1}"/>
                 <h:outputText value="#{converterBean.field1}"/>
@@ -60,7 +65,7 @@
                 </h:outputText>
                 <h:message for="field7"/>
 
-                <h:outputLabel><b>Date conversion example (primefaces input - text output</b></h:outputLabel>
+                <h:outputLabel><b>Date example</b></h:outputLabel>
                 <h:panelGroup/>
                 <h:panelGroup/>
                 <h:panelGroup/>
@@ -84,6 +89,25 @@
                     <f:convertDateTime pattern="#{converterBean.pattern}"/>
                 </h:outputText>
                 <h:message for="date3"/>
+
+                <h:outputLabel><b>Object example</b></h:outputLabel>
+                <h:panelGroup/>
+                <h:panelGroup/>
+                <h:panelGroup/>
+
+                <h:outputLabel for="country1" value="Input as number (1,2,3...)"/>
+                <h:inputText id="country1" value="#{converterBean.country1}" converter="#{countryIdConverter}"/>
+                <h:outputText value="#{converterBean.country1}" converter="#{countryLabelConverter}"/>
+                <h:message for="country1"/>
+
+                <h:outputLabel for="country2" value="Country"/>
+                <h:selectOneMenu id="country2"
+                                 value="#{converterBean.country2}"
+                                 converter="#{countryIdConverter}">
+                    <f:selectItems value="#{converterBean.countryItems}"/>
+                </h:selectOneMenu>
+                <h:outputText value="#{converterBean.country2}" converter="#{countryLabelConverter}"/>
+                <h:message for="country2"/>
 
                 <h:panelGroup/>
                 <h:commandButton value="Submit"/>
