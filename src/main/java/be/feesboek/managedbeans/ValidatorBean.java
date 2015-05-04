@@ -4,8 +4,6 @@ import java.io.Serializable;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -17,16 +15,16 @@ public class ValidatorBean implements Serializable {
     
     private static final long serialVersionUID = 1L;
     
-    private Long field1 = 1111L;
-    private Long field2 = 2222L;
+    private Long field1 = 111L;
+    private Long field2 = 222L;
     @Min(1000)
-    private Long field3 = 3333L;
-    private Long field4 = 4444L;
-    private Long field5 = 5555L;
-    private Long field6 = 6666L;
-    private Long field7 = 7777L;
-    private Long field8 = 8888L;
-    private Long field9 = 9999L;
+    private Long field3 = 333L;
+    private Long field4 = 444L;
+    private Long field5 = 555L;
+    private Long field6 = 666L;
+    private Long field7 = 777L;
+    private Long field8 = 888L;
+    private Long field9 = 999L;
     
 
     /**

@@ -36,21 +36,21 @@
                 <h:inputText id="field3" value="#{validatorBean.field3}"/>
                 <h:message for="field3"/>
 
-                <h:outputLabel for="field5" value="Validator attribute: validator Method"/>
-                <h:inputText id="field5" value="#{converterBean.field5}" validator="#{longValidator.validate}"/>
-                <h:message for="field5"/>
+                <h:outputLabel for="field4" value="Validator attribute: validator Method"/>
+                <h:inputText id="field4" value="#{validatorBean.field4}" validator="#{longValidator.validate}"/>
+                <h:message for="field4"/>
 
-                <h:outputLabel for="field6" value="Validator tag: converterId"/>
-                <h:inputText id="field6" value="#{converterBean.field6}">
+                <h:outputLabel for="field5" value="Validator tag: converterId"/>
+                <h:inputText id="field5" value="#{validatorBean.field5}">
                     <f:validator validatorId="be.feesboek.validators.LongValidator"/>
                 </h:inputText>
-                <h:message for="field6"/>
+                <h:message for="field5"/>
 
-                <h:outputLabel for="field7" value="Validator tag: bind to managed validation bean"/>
-                <h:inputText id="field7" value="#{converterBean.field7}">
+                <h:outputLabel for="field6" value="Validator tag: bind to managed validation bean"/>
+                <h:inputText id="field6" value="#{validatorBean.field6}">
                     <f:validator binding="#{longValidator}"/>
                 </h:inputText>
-                <h:message for="field7"/>
+                <h:messages for="field6" layout="table"/>
 
                 <h:panelGroup/>
                 <h:commandButton value="Submit"/>

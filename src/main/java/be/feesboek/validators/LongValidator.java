@@ -19,22 +19,14 @@ public class LongValidator implements Validator {
             Object value) throws ValidatorException {
 
         Long input = null;
-        
+
         if (value != null) {
             input = Long.valueOf(value.toString());
         }
 
         if (input == null || input < 1000L) {
-//            FacesMessage msg
-//                    = new FacesMessage("Own Long validation fails",
-//                            "The value is to short, need more than 1000.");
-//            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-            
             FacesMessage message = new FacesMessage("Smaller than 1000", "The value is to low, need more than 1000.");
             context.addMessage(component.getClientId(context), message);
-
-//            throw new ValidatorException(msg);
-
         }
 
     }
