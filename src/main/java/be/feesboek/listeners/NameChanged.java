@@ -20,6 +20,7 @@ public class NameChanged extends Object implements ValueChangeListener {
         if (null != event.getNewValue()) {
             FacesContext.getCurrentInstance().getExternalContext()
                     .getSessionMap().put("name", event.getNewValue());
+            //Do some other stuff
         }
     }
 }
