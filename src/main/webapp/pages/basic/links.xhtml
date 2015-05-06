@@ -1,0 +1,102 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Links and buttons</ui:define>
+
+    <ui:define name="body">
+        <h2>Links and buttons</h2>
+
+        <h:form id="links">
+
+            <h:panelGrid columns="2">
+                <h:outputLabel><b>Inside a form</b></h:outputLabel>
+                <h:panelGroup/>
+
+                <h:outputLabel value="Command Link"/>
+                <h:commandButton value="Command Button" action="links2"/>
+
+                <h:outputLabel value="Command Button"/>
+                <h:commandLink value="Command Link" action="links2"/>
+
+                <h:outputLabel value="Link"/>
+                <h:link value="Link" outcome="links2"/>
+            </h:panelGrid>
+
+        </h:form>
+
+        <h:panelGrid columns="2">
+            <h:outputLabel><b>No form</b></h:outputLabel>
+            <h:panelGroup/>
+
+            <h:outputLabel value="Link - default outcome to same page"/>
+            <h:link value="Link"/>
+
+            <h:outputLabel value="Link - target outcome"/>
+            <h:link value="Link" outcome="links2"/>
+
+            <h:outputLabel value="Link - outcome from managed bean field"/>
+            <h:link value="Link" outcome="#{linkBean.link}"/>
+
+            <h:outputLabel value="Link - outcome from managed bean method"/>
+            <h:link value="Link" outcome="#{linkBean.doThis()}"/>
+
+            <h:outputLabel value="Bookmarkable Link"/>
+            <h:link value="Link" outcome="links2">
+                <f:param name="param1" value="koekoek"/>
+            </h:link>
+
+            <h:outputLabel value="Bookmarkable Link - viewParams on next"/>
+            <h:link value="Link" outcome="links2" includeViewParams="true">
+                <f:param name="param1" value="koekoek"/>
+                <f:param name="viewParam1" value="#{linkBean.parameter}"/>
+                <f:param name="viewParam2" value="parameter 2"/>
+                <f:param name="viewParam3" value="parameter 3"/>
+                <f:param name="viewParam4" value="parameter 4"/>
+            </h:link>
+
+            <h:outputLabel value="Bookmarkable Link - viewparam enabled in url"/>
+            <h:link value="Link" outcome="links2?includeViewParams=true">
+                <f:param name="param1" value="koekoek"/>
+                <f:param name="viewParam1" value="#{linkBean.parameter}"/>
+                <f:param name="viewParam2" value="parameter 2"/>
+                <f:param name="viewParam3" value="parameter 3"/>
+                <f:param name="viewParam4" value="parameter 4"/>
+            </h:link>
+
+            <h:outputLabel value="Bookmarkable Link - viewParams disabled"/>
+            <h:link value="Link" outcome="links2" includeViewParams="false">
+                <f:param name="param1" value="koekoek"/>
+                <f:param name="viewParam1" value="#{linkBean.parameter}"/>
+                <f:param name="viewParam2" value="parameter 2"/>
+                <f:param name="viewParam3" value="parameter 3"/>
+                <f:param name="viewParam4" value="parameter 4"/>
+            </h:link>
+            
+            <h:outputLabel value="Bookmarkable Link - no includeViewParams value"/>
+            <h:link value="Link" outcome="links2">
+                <f:param name="param1" value="koekoek"/>
+                <f:param name="viewParam1" value="#{linkBean.parameter}"/>
+                <f:param name="viewParam2" value="parameter 2"/>
+                <f:param name="viewParam3" value="parameter 3"/>
+                <f:param name="viewParam4" value="parameter 4"/>
+            </h:link>
+
+            <h:outputLabel value="Command Button"/>
+            <h:commandButton value="Does not work" action="links2"/>
+
+            <h:outputLabel value="Command Link"/>
+            <h:commandLink value="Does not render" action="links2"/>
+
+        </h:panelGrid>
+
+
+        <h:messages />
+
+    </ui:define>
+
+</ui:composition>

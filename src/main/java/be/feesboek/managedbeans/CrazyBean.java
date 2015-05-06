@@ -1,4 +1,4 @@
-package be.feesboek.beans;
+package be.feesboek.managedbeans;
 
 import be.feesboek.models.ComplexVO;
 import be.feesboek.gridform.component.MyGridComplex;

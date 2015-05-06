@@ -1,0 +1,85 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Component Functionality - Listeners</ui:define>
+
+    <ui:define name="body">
+        <h2>
+            <h:outputText value="Listeners"/>
+        </h2>
+
+        <h:form id="listeners">
+            <h:panelGrid columns="3">
+
+                <h:outputLabel><b>Value-Change listener</b></h:outputLabel>
+                <h:panelGroup/>
+                <h:panelGroup/>
+
+                <h:outputLabel for="field1" value="No Listener"/>
+                <h:inputText id="field1" value="#{listenerBean.field1}"/>
+                <h:message for="field1"/>
+
+                <h:outputLabel for="field2" value="Value Changed Listener - type"/>
+                <h:inputText id="field2" value="#{listenerBean.field2}">
+                    <f:valueChangeListener type="be.feesboek.listeners.NameChanged"/>
+                </h:inputText>
+                <h:message for="field2"/>
+                
+                <h:outputLabel for="field3" value="Value Changed Listener - bind to managed bean"/>
+                <h:inputText id="field3" value="#{listenerBean.field3}">
+                    <f:valueChangeListener binding="#{nameChanged}"/>
+                </h:inputText>
+                <h:message for="field3"/>
+
+                <h:panelGroup/>
+                <h:commandButton value="Submit"/>
+                <h:panelGroup/>
+            </h:panelGrid>
+        </h:form>
+
+
+        <h:form id="action1">
+            <h:panelGrid columns="1">
+
+                <h:outputLabel><b>Action and Action Listener - managed bean method</b></h:outputLabel>
+
+                <h:commandButton value="Submit"
+                                 id="bottonId"
+                                 action="#{listenerBean.outcome}"
+                                 actionListener="#{listenerBean.printIt}"/>
+            </h:panelGrid>
+        </h:form>
+
+
+        <h:form id="action2">
+            <h:panelGrid columns="1">
+
+                <h:outputLabel><b>Action and Action Listener - Action Listener class with type</b></h:outputLabel>
+
+                <h:commandButton value="Submit"
+                                 id="bottonId"
+                                 action="#{listenerBean.outcome}">
+                    <f:actionListener type="be.feesboek.listeners.PrintActionListener"/>
+                </h:commandButton>
+            </h:panelGrid>
+        </h:form>
+
+        <h:form id="action3">
+            <h:panelGrid columns="1">
+
+                <h:outputLabel><b>Action and Action Listener - Action Listener class while binding to managed bean</b></h:outputLabel>
+
+                <h:commandButton value="Submit"
+                                 id="bottonId"
+                                 action="#{listenerBean.outcome}">
+                    <f:actionListener binding="#{printActionListener}"/>
+                </h:commandButton>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

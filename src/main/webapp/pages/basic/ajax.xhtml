@@ -1,0 +1,56 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Ajax</ui:define>
+
+    <ui:define name="body">
+        <h2>Working with Ajax</h2>
+
+        <h:outputLabel><b>Submit without Ajax</b></h:outputLabel>
+        
+        <h:form id="form1">
+            <h:panelGrid columns="3">
+                <h:outputLabel for="field1" value="Field 1"/>
+                <h:inputText id="field1" value="#{ajaxBean.field1}"/>
+                <h:message for="field1"/>
+
+                <h:panelGroup/>
+                <h:commandButton id="submit1" value="No ajax" action="ajax"/>
+                <h:panelGroup/>
+            </h:panelGrid>
+        </h:form>
+
+        <h:panelGrid id="result1" columns="2">
+            <h:outputLabel value="Result 1:"/>
+            <h:outputLabel value="#{ajaxBean.field1}"/>
+        </h:panelGrid>
+        
+        <h:outputLabel><b>Submit with Ajax - execute and render</b></h:outputLabel>
+
+        <h:form id="form2">
+            <h:panelGrid columns="3">
+                <h:outputLabel for="field2" value="Field 2"/>
+                <h:inputText id="field2" value="#{ajaxBean.field2}"/>
+                <h:message for="field2"/>
+
+                <h:panelGroup/>
+                <h:commandButton id="submit1" value="Ajax">
+                    <f:ajax event="click" execute="field2" render="result2"/>
+                </h:commandButton>
+                <h:panelGroup/>
+            </h:panelGrid>
+        </h:form>
+
+        <h:panelGrid id="result2" columns="2">
+            <h:outputLabel value="Result 2:"/>
+            <h:outputLabel value="#{ajaxBean.field2}"/>
+        </h:panelGrid>
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,120 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Component Functionality - Validators</ui:define>
+
+    <ui:define name="body">
+        <h2>
+            <h:outputText value="Validators"/>
+        </h2>
+
+        <h:messages/>
+
+        <h:form id="validators">
+
+            <h:panelGrid columns="3">
+
+                <h:outputLabel><b>Integer example: Minimum 1000</b></h:outputLabel>
+                <h:panelGroup/>
+                <h:panelGroup/>
+
+                <h:outputLabel for="field1" value="No validation"/>
+                <h:inputText id="field1" value="#{validatorBean.field1}"/>
+                <h:message for="field1"/>
+
+                <h:outputLabel for="field2" value="Validation tag"/>
+                <h:inputText id="field2" value="#{validatorBean.field2}">
+                    <f:validateLongRange minimum="1000"/>
+                </h:inputText>
+                <h:message for="field2"/>
+
+                <h:outputLabel for="field3" value="Bean Validation"/>
+                <h:inputText id="field3" value="#{validatorBean.field3}"/>
+                <h:message for="field3"/>
+
+                <h:outputLabel for="field4" value="Method validation: Validator attribute"/>
+                <h:inputText id="field4" value="#{validatorBean.field4}" validator="#{longValidator.validate}"/>
+                <h:message for="field4"/>
+
+                <h:outputLabel for="field5" value="Faces Validator: Validator tag with validatorId"/>
+                <h:inputText id="field5" value="#{validatorBean.field5}">
+                    <f:validator validatorId="be.feesboek.validators.LongValidator"/>
+                </h:inputText>
+                <h:message for="field5"/>
+
+                <h:outputLabel for="field6" value="Managed Bean Validator: Validator tag with binding"/>
+                <h:inputText id="field6" value="#{validatorBean.field6}">
+                    <f:validator binding="#{longValidator}"/>
+                </h:inputText>
+                <h:messages for="field6"/>
+
+                <h:panelGroup/>
+                <h:commandButton value="Submit"/>
+                <h:panelGroup/>
+            </h:panelGrid>
+        </h:form>
+
+        <h:form id="validatorsDuo">
+
+            <h:panelGrid columns="4">
+
+                <h:outputLabel><b>Validate on multiple fields: between 1000 and 2000</b></h:outputLabel>
+                <h:panelGroup/>
+                <h:panelGroup/>
+                <h:panelGroup/>
+
+                <h:outputLabel value="Method validation"/>
+                <h:inputText id="field7" value="#{validatorBean.field7}" validator="#{validatorBean.validate1}"/>
+                <h:inputText id="field8" value="#{validatorBean.field8}" validator="#{validatorBean.validate2}"/>
+                <h:panelGroup>
+                    <h:messages for="field7"/>
+                    <h:messages for="field8"/>
+                </h:panelGroup>
+
+                <h:panelGroup>
+                    <h:outputLabel value="Hidden field validation with validatorId"/>
+                    <h:inputHidden id="hiddenField" value="true">
+                        <f:validator validatorId="be.feesboek.validators.RangeValidator"/>
+                        <f:attribute name="input1" value="#{input1}"/>
+                        <f:attribute name="input2" value="#{input2}"/>
+                    </h:inputHidden>
+                </h:panelGroup>
+                <h:inputText id="field9" value="#{validatorBean.field9}" binding="#{input1}"/>
+                <h:inputText id="field10" value="#{validatorBean.field10}" binding="#{input2}"/>
+                <h:messages for="hiddenField"/>
+
+                <h:outputLabel value="Hidden field validation with binding"/>
+                <h:inputText id="field11" value="#{validatorBean.field11}">
+                    <f:validator binding="#{range2Validator}"/>
+                    <f:attribute name="input3" value="#{input3}"/>
+                </h:inputText>
+                <h:inputText id="field12" value="#{validatorBean.field12}" binding="#{input3}"/>
+                <h:messages for="field11"/>
+
+                <f:event type="postValidate" listener="#{validatorBean.validateRange}"/>
+                <h:outputLabel value="Register a PostValidateEvent"/>
+                <h:inputText id="field13" value="#{validatorBean.field13}"/>
+                <h:inputText id="field14" value="#{validatorBean.field14}"/>
+                <h:panelGroup>
+                    <h:messages for="field13"/>
+                    <h:messages for="field14"/>
+                </h:panelGroup>
+
+                <h:outputLabel>Alternative (more work): Create custom component and validate</h:outputLabel>
+                <h:panelGroup/>
+                <h:panelGroup/>
+                <h:panelGroup/>
+
+                <h:panelGroup/>
+                <h:commandButton value="Submit"/>
+                <h:panelGroup/>
+            </h:panelGrid>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

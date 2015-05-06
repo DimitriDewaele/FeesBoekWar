@@ -1,4 +1,4 @@
-package be.feesboek.converter;
+package be.feesboek.converters;
 
 import be.feesboek.business.country.boundary.CountryBoundary;
 import be.feesboek.entity.CountryEntity;
@@ -11,7 +11,9 @@ import javax.inject.Named;
 
 @Named
 @Stateless
-public class CountryConverter implements Converter {
+public class CountryLabelConverter implements Converter {
+    
+    private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(CountryLabelConverter.class);
     
     @Inject
     CountryBoundary countryBoundary;
@@ -28,7 +30,10 @@ public class CountryConverter implements Converter {
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object object) {
         if (object != null) {
-            return String.valueOf(((CountryEntity) object).getCountryId());
+            CountryEntity country = (CountryEntity) object;
+            
+            LOGGER.debug("COUNTRY {}: {} [{}]", country.getCountryId(), country.getCountryName(), country.getCountryIsoCode());
+            return String.valueOf(country.getCountryName() + " ["+country.getCountryIsoCode()+"]");
         }
         return null;
     }

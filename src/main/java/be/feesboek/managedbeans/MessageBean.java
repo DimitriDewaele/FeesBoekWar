@@ -1,4 +1,4 @@
-package be.feesboek.beans;
+package be.feesboek.managedbeans;
 
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
