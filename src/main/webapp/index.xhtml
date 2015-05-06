@@ -16,18 +16,22 @@
             <h:outputText value="Pages"/>
             <ul>
                 <li><h:link outcome="/index" value="Welcome page" /></li>
-                <li><h:link outcome="/pages/feesboek" value="Feesboek" /></li>
-                <li><h:link outcome="/pages/links" value="Links" /></li>
-                <li><h:link outcome="/pages/expression" value="Expression" /></li>
-                <li><h:link outcome="/pages/crazy/crazyFormPrime" value="Crazy form Prime" /></li>
-                <li><h:link outcome="/pages/crazy/crazyFormDynamic" value="Crazy form Dynamic" /></li>
-                <li><h:link outcome="/pages/crazy/dynamicCode" value="Dynamic from Code" /></li>
-                <li><h:link outcome="/pages/crazy/dynamicCode2" value="Dynamic from Code 2" /></li>
-                <li><h:link outcome="/pages/crazy/dynamicRepeat" value="Dynamic from Repeat" /></li>
+                <li><h:link outcome="/pages/basic/links" value="Links" /></li>
+                <li><h:link outcome="/pages/basic/expression" value="Expression" /></li>
+                <li><h:link outcome="/pages/basic/ajax" value="Ajax" /></li>
             </ul>
             <h:outputText value="Form"/>
             <ul>
+                <li><h:link outcome="/pages/form/feesboek" value="Feesboek" /></li>
                 <li><h:link outcome="/pages/form/billing" value="Billing" /></li>
+                <li><h:outputText value="Dynamic"/></li>
+                <ul>
+                    <li><h:link outcome="/pages/crazy/crazyFormPrime" value="Crazy form Prime" /></li>
+                    <li><h:link outcome="/pages/crazy/crazyFormDynamic" value="Crazy form Dynamic" /></li>
+                    <li><h:link outcome="/pages/crazy/dynamicCode" value="Dynamic from Code" /></li>
+                    <li><h:link outcome="/pages/crazy/dynamicCode2" value="Dynamic from Code 2" /></li>
+                    <li><h:link outcome="/pages/crazy/dynamicRepeat" value="Dynamic from Repeat" /></li>
+                </ul>
             </ul>
             <h:outputText value="Component Functionality"/>
             <ul>

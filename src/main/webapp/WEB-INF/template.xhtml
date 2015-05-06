@@ -40,19 +40,22 @@
                     <!-- MenuAction items need a form -->
                     <h:form id="menuForm">
                         <p:menu toggleable="true">
-                            <p:submenu label="Pages">
-                                <p:menuitem value="Index" url="/index.xhtml" />
-                                <p:menuitem value="Feesboek" outcome="/pages/feesboek" />
-                                <p:menuitem value="Links" outcome="/pages/links" />
-                                <p:menuitem value="Expression" outcome="/pages/expression" />
+                            <p:menuitem value="Index" url="/index.xhtml" />
+                            <p:submenu label="Basic">
+                                <p:menuitem value="Links" outcome="/pages/basic/links" />
+                                <p:menuitem value="Expression" outcome="/pages/basic/expression" />
+                                <p:menuitem value="Ajax" outcome="/pages/basic/ajax" />
+                            </p:submenu>
+                            <p:submenu label="Forms">
+                                <p:menuitem value="Feesboek" outcome="/pages/form/feesboek" />
+                                <p:menuitem value="Billing" outcome="/pages/form/billing" />
+                            </p:submenu>
+                            <p:submenu label="Dynamic">
                                 <p:menuitem value="Crazy Form Form" outcome="/pages/crazy/crazyFormPrime" />
                                 <p:menuitem value="Crazy Form Dynamic" outcome="/pages/crazy/crazyFormDynamic" />
                                 <p:menuitem value="Dynamic from Code" outcome="/pages/crazy/dynamicCode" />
                                 <p:menuitem value="Dynamic from Code 2" outcome="/pages/crazy/dynamicCode2" />
-                                <p:menuitem value="Dynamic from Repeat" outcome="/pages/crazy/dynamicRepeat" />
-                            </p:submenu>
-                            <p:submenu label="Forms">
-                                <p:menuitem value="Billing" outcome="/pages/form/billing" />
+                                <p:menuitem value="Dynamic from Repeat" outcome="/pages/crazy/dynamicRepeat" />                                    
                             </p:submenu>
                             <p:submenu label="Component">
                                 <p:menuitem value="Converters" outcome="/pages/component/converters" />
