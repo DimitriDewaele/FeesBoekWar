@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Cars</title>
+        <style type="text/css">
+            .ui-widget {
+                font-size: 90%;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <p:dataTable var="person" value="#{dialogBean.persons}">
+            <p:column headerText="Id">
+                <h:outputText value="#{person.id}" />
+            </p:column>
+
+            <p:column headerText="Year">
+                <h:outputText value="#{person.firstName}" />
+            </p:column>
+
+            <p:column headerText="Brand">
+                <h:outputText value="#{person.lastName}" />
+            </p:column>
+
+            <p:column headerText="Color">
+                <h:outputText value="#{person.age}" />
+            </p:column>
+        </p:dataTable>
+    </h:body>
+
+</html>
