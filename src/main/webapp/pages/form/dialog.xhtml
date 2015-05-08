@@ -6,7 +6,7 @@
                 xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
                 xmlns:p="http://primefaces.org/ui">
 
-    <ui:define name="title">Billing</ui:define>
+    <ui:define name="title">Dialog</ui:define>
 
     <ui:define name="body">
         <h2>Dialog</h2>
@@ -16,21 +16,24 @@
             <li>Needs faces-config.xml</li>
         </ul>
 
+        <h:form id="personList">
+            <p:commandButton value="Add" icon="ui-icon-extlink" actionListener="#{dialogBean.add}"/>
 
-        <h:form>
+            <p:dataTable var="person" value="#{dialogBean.persons}" rowIndexVar="rowIndex">
+                <p:column headerText="id" style="width: 40px;">
+                    <h:outputText value="#{person.id}" />
+                </p:column>
 
-            <h:panelGrid columns="2">
+                <p:column headerText="Person">
+                    <h:outputText value="#{person.description}"/>
+                </p:column>
 
-                <p:commandButton value="View" icon="ui-icon-extlink" actionListener="#{dialogBean.viewPersons}" />
-                <p:commandButton value="Options" icon="ui-icon-extlink" actionListener="#{dialogBean.viewPersonsCustomized}" />
-
-                <p:commandButton value="Edit" icon="ui-icon-extlink" actionListener="#{dialogBean.editPerson}" />
-                <p:commandButton value="Edit" icon="ui-icon-extlink" actionListener="#{dialogBean.editPerson}" />
-
-            </h:panelGrid>
+                <p:column headerText="Remove" style="width: 220px;">
+                    <p:commandButton value="Edit" icon="ui-icon-extlink" actionListener="#{dialogBean.edit(person.id)}"/>
+                    <p:commandButton value="Remove" icon="ui-icon-extlink" actionListener="#{dialogBean.remove(person.id)}"/>
+                </p:column>
+            </p:dataTable>
         </h:form>
-
-
     </ui:define>
 
 </ui:composition>

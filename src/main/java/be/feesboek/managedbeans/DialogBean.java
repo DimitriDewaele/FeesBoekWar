@@ -1,14 +1,17 @@
 package be.feesboek.managedbeans;
 
+import be.feesboek.business.DialogDataBoundary;
 import be.feesboek.models.PersonVO;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.context.RequestContext;
 
@@ -17,10 +20,17 @@ import org.primefaces.context.RequestContext;
  * @author dimitridw
  */
 @Named(value = "dialogBean")
-@RequestScoped
-public class DialogBean {
+@SessionScoped
+public class DialogBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(DialogBean.class);
 
     private List<PersonVO> persons;
+
+    @Inject
+    DialogDataBoundary dialogDataBoundary;
 
     /**
      * Creates a new instance of DialogBean
@@ -30,44 +40,67 @@ public class DialogBean {
 
     @PostConstruct
     public void initialize() {
-
-        persons = new ArrayList<PersonVO>();
-        persons.add(new PersonVO(1, "Jean", "Pol", "receptionist", new Date(74, 10, 10)));
-        persons.add(new PersonVO(2, "Jef", "Snijders", "guardener", new Date(71, 10, 10)));
-        persons.add(new PersonVO(3, "Piet", "Peters", "truck driver", new Date(64, 10, 10)));
-        persons.add(new PersonVO(4, "Peet", "Polders", "professor", new Date(54, 10, 10)));
-        persons.add(new PersonVO(5, "Nell", "Van Den Walle", "student", new Date(12, 10, 10)));
-        persons.add(new PersonVO(6, "Nady", "Van Toren", "cleaning", new Date(98, 10, 10)));
-        persons.add(new PersonVO(7, "Jenny", "De Koster", "police", new Date(45, 10, 10)));
-        persons.add(new PersonVO(8, "Malena", "Zetterman", "air traffic controler", new Date(71, 10, 10)));
-        persons.add(new PersonVO(9, "Medina", "Zegers", "test engineer", new Date(85, 10, 10)));
-        persons.add(new PersonVO(10, "Horaire", "Safrina", "manager", new Date(47, 10, 10)));
-
-        // Add random up to  10 rows - loaded in RequestScope
-        Random randomGenerator = new Random();
-        int randomInt = randomGenerator.nextInt(10);
-        for (int j = 0; j < randomInt; j++) {
-            persons.add(new PersonVO((11 + j), "Horaire", "Safrina", "manager", new Date(47, 10, 10)));
-        }
-
+        persons = dialogDataBoundary.findAll();
     }
 
-    public void viewPersons() {
-        RequestContext.getCurrentInstance().openDialog("dialog/viewPersons");
-    }
+    public void add() {
+        LOGGER.debug("Add person");
 
-    public void viewPersonsCustomized() {
         Map<String, Object> options = new HashMap<>();
-        options.put("modal", true);
-        options.put("draggable", false);
-        options.put("resizable", false);
-        options.put("contentHeight", 320);
+        options.put("modal", false);
+        options.put("draggable", true);
+        options.put("resizable", true);
+        options.put("contentHeight", 200);
 
-        RequestContext.getCurrentInstance().openDialog("dialog/viewPersons", options, null);
+        RequestContext.getCurrentInstance().openDialog("dialog/addPerson", options, null);
     }
 
-    public void editPerson() {
-        RequestContext.getCurrentInstance().openDialog("dialog/editPerson");
+    public void edit(int id) {
+        LOGGER.debug("Edit person with ID: {}", id);
+
+        Map<String, Object> options = new HashMap<>();
+        options.put("modal", false);
+        options.put("draggable", true);
+        options.put("resizable", true);
+        options.put("contentHeight", 200);
+
+        Integer personId = Integer.valueOf(id);
+
+        List<String> paramList = new ArrayList<>();
+        paramList.add(personId.toString());
+
+        Map<String, List<String>> params = new HashMap<>();
+        params.put("data", paramList);
+        LOGGER.debug("paramList: {}", paramList);
+
+        RequestContext.getCurrentInstance().openDialog("dialog/editPerson", options, params);
+
+        // Seems to ben necessary - does not bind good with Requestcontext
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("personId", personId);
+    }
+
+    public void remove(int id) {
+        LOGGER.debug("Remove person with ID: {}", id);
+
+        Map<String, Object> options = new HashMap<>();
+        options.put("modal", false);
+        options.put("draggable", true);
+        options.put("resizable", true);
+        options.put("contentHeight", 200);
+
+        Integer personId = Integer.valueOf(id);
+
+        List<String> paramList = new ArrayList<>();
+        paramList.add(personId.toString());
+
+        Map<String, List<String>> params = new HashMap<>();
+        params.put("data", paramList);
+        LOGGER.debug("paramList: {}", paramList);
+
+        RequestContext.getCurrentInstance().openDialog("dialog/removePerson", options, params);
+
+        // Seems to ben necessary - does not bind good with Requestcontext
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("personId", personId);
     }
 
     /**
