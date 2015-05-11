@@ -4,25 +4,33 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="title">Dialog</ui:define>
 
     <ui:define name="body">
         <h2>Dialog</h2>
 
-        <p>A list with edit and delete button. Load a dialog window with edit form.</p>
+        <p>Use the primefaces dialog component. Necessary for a good working dialog:</p>
         <ul>
-            <li>Needs faces-config.xml</li>
+            <li>Additional configuration in: faces-config.xml</li>
             <li>ViewScoped dialog pages</li>
         </ul>
 
-        <h:panelGrid columns="1" cellpadding="5">
+        <p><b>Different dialog implementations</b></p>
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputText value="Inpage component"/>
             <p:commandButton value="Dialog 1" type="button" onclick="PF('dialog1').show();" />
 
+            <h:outputText value="Included page"/>
             <p:commandButton value="Dialog 2" type="button" onclick="PF('dialog2').show();" />
+            
+            <h:outputText value="From code"/>
+            <p:commandButton value="Dialog 3" actionListener="#{dialogBean.fromCode}"/>
         </h:panelGrid>
 
+        <p><b>Dialog in a list</b></p>
         <h:form id="personlist">
             <p:commandButton value="Add" icon="ui-icon-extlink" actionListener="#{dialogBean.add}"/>
 
@@ -44,17 +52,31 @@
             </p:dataTable>
         </h:form>
 
-        <p:dialog header="Dialog 1" widgetVar="dialog1" minHeight="40">
-            <h:outputText value="Dialog 1" />
+        <p:dialog header="Dialog 1" widgetVar="dialog1" minHeight="40" closable="true" closeOnEscape="true">
+            <h:form id="formDialog1">
+                <h:panelGrid columns="1">
+                    <h:panelGroup>
+                        <p>Dialog available in the same page.</p>
+                        <lu>
+                            <li>Close button (x)</li>
+                            <li>Close with Escape key</li>
+                        </lu>
+                    </h:panelGroup>
+                    <h:outputText value="Dialog 1" />
+                    <h:inputText value="#{dialogBean.message}"/>
+                    <p:commandButton value="Test"
+                                     action="#{dialogBean.test()}"
+                                     oncomplete="dialog1.hide()"/>
+                </h:panelGrid>
+            </h:form>
         </p:dialog>
 
 
-        <p:dialog header="Dialog 2" widgetVar="dialog2" minHeight="40">
+        <p:dialog header="Dialog 2" widgetVar="dialog2" minHeight="40" closable="true" closeOnEscape="true">
             <h:panelGroup id="groupDialog2">
-                <ui:include src="dialog/testPerson.xhtml"/>
+                <ui:include src="dialog/testInclude.xhtml"/>
             </h:panelGroup>
         </p:dialog>
-
 
     </ui:define>
 

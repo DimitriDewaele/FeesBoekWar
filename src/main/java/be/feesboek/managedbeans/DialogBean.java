@@ -8,9 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.context.RequestContext;
@@ -27,7 +25,9 @@ public class DialogBean implements Serializable {
 
     private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(DialogBean.class);
 
+    private String message;
     private List<PersonVO> persons;
+    private PersonVO selected;
 
     @Inject
     DialogDataBoundary dialogDataBoundary;
@@ -42,6 +42,16 @@ public class DialogBean implements Serializable {
     public void initialize() {
         LOGGER.debug("DialogBean: initialize");
         persons = dialogDataBoundary.findAll();
+        message = "General message";
+    }
+
+    public void fromCode() {
+        LOGGER.debug("Dialog from code");
+        RequestContext.getCurrentInstance().openDialog("dialog/testLoad");
+    }
+
+    public void test() {
+        LOGGER.debug("TEST Method");
     }
 
     public long getOverviewDummyTime() {
@@ -121,6 +131,34 @@ public class DialogBean implements Serializable {
     public void setPersons(List<PersonVO> persons) {
         LOGGER.debug("DialogBean: setPersons");
         this.persons = persons;
+    }
+
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * @param message the message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    /**
+     * @return the selected
+     */
+    public PersonVO getSelected() {
+        return selected;
+    }
+
+    /**
+     * @param selected the selected to set
+     */
+    public void setSelected(PersonVO selected) {
+        this.selected = selected;
     }
 
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Include test</title>
+
+    </h:head>
+
+    <h:body>
+
+        <h:form id="formDialog2">
+            <h:panelGrid columns="1">
+                <h:panelGroup>
+                    <p>Dialog available in included page.</p>
+                    <lu>
+                        <li>Close button (x)</li>
+                        <li>Close with Escape key</li>
+                    </lu>
+                </h:panelGroup>
+                <h:outputText value="Dialog 2" />
+                <h:inputText value="#{dialogBean.message}"/>
+                <p:commandButton value="Test"
+                                 action="#{dialogBean.test()}"
+                                 oncomplete="dialog2.hide()"/>
+            </h:panelGrid>
+        </h:form>
+
+    </h:body>
+
+</html>
