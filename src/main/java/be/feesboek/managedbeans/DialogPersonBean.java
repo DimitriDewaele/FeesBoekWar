@@ -2,6 +2,7 @@ package be.feesboek.managedbeans;
 
 import be.feesboek.business.DialogDataBoundary;
 import be.feesboek.models.PersonVO;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import org.primefaces.context.RequestContext;
 
@@ -17,14 +19,14 @@ import org.primefaces.context.RequestContext;
  * @author dimitridw
  */
 @Named(value = "dialogPersonBean")
-@RequestScoped
+@ViewScoped
 public class DialogPersonBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(DialogPersonBean.class);
 
-    private PersonVO detail;
+    private PersonVO person;
 
     @Inject
     DialogDataBoundary dialogDataBoundary;
@@ -33,43 +35,49 @@ public class DialogPersonBean implements Serializable {
      * Creates a new instance of PersonBean
      */
     public DialogPersonBean() {
-        List<String> requestParamList = (ArrayList) RequestContext.getCurrentInstance().getAttributes().get("data");
-        LOGGER.debug("requestParamList: {}", requestParamList);
-
-        Integer contextParam = (Integer) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("data");
-        LOGGER.debug("contextParam    : {}", contextParam);
-
-        Integer id = null;
-        if (requestParamList != null) {
-            String idString = requestParamList.get(0);
-            id = Integer.valueOf(idString);
-        }
-        if (id != null) {
-            detail = dialogDataBoundary.getById(id);
-        } else {
-            detail = new PersonVO();
-        }
-
-        LOGGER.debug("personVO        : {}", detail);
     }
 
     @PostConstruct
     public void initialize() {
+        LOGGER.debug("Postconstruct personVO: {}", person);
+    }
 
+    public long getDummyTime(){
+        return System.currentTimeMillis();
+    }
+    
+    public void edit() {
+        LOGGER.debug("EDIT: {}", person);
+        dialogDataBoundary.edit(person);
+        RequestContext.getCurrentInstance().closeDialog("dialog/editPerson");
+        RequestContext.getCurrentInstance().update(":personlist:datatable");
+    }
+
+    public void remove() {
+        LOGGER.debug("REMOVE: {}", person);
+        dialogDataBoundary.remove(person.getId());
+        RequestContext.getCurrentInstance().closeDialog("dialog/removePerson");
+        RequestContext.getCurrentInstance().update(":personlist:datatable");
+    }
+
+    public void nothing() {
+        LOGGER.debug("Do nothing: {}", person);
+        RequestContext.getCurrentInstance().closeDialog("dialog/removePerson");
+        RequestContext.getCurrentInstance().update(":personlist:datatable");
     }
 
     /**
-     * @return the detail
+     * @return the person
      */
-    public PersonVO getDetail() {
-        return detail;
+    public PersonVO getPerson() {
+        return person;
     }
 
     /**
-     * @param detail the detail to set
+     * @param person the person to set
      */
-    public void setDetail(PersonVO detail) {
-        this.detail = detail;
+    public void setPerson(PersonVO person) {
+        this.person = person;
     }
 
 }

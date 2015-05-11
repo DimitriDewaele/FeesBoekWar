@@ -14,12 +14,21 @@
         <p>A list with edit and delete button. Load a dialog window with edit form.</p>
         <ul>
             <li>Needs faces-config.xml</li>
+            <li>ViewScoped dialog pages</li>
         </ul>
 
-        <h:form id="personList">
+        <h:panelGrid columns="1" cellpadding="5">
+            <p:commandButton value="Dialog 1" type="button" onclick="PF('dialog1').show();" />
+
+            <p:commandButton value="Dialog 2" type="button" onclick="PF('dialog2').show();" />
+        </h:panelGrid>
+
+        <h:form id="personlist">
             <p:commandButton value="Add" icon="ui-icon-extlink" actionListener="#{dialogBean.add}"/>
 
-            <p:dataTable var="person" value="#{dialogBean.persons}" rowIndexVar="rowIndex">
+            <h:outputText id="dummyTime" style="background:#fff;" value="#{dialogBean.overviewDummyTime}" /> 
+
+            <p:dataTable id="datatable" var="person" value="#{dialogBean.persons}" rowIndexVar="rowIndex">
                 <p:column headerText="id" style="width: 40px;">
                     <h:outputText value="#{person.id}" />
                 </p:column>
@@ -34,6 +43,19 @@
                 </p:column>
             </p:dataTable>
         </h:form>
+
+        <p:dialog header="Dialog 1" widgetVar="dialog1" minHeight="40">
+            <h:outputText value="Dialog 1" />
+        </p:dialog>
+
+
+        <p:dialog header="Dialog 2" widgetVar="dialog2" minHeight="40">
+            <h:panelGroup id="groupDialog2">
+                <ui:include src="dialog/testPerson.xhtml"/>
+            </h:panelGroup>
+        </p:dialog>
+
+
     </ui:define>
 
 </ui:composition>

@@ -40,14 +40,24 @@ public class DialogBean implements Serializable {
 
     @PostConstruct
     public void initialize() {
+        LOGGER.debug("DialogBean: initialize");
         persons = dialogDataBoundary.findAll();
+    }
+
+    public long getOverviewDummyTime() {
+        return System.currentTimeMillis();
+    }
+
+    public void updateForm() {
+        LOGGER.debug("TEST");
+        RequestContext.getCurrentInstance().update(":personlist");
     }
 
     public void add() {
         LOGGER.debug("Add person");
 
         Map<String, Object> options = new HashMap<>();
-        options.put("modal", false);
+        options.put("modal", true);
         options.put("draggable", true);
         options.put("resizable", true);
         options.put("contentHeight", 200);
@@ -59,24 +69,22 @@ public class DialogBean implements Serializable {
         LOGGER.debug("Edit person with ID: {}", id);
 
         Map<String, Object> options = new HashMap<>();
+//        options.put("id", "editDialog");
         options.put("modal", false);
         options.put("draggable", true);
         options.put("resizable", true);
-        options.put("contentHeight", 200);
+        options.put("contentHeight", 350);
 
-        Integer personId = Integer.valueOf(id);
-
+//        onCloseUpdate
+        // Add parameters to view params
         List<String> paramList = new ArrayList<>();
-        paramList.add(personId.toString());
+        paramList.add(((Integer) id).toString());
 
         Map<String, List<String>> params = new HashMap<>();
-        params.put("data", paramList);
+        params.put("person", paramList);
         LOGGER.debug("paramList: {}", paramList);
 
         RequestContext.getCurrentInstance().openDialog("dialog/editPerson", options, params);
-
-        // Seems to ben necessary - does not bind good with Requestcontext
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("personId", personId);
     }
 
     public void remove(int id) {
@@ -86,27 +94,24 @@ public class DialogBean implements Serializable {
         options.put("modal", false);
         options.put("draggable", true);
         options.put("resizable", true);
-        options.put("contentHeight", 200);
+        options.put("contentHeight", 350);
 
-        Integer personId = Integer.valueOf(id);
-
+        // Add parameters to view params
         List<String> paramList = new ArrayList<>();
-        paramList.add(personId.toString());
+        paramList.add(((Integer) id).toString());
 
         Map<String, List<String>> params = new HashMap<>();
-        params.put("data", paramList);
+        params.put("person", paramList);
         LOGGER.debug("paramList: {}", paramList);
 
         RequestContext.getCurrentInstance().openDialog("dialog/removePerson", options, params);
-
-        // Seems to ben necessary - does not bind good with Requestcontext
-        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("personId", personId);
     }
 
     /**
      * @return the persons
      */
     public List<PersonVO> getPersons() {
+        LOGGER.debug("DialogBean: getPersons");
         return persons;
     }
 
@@ -114,6 +119,7 @@ public class DialogBean implements Serializable {
      * @param persons the persons to set
      */
     public void setPersons(List<PersonVO> persons) {
+        LOGGER.debug("DialogBean: setPersons");
         this.persons = persons;
     }
 

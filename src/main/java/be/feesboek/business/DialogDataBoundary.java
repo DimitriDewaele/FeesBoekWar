@@ -49,12 +49,11 @@ public class DialogDataBoundary implements Serializable {
         return persons;
     }
 
-    public PersonVO getById(int id) {
+    public PersonVO getById(Integer id) {
         PersonVO local = null;
         for (Iterator iter = persons.listIterator(); iter.hasNext();) {
             PersonVO temp = (PersonVO) iter.next();
-            int idTemp = temp.getId();
-            if (idTemp == id) {
+            if (id.equals(temp.getId())) {
                 LOGGER.debug("The person is: {}", temp);
                 local = temp;
                 break;
@@ -67,7 +66,7 @@ public class DialogDataBoundary implements Serializable {
         return persons.size();
     }
 
-    public void remove(int id) {
+    public void remove(Integer id) {
         PersonVO local = getById(id);
         if (local != null) {
             LOGGER.debug("Remove person: {}", local);

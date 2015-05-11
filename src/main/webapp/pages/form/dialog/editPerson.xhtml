@@ -1,17 +1,45 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <f:metadata>
+        <f:viewParam name="person" value="#{dialogPersonBean.person}" converter="#{personVOIdConverter}"/>
+    </f:metadata>
 
     <h:head>
         <title>Edit person</title>
+
     </h:head>
 
     <h:body>
-        
+
         <p>Edit person</p>
-        
-        <p:outputLabel id="test" value="#{dialogPersonBean.detail.description}"/>
+        <h:outputText id="dummyTime" style="background:#fff;" value="#{dialogPersonBean.dummyTime}" /> 
+
+        <h:form id="personForm">
+
+            <p:panelGrid columns="2">
+
+                <p:outputLabel value="Job title"/>
+                <p:inputText value="#{dialogPersonBean.person.jobTitle}"/>
+
+                <p:outputLabel value="First name"/>
+                <p:inputText value="#{dialogPersonBean.person.firstName}"/>
+
+                <p:outputLabel value="Last name"/>
+                <p:inputText value="#{dialogPersonBean.person.lastName}"/>
+
+                <p:outputLabel value="Birth date"/>
+                <p:calendar value="#{dialogPersonBean.person.birthDate}"/>
+
+                <h:panelGroup/>
+                <p:commandButton id="edit" value="Edit" actionListener="#{dialogPersonBean.edit}" ajax="false"/>
+                
+            </p:panelGrid>
+
+        </h:form>
 
     </h:body>
 

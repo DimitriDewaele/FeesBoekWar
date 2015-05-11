@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Edit person</title>
+
+    </h:head>
+
+    <h:body>
+
+        <p>Test person</p>
+
+        <h:form id="subForm">
+
+            <p:commandButton value="Update" process="@form" update=":personlist" oncomplete="dialog2.hide()"/>
+            <p:commandButton value="With Bean" process="@form" action="#{dialogBean.updateForm}" oncomplete="dialog2.hide()"/>
+
+        </h:form>
+
+    </h:body>
+
+</html>
