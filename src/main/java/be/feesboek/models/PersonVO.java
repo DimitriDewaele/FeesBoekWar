@@ -37,6 +37,17 @@ public class PersonVO {
         LOGGER.debug(this.toString());
     }
 
+    // Methods
+    public String getDescription() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(jobTitle)
+                .append(" - ")
+                .append(firstName).append(" ").append(lastName)
+                .append(" (age: ").append(age).append(")");
+        return sb.toString();
+    }
+
+    // Getters and setters
     /**
      * @return the firstName
      */
@@ -141,7 +152,7 @@ public class PersonVO {
         sb.append("PersonVO{");
         sb.append(this.firstName != null ? this.firstName : "");
         sb.append(" ");
-        sb.append(this.lastName != null ?this.lastName : "");
+        sb.append(this.lastName != null ? this.lastName : "");
         sb.append(" - age: ").append(this.age);
         sb.append("}");
         return sb.toString();
