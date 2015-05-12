@@ -23,6 +23,7 @@
                 <h:outputText value="Dialog 2" />
                 <h:inputText value="#{dialogBean.message}"/>
                 <p:commandButton value="Test"
+                                 update=":dialogTest"
                                  action="#{dialogBean.test()}"
                                  oncomplete="dialog2.hide()"/>
             </h:panelGrid>

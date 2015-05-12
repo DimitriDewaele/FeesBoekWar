@@ -67,66 +67,23 @@ public class DialogBean implements Serializable {
         LOGGER.debug("Do nothing: {}");
     }
 
-    public void add() {
-        LOGGER.debug("Add person");
-
-        Map<String, Object> options = new HashMap<>();
-        options.put("modal", true);
-        options.put("draggable", true);
-        options.put("resizable", true);
-        options.put("contentHeight", 200);
-
-        RequestContext.getCurrentInstance().openDialog("dialog/addPerson", options, null);
+    public void newPerson() {
+        LOGGER.debug("New person");
+        this.selected = new PersonVO();
     }
 
-    public void edit(int id) {
-        LOGGER.debug("Edit person with ID: {}", id);
+    public void add() {
+        LOGGER.debug("Add selected person: {}", selected);
+        dialogDataBoundary.add(selected);
+    }
 
-        Map<String, Object> options = new HashMap<>();
-//        options.put("id", "editDialog");
-        options.put("modal", false);
-        options.put("draggable", true);
-        options.put("resizable", true);
-        options.put("contentHeight", 350);
-
-//        onCloseUpdate
-        // Add parameters to view params
-        List<String> paramList = new ArrayList<>();
-        paramList.add(((Integer) id).toString());
-
-        Map<String, List<String>> params = new HashMap<>();
-        params.put("person", paramList);
-        LOGGER.debug("paramList: {}", paramList);
-
-        RequestContext.getCurrentInstance().openDialog("dialog/editPerson", options, params);
+    public void edit(PersonVO person) {
+        LOGGER.debug("Edit person with ID: {}", person);
+        dialogDataBoundary.edit(person);
     }
 
     public void remove(int id) {
         LOGGER.debug("Remove person with ID: {}", id);
-
-        Map<String, Object> options = new HashMap<>();
-        options.put("modal", false);
-        options.put("draggable", true);
-        options.put("resizable", true);
-        options.put("contentHeight", 350);
-
-        // Add parameters to view params
-        List<String> paramList = new ArrayList<>();
-        paramList.add(((Integer) id).toString());
-
-        Map<String, List<String>> params = new HashMap<>();
-        params.put("person", paramList);
-        LOGGER.debug("paramList: {}", paramList);
-
-        RequestContext.getCurrentInstance().openDialog("dialog/removePerson", options, params);
-    }
-    public void edit2(PersonVO person) {
-        LOGGER.debug("Edit2 person with ID: {}", person);
-        dialogDataBoundary.edit(person);
-    }
-    
-    public void remove2(int id) {
-        LOGGER.debug("Remove2 person with ID: {}", id);
         dialogDataBoundary.remove(id);
     }
 

@@ -19,7 +19,7 @@
         </ul>
 
         <p><b>Different dialog implementations</b></p>
-        <h:panelGrid columns="2" cellpadding="5">
+        <h:panelGrid id="dialogTest" columns="2">
             <h:outputText value="Inpage component"/>
             <p:commandButton value="Dialog 1" type="button" onclick="PF('dialog1').show();" />
 
@@ -28,13 +28,19 @@
 
             <h:outputText value="From code"/>
             <p:commandButton value="Dialog 3" actionListener="#{dialogBean.fromCode}"/>
+
+            <h:outputText value="Time (msec.)"/>
+            <h:outputText value="#{dialogBean.overviewDummyTime}" /> 
         </h:panelGrid>
 
         <p><b>Dialog in a list</b></p>
         <h:form id="personlist">
-            <p:commandButton value="Add" icon="ui-icon-extlink" actionListener="#{dialogBean.add}"/>
-
-            <h:outputText id="dummyTime" style="background:#fff;" value="#{dialogBean.overviewDummyTime}" /> 
+            <p:commandButton value="Add"
+                             action="#{dialogBean.newPerson}"
+                             update=":dialogAddForm"
+                             onclick="PF('addDialog').show();" />
+            <h:outputText value="Time in msec: "/>
+            <h:outputText id="dummyTime" value="#{dialogBean.overviewDummyTime}" /> 
 
             <p:dataTable id="datatable" var="person" value="#{dialogBean.persons}" rowIndexVar="rowIndex">
                 <p:column headerText="id" style="width: 40px;">
@@ -45,21 +51,16 @@
                     <h:outputText value="#{person.description}"/>
                 </p:column>
 
-                <p:column headerText="Remove" style="width: 220px;">
-                    <p:commandButton value="Edit" icon="ui-icon-extlink" actionListener="#{dialogBean.edit(person.id)}"/>
-                    <p:commandButton value="Remove" icon="ui-icon-extlink" actionListener="#{dialogBean.remove(person.id)}"/>
-                </p:column>
-
-                <p:column headerText="Remove">
+                <p:column headerText="" style="width: 220px;">
                     <ui:remove>update: necessary to get load the selected person in the dialog</ui:remove>
-                    <p:commandButton value="Update3"
+                    <p:commandButton value="Edit"
                                      action="#{dialogBean.setSelected(person)}"
-                                     update=":dialogUpdate3Form"
-                                     onclick="PF('update3').show();" />
-                    <p:commandButton value="Remove3"
+                                     update=":dialogUpdateForm"
+                                     onclick="PF('updateDialog').show();" />
+                    <p:commandButton value="Remove"
                                      action="#{dialogBean.setSelected(person)}"
-                                     update=":dialogRemove3Form"
-                                     onclick="PF('remove3').show();" />
+                                     update=":dialogRemoveForm"
+                                     onclick="PF('removeDialog').show();" />
                 </p:column>
             </p:dataTable>
         </h:form>
@@ -78,6 +79,7 @@
                     <h:inputText value="#{dialogBean.message}"/>
                     <p:commandButton value="Test"
                                      action="#{dialogBean.test()}"
+                                     update=":dialogTest"
                                      oncomplete="dialog1.hide()"/>
                 </h:panelGrid>
             </h:form>
@@ -90,9 +92,9 @@
             </h:panelGroup>
         </p:dialog>
 
-        <p:dialog header="Remove3" widgetVar="remove3" minHeight="40" closable="true" closeOnEscape="true">
+        <p:dialog header="Remove" widgetVar="removeDialog" minHeight="40" closable="true" closeOnEscape="true">
             <p>Remove person</p>
-            <h:form id="dialogRemove3Form">
+            <h:form id="dialogRemoveForm">
                 <p:panelGrid columns="2">
 
                     <p:outputLabel value="Job title"/>
@@ -105,19 +107,19 @@
                     <p:outputLabel value="#{dialogBean.selected.lastName}"/>
 
                     <p:commandButton id="no" value="No"
-                                     actionListener="#{dialogBean.nothing}" ajax="false" oncomplete="remove3.hide()"/>
+                                     actionListener="#{dialogBean.nothing}" ajax="false" oncomplete="removeDialog.hide()"/>
                     <p:commandButton id="yes" value="Yes"
                                      update=":personlist"
-                                     actionListener="#{dialogBean.remove2(dialogBean.selected.id)}"
+                                     actionListener="#{dialogBean.remove(dialogBean.selected.id)}"
                                      ajax="false"
-                                     oncomplete="remove3.hide()"/>
+                                     oncomplete="removeDialog.hide()"/>
                 </p:panelGrid>
             </h:form>
         </p:dialog>
 
-        <p:dialog header="Update3" widgetVar="update3" minHeight="40" closable="true" closeOnEscape="true">
-            <p>Remove person</p>
-            <h:form id="dialogUpdate3Form">
+        <p:dialog header="Update" widgetVar="updateDialog" minHeight="40" closable="true" closeOnEscape="true">
+            <p>Update person</p>
+            <h:form id="dialogUpdateForm">
                 <p:panelGrid columns="2">
 
                     <p:outputLabel value="Job title"/>
@@ -133,12 +135,40 @@
                     <p:calendar value="#{dialogBean.selected.birthDate}"/>
 
                     <p:commandButton id="no" value="No"
-                                     actionListener="#{dialogBean.nothing}" ajax="false" oncomplete="update3.hide()"/>
+                                     actionListener="#{dialogBean.nothing}" ajax="false" oncomplete="updateDialog.hide()"/>
                     <p:commandButton id="yes" value="Edit"
                                      update=":personlist"
-                                     actionListener="#{dialogBean.edit2(dialogBean.selected)}"
+                                     actionListener="#{dialogBean.edit(dialogBean.selected)}"
                                      ajax="false"
-                                     oncomplete="update3.hide()"/>
+                                     oncomplete="updateDialog.hide()"/>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog header="Add" widgetVar="addDialog" minHeight="40" closable="true" closeOnEscape="true">
+            <p>Add person</p>
+            <h:form id="dialogAddForm">
+                <p:panelGrid columns="2">
+
+                    <p:outputLabel value="Job title"/>
+                    <p:inputText value="#{dialogBean.selected.jobTitle}"/>
+
+                    <p:outputLabel value="First name"/>
+                    <p:inputText value="#{dialogBean.selected.firstName}"/>
+
+                    <p:outputLabel value="Last name"/>
+                    <p:inputText value="#{dialogBean.selected.lastName}"/>
+
+                    <p:outputLabel value="Birth date"/>
+                    <p:calendar value="#{dialogBean.selected.birthDate}"/>
+
+                    <p:commandButton id="no" value="No"
+                                     actionListener="#{dialogBean.nothing}" ajax="false" oncomplete="addDialog.hide()"/>
+                    <p:commandButton id="yes" value="Add"
+                                     update=":personlist"
+                                     actionListener="#{dialogBean.add}"
+                                     ajax="false"
+                                     oncomplete="addDialog.hide()"/>
                 </p:panelGrid>
             </h:form>
         </p:dialog>
