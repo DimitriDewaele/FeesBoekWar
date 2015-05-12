@@ -63,6 +63,10 @@ public class DialogBean implements Serializable {
         RequestContext.getCurrentInstance().update(":personlist");
     }
 
+    public void nothing() {
+        LOGGER.debug("Do nothing: {}");
+    }
+
     public void add() {
         LOGGER.debug("Add person");
 
@@ -115,6 +119,11 @@ public class DialogBean implements Serializable {
         LOGGER.debug("paramList: {}", paramList);
 
         RequestContext.getCurrentInstance().openDialog("dialog/removePerson", options, params);
+    }
+
+    public void remove2(int id) {
+        LOGGER.debug("Remove2 person with ID: {}", id);
+        dialogDataBoundary.remove(id);
     }
 
     /**

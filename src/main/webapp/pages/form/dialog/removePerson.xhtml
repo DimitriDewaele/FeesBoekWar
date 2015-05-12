@@ -31,7 +31,7 @@
                 <p:outputLabel value="#{dialogPersonBean.person.lastName}"/>
 
                 <p:commandButton id="no" value="No" actionListener="#{dialogPersonBean.nothing}" ajax="false"/>
-                <p:commandButton id="yes" value="Yes" actionListener="#{dialogPersonBean.remove}" ajax="false"/>
+                <p:commandButton id="yes" value="Yes" update=":personlist" actionListener="#{dialogPersonBean.remove}" ajax="false"/>
             </p:panelGrid>
 
         </h:form>

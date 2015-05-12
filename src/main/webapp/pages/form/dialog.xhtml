@@ -25,7 +25,7 @@
 
             <h:outputText value="Included page"/>
             <p:commandButton value="Dialog 2" type="button" onclick="PF('dialog2').show();" />
-            
+
             <h:outputText value="From code"/>
             <p:commandButton value="Dialog 3" actionListener="#{dialogBean.fromCode}"/>
         </h:panelGrid>
@@ -48,6 +48,13 @@
                 <p:column headerText="Remove" style="width: 220px;">
                     <p:commandButton value="Edit" icon="ui-icon-extlink" actionListener="#{dialogBean.edit(person.id)}"/>
                     <p:commandButton value="Remove" icon="ui-icon-extlink" actionListener="#{dialogBean.remove(person.id)}"/>
+                </p:column>
+
+                <p:column headerText="Remove">
+                    <p:commandButton value="Remove3"
+                                     action="#{dialogBean.setSelected(person)}"
+                                     update=":dialog3Form"
+                                     onclick="PF('remove3').show();" />
                 </p:column>
             </p:dataTable>
         </h:form>
@@ -76,6 +83,31 @@
             <h:panelGroup id="groupDialog2">
                 <ui:include src="dialog/testInclude.xhtml"/>
             </h:panelGroup>
+        </p:dialog>
+
+        <p:dialog header="Remove3" widgetVar="remove3" minHeight="40" closable="true" closeOnEscape="true">
+            <p>Remove person</p>
+            <h:form id="dialog3Form">
+                <p:panelGrid columns="2">
+
+                    <p:outputLabel value="Job title"/>
+                    <p:outputLabel value="#{dialogBean.selected.jobTitle}"/>
+
+                    <p:outputLabel value="First name"/>
+                    <p:outputLabel value="#{dialogBean.selected.firstName}"/>
+
+                    <p:outputLabel value="Last name"/>
+                    <p:outputLabel value="#{dialogBean.selected.lastName}"/>
+
+                    <p:commandButton id="no" value="No"
+                                     actionListener="#{dialogBean.nothing}" ajax="false" oncomplete="remove3.hide()"/>
+                    <p:commandButton id="yes" value="Yes"
+                                     update=":personlist"
+                                     actionListener="#{dialogBean.remove2(dialogBean.selected.id)}"
+                                     ajax="false"
+                                     oncomplete="remove3.hide()"/>
+                </p:panelGrid>
+            </h:form>
         </p:dialog>
 
     </ui:define>
