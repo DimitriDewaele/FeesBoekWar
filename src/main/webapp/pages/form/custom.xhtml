@@ -1,0 +1,31 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:test="http://xmlns.jcp.org/jsf/component">
+
+    <ui:define name="title">Custom</ui:define>
+
+    <ui:define name="body">
+        <h2>Custom Component</h2>
+
+        <p>A custom component is not a composite component!</p>
+
+        <h:form id="custom">
+
+            <h:panelGrid columns="1">
+                <h:inputText id="field1" value="#{customBean.field1}" size="50"/> 
+
+                <test:customSimple value="#{customBean.field1}"/>
+
+                <p:commandButton value="Update" action="#{customBean.add()}" ajax="false"/>
+            </h:panelGrid>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
