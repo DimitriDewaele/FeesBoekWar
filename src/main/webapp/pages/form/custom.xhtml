@@ -17,11 +17,11 @@
         <h:form id="custom">
 
             <h:panelGrid columns="1">
-                <h:outputText id="field1" value="#{customBean.field1}" /> 
+                <h:inputText id="field1" value="#{customBean.field1}" size="50"/> 
 
-                <test:customSimple value="Custom Component"/>
+                <test:customSimple value="#{customBean.field1}"/>
 
-                <p:commandButton value="Add" action="#{customBean.add()}" />
+                <p:commandButton value="Update" action="#{customBean.add()}" ajax="false"/>
             </h:panelGrid>
 
         </h:form>

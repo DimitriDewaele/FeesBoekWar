@@ -16,7 +16,7 @@ public class CustomBean implements Serializable{
     
     private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(CustomBean.class);
     
-    private String field1="field1";
+    private String field1="Custom component: value renders to uppercase.";
 
     /**
      * Creates a new instance of CustomBean
