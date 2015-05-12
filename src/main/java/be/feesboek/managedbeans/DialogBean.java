@@ -120,7 +120,11 @@ public class DialogBean implements Serializable {
 
         RequestContext.getCurrentInstance().openDialog("dialog/removePerson", options, params);
     }
-
+    public void edit2(PersonVO person) {
+        LOGGER.debug("Edit2 person with ID: {}", person);
+        dialogDataBoundary.edit(person);
+    }
+    
     public void remove2(int id) {
         LOGGER.debug("Remove2 person with ID: {}", id);
         dialogDataBoundary.remove(id);
