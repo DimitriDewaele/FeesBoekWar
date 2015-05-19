@@ -38,9 +38,9 @@ PF('dialog1Widget').show() = to show widget with primefaces javascript class
 
                 <h:outputLabel for="dialog1Button" value="Dialog 1 for field 3+4"/>
                 <p:commandButton id="dialog1Button"
-                                 value="Dialog without form"
+                                 value="Dialog 1: with form"
                                  actionListener="#{dialogFormBean.preload()}"
-                                 update=":dialog1Form"
+                                 update="dialog1Form"
                                  oncomplete="#{p:widgetVar('dialog1')}.show();"/>
                 <ui:remove>Alternative: oncomplete with PF('dialog1Widget').show()</ui:remove>
                 <h:panelGroup/>
@@ -55,7 +55,7 @@ PF('dialog1Widget').show() = to show widget with primefaces javascript class
 
                 <h:outputLabel for="dialog1Button" value="Dialog 2 for field 5+6"/>
                 <p:commandButton id="dialog2Button"
-                                 value="Dialog with form"
+                                 value="Dialog 2: with form"
                                  actionListener="#{dialogFormBean.preload()}"
                                  update=":dialog2Form"
                                  oncomplete="PF('dialog2Widget').show();"/>
@@ -70,18 +70,105 @@ PF('dialog1Widget').show() = to show widget with primefaces javascript class
                 <h:inputText id="field6" value="#{dialogFormBean.field6}"/>
                 <h:message for="field6"/>
 
+                <h:outputLabel for="dialog3Button" value="Dialog 3 for field 7+8"/>
+                <p:commandButton id="dialog3Button"
+                                 value="Dialog 3: no form"
+                                 actionListener="#{dialogFormBean.preload()}"
+                                 update="dialog3Group"
+                                 oncomplete="#{p:widgetVar('parentForm:dialog3')}.show();"/>
+
+                <h:panelGroup/>
+                
+                <h:outputLabel for="field7" value="Field 7"/>
+                <h:inputText id="field7" value="#{dialogFormBean.field7}"/>
+                <h:message for="field7"/>
+
+                <h:outputLabel for="field8" value="Field 8"/>
+                <h:inputText id="field8" value="#{dialogFormBean.field8}"/>
+                <h:message for="field8"/>
+
+                <h:outputLabel for="dialog4Button" value="Dialog 4 for field 9+10"/>
+                <p:commandButton id="dialog4Button"
+                                 value="Dialog 4: nested form"
+                                 actionListener="#{dialogFormBean.preload()}"
+                                 update="dialog4Form"
+                                 oncomplete="PF('dialog4Widget').show();"/>
+                <h:panelGroup/>
+
+                <h:outputLabel for="field9" value="Field 9"/>
+                <h:inputText id="field9" value="#{dialogFormBean.field9}"/>
+                <h:message for="field9"/>
+
+                <h:outputLabel for="field10" value="Field 10"/>
+                <h:inputText id="field10" value="#{dialogFormBean.field10}"/>
+                <h:message for="field10"/>
+
                 <h:outputText value="#{dialogFormBean.overviewDummyTime}" /> 
                 <p:commandButton id="formButton"
                                  value="Full form submit"
                                  actionListener="#{dialogFormBean.fullForm()}"
+                                 process="@form"
                                  update="@form"/>
                 <h:panelGroup/>
+                <h:panelGroup/>
             </h:panelGrid>
+
+            <p:dialog id="dialog3" header="Dialog 3" widgetVar="dialog3Widget" minHeight="40" closable="true" closeOnEscape="true">
+                <p>Dialog 3: Inside parent form - no own form: needs to process component</p>
+                <h:panelGroup id="dialog3Group">
+                    <p:panelGrid id="dialog3Grid" columns="3">
+
+                        <h:outputLabel for="field7Dialog" value="Field 7"/>
+                        <h:inputText id="field7Dialog" value="#{dialogFormBean.field7}"/>
+                        <h:message for="field7Dialog"/>
+
+                        <h:outputLabel for="field8Dialog" value="Field 8"/>
+                        <h:inputText id="field8Dialog" value="#{dialogFormBean.field8}"/>
+                        <h:message for="field8Dialog"/>
+
+                        <p:commandButton value="No"
+                                         actionListener="#{dialogFormBean.nothing}"
+                                         oncomplete="PF('dialog3Widget').hide();"/>
+                        <p:commandButton value="Yes"
+                                         actionListener="#{dialogFormBean.dialog1Update()}"
+                                         update=":parentForm:parentGrid dialog3Group"
+                                         oncomplete="if (!args.validationFailed) { PF('dialog3Widget').hide(); }"
+                                         process="dialog3Group"/>
+                        <h:outputText value="#{dialogFormBean.overviewDummyTime}" /> 
+                    </p:panelGrid>
+                </h:panelGroup>
+            </p:dialog>
+
+            <p:dialog id="dialog4" dynamic="true" header="Dialog 4" widgetVar="dialog4Widget" minHeight="40" closable="true" closeOnEscape="true">
+                <p>Dialog 4: Inside parent form - own (nested) form: needs to process as form</p>
+                <h:form id="dialog4Form">
+                    <p:panelGrid id="dialog4Grid" columns="3">
+
+                        <h:outputLabel for="field9Dialog" value="Field 9"/>
+                        <h:inputText id="field9Dialog" value="#{dialogFormBean.field9}"/>
+                        <h:message for="field9Dialog"/>
+
+                        <h:outputLabel for="field10Dialog" value="Field 10"/>
+                        <h:inputText id="field10Dialog" value="#{dialogFormBean.field10}"/>
+                        <h:message for="field10Dialog"/>
+
+                        <p:commandButton value="No"
+                                         actionListener="#{dialogFormBean.nothing}"
+                                         oncomplete="PF('dialog4Widget').hide();"/>
+                        <p:commandButton value="Yes"
+                                         actionListener="#{dialogFormBean.dialog1Update()}"
+                                         update=":parentForm:parentGrid @form"
+                                         oncomplete="console.log('oncomplete args = ', args);if (!args.validationFailed) { PF('dialog4Widget').hide(); }"
+                                         process="@form"/>
+                        <h:outputText value="#{dialogFormBean.overviewDummyTime}" /> 
+                    </p:panelGrid>
+                </h:form>
+            </p:dialog>
 
         </h:form>
 
         <p:dialog id="dialog1" header="Dialog 1" widgetVar="dialog1Widget" minHeight="40" closable="true" closeOnEscape="true">
-            <p>Dialog 1</p>
+            <p>Dialog 1: Outside Parent form - own form</p>
             <h:panelGroup id="dialog1Group">
                 <h:form id="dialog1Form">
                     <p:panelGrid id="dialog1Grid" columns="3">
@@ -101,14 +188,14 @@ PF('dialog1Widget').show() = to show widget with primefaces javascript class
                                          actionListener="#{dialogFormBean.dialog1Update()}"
                                          update=":parentForm :dialog1Form"
                                          oncomplete="if (!args.validationFailed) { #{p:widgetVar('dialog1')}.hide(); }"/>
-                        <h:panelGroup/>
+                        <h:outputText value="#{dialogFormBean.overviewDummyTime}" /> 
                     </p:panelGrid>
                 </h:form>
             </h:panelGroup>
         </p:dialog>
 
         <p:dialog id="dialog2" header="Dialog 2" widgetVar="dialog2Widget" minHeight="40" closable="true" closeOnEscape="true">
-            <p>Dialog 2</p>
+            <p>Dialog 2: Outside Parent form - own form (identical to Dialog 1)</p>
             <h:form id="dialog2Form">
                 <p:panelGrid id="dialog2Grid" columns="3">
 
@@ -127,7 +214,7 @@ PF('dialog1Widget').show() = to show widget with primefaces javascript class
                                      actionListener="#{dialogFormBean.dialog2Update()}"
                                      update=":parentForm :dialog2Form"
                                      oncomplete="if (!args.validationFailed) { #{p:widgetVar('dialog2')}.hide(); }"/>
-                    <h:panelGroup/>
+                    <h:outputText value="#{dialogFormBean.overviewDummyTime}" /> 
                 </p:panelGrid>
             </h:form>
         </p:dialog>

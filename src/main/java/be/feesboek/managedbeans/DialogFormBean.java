@@ -37,6 +37,18 @@ public class DialogFormBean implements Serializable {
     @NotNull
     @Size(min = 5, max = 10)
     private String field6;
+    @NotNull
+    @Size(min = 5, max = 10)
+    private String field7;
+    @NotNull
+    @Size(min = 5, max = 10)
+    private String field8;
+    @NotNull
+    @Size(min = 5, max = 10)
+    private String field9;
+    @NotNull
+    @Size(min = 5, max = 10)
+    private String field10;
 
     public DialogFormBean() {
     }
@@ -50,6 +62,10 @@ public class DialogFormBean implements Serializable {
         field4 = "d";
         field5 = "e";
         field6 = "f";
+        field7 = "g";
+        field8 = "h";
+        field9 = "i";
+        field10 = "j";
     }
 
     // Methods used in form
@@ -68,8 +84,8 @@ public class DialogFormBean implements Serializable {
     public void dialog2Update() {
         LOGGER.debug("Update dialog 2");
     }
-    
-    public void fullForm(){
+
+    public void fullForm() {
         LOGGER.debug("Full form action");
     }
 
@@ -161,5 +177,61 @@ public class DialogFormBean implements Serializable {
      */
     public void setField6(String field6) {
         this.field6 = field6;
+    }
+
+    /**
+     * @return the field7
+     */
+    public String getField7() {
+        return field7;
+    }
+
+    /**
+     * @param field7 the field7 to set
+     */
+    public void setField7(String field7) {
+        this.field7 = field7;
+    }
+
+    /**
+     * @return the field8
+     */
+    public String getField8() {
+        return field8;
+    }
+
+    /**
+     * @param field8 the field8 to set
+     */
+    public void setField8(String field8) {
+        this.field8 = field8;
+    }
+
+    /**
+     * @return the field9
+     */
+    public String getField9() {
+        return field9;
+    }
+
+    /**
+     * @param field9 the field9 to set
+     */
+    public void setField9(String field9) {
+        this.field9 = field9;
+    }
+
+    /**
+     * @return the field10
+     */
+    public String getField10() {
+        return field10;
+    }
+
+    /**
+     * @param field10 the field10 to set
+     */
+    public void setField10(String field10) {
+        this.field10 = field10;
     }
 }
