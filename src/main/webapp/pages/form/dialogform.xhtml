@@ -28,6 +28,11 @@ PF('dialog1Widget').show() = to show widget with primefaces javascript class
 
         <h:form id="parentForm">
             <h:panelGrid id="parentGrid" columns="3">
+
+                <h:panelGroup/>
+                <h:outputLabel value="No dialog for field 1+2"/>
+                <h:panelGroup/>
+
                 <h:outputLabel for="field1" value="Field 1"/>
                 <h:inputText id="field1" value="#{dialogFormBean.field1}"/>
                 <h:message for="field1"/>
@@ -78,7 +83,7 @@ PF('dialog1Widget').show() = to show widget with primefaces javascript class
                                  oncomplete="#{p:widgetVar('parentForm:dialog3')}.show();"/>
 
                 <h:panelGroup/>
-                
+
                 <h:outputLabel for="field7" value="Field 7"/>
                 <h:inputText id="field7" value="#{dialogFormBean.field7}"/>
                 <h:message for="field7"/>
