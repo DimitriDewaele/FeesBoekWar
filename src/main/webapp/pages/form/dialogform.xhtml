@@ -128,7 +128,10 @@ PF('dialog1Widget').show() = to show widget with primefaces javascript class
                         <h:message for="field7Dialog"/>
 
                         <h:outputLabel for="field8Dialog" value="Field 8"/>
-                        <h:inputText id="field8Dialog" value="#{dialogFormBean.field8}"/>
+                        <ui:remove><h:inputText id="field8Dialog" value="#{dialogFormBean.field8}"/></ui:remove>
+                        <p:selectOneMenu id="field8Dialog" value="#{dialogFormBean.field8}">
+                            <f:selectItems value="#{dialogFormBean.fields}"/>
+                        </p:selectOneMenu>
                         <h:message for="field8Dialog"/>
 
                         <p:commandButton value="No"
@@ -154,7 +157,10 @@ PF('dialog1Widget').show() = to show widget with primefaces javascript class
                         <h:message for="field9Dialog"/>
 
                         <h:outputLabel for="field10Dialog" value="Field 10"/>
-                        <h:inputText id="field10Dialog" value="#{dialogFormBean.field10}"/>
+                        <ui:remove><h:inputText id="field10Dialog" value="#{dialogFormBean.field10}"/></ui:remove>
+                        <p:selectOneMenu id="field10Dialog" value="#{dialogFormBean.field10}">
+                            <f:selectItems value="#{dialogFormBean.fields}"/>
+                        </p:selectOneMenu>
                         <h:message for="field10Dialog"/>
 
                         <p:commandButton value="No"
@@ -183,7 +189,10 @@ PF('dialog1Widget').show() = to show widget with primefaces javascript class
                         <h:message for="field3Dialog"/>
 
                         <h:outputLabel for="field4Dialog" value="Field 4"/>
-                        <h:inputText id="field4Dialog" value="#{dialogFormBean.field4}"/>
+                        <ui:remove><h:inputText id="field4Dialog" value="#{dialogFormBean.field4}"/></ui:remove>
+                        <p:selectOneMenu  id="field4Dialog" value="#{dialogFormBean.field4}">
+                            <f:selectItems value="#{dialogFormBean.fields}"/>
+                        </p:selectOneMenu>
                         <h:message for="field4Dialog"/>
 
                         <p:commandButton value="No"
@@ -209,7 +218,10 @@ PF('dialog1Widget').show() = to show widget with primefaces javascript class
                     <h:message for="field5Dialog"/>
 
                     <h:outputLabel for="field6Dialog" value="Field 6"/>
-                    <h:inputText id="field6Dialog" value="#{dialogFormBean.field6}"/>
+                    <ui:remove><h:inputText id="field6Dialog" value="#{dialogFormBean.field6}"/></ui:remove>
+                    <p:selectOneMenu id="field6Dialog" value="#{dialogFormBean.field6}">
+                        <f:selectItems value="#{dialogFormBean.fields}"/>
+                    </p:selectOneMenu>
                     <h:message for="field6Dialog"/>
 
                     <p:commandButton value="No"

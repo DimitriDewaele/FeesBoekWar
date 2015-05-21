@@ -1,9 +1,12 @@
 package be.feesboek.managedbeans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.model.SelectItem;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -49,6 +52,8 @@ public class DialogFormBean implements Serializable {
     @NotNull
     @Size(min = 5, max = 10)
     private String field10;
+    
+    private List<SelectItem> fields;
 
     public DialogFormBean() {
     }
@@ -66,6 +71,15 @@ public class DialogFormBean implements Serializable {
         field8 = "h";
         field9 = "i";
         field10 = "j";
+        
+        fields = new ArrayList<>();
+        fields.add(new SelectItem(null, "")); // Add null item
+        fields.add(new SelectItem("a", "a"));
+        fields.add(new SelectItem("abc", "abc"));
+        fields.add(new SelectItem("input1", "input1"));
+        fields.add(new SelectItem("input2", "input2"));
+        fields.add(new SelectItem("input3", "input3"));
+        fields.add(new SelectItem("abcdefghijklm", "abcdefghijklm"));
     }
 
     // Methods used in form
@@ -233,5 +247,19 @@ public class DialogFormBean implements Serializable {
      */
     public void setField10(String field10) {
         this.field10 = field10;
+    }
+
+    /**
+     * @return the fields
+     */
+    public List<SelectItem> getFields() {
+        return fields;
+    }
+
+    /**
+     * @param fields the fields to set
+     */
+    public void setFields(List<SelectItem> fields) {
+        this.fields = fields;
     }
 }
