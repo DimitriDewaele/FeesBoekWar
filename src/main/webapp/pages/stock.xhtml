@@ -12,7 +12,7 @@
         <h2>Potato price</h2>
 
         <p>Updated every second on all pages with Web Sockets.</p>
-        <p:outputLabel id="potato">Web Sockets. Open a second page and change color on both! (white, green, #FFF, ...)</p:outputLabel>
+        <p:outputLabel id="potato">Open a second page and change color on both! (white, green, #FFF, ...)</p:outputLabel>
 
         <p:panelGrid columns="2">
             <h:outputText value="Price (€)"/>
@@ -24,6 +24,14 @@
             <p:inputText value="white" id="color"/>
             <p:commandButton value="Change color" onclick="sendColor();"/>
         </p:panelGrid>
+        
+        <p><b>This Web Socket example includes:</b></p>
+        <ul>
+            <li><i>WebSocket endpoint:</i> To store all connected sessions, send a message to all conneted sessions and recieve messages.</li>
+            <li><i>Enterprise Bean:</i> with timer service to generate a new price very second</li>
+            <li><i>Client Page:</i> With a field to show the price + load JavaScript</li>
+            <li><i>JavaScript:</i> To use the WebSocket API to connect to the server endpoint and update/send messages.</li>
+        </ul>
 
     </ui:define>
 
