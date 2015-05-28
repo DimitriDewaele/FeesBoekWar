@@ -1,0 +1,46 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Qualifiers</ui:define>
+
+    <ui:define name="body">
+        <h2>Qualifiers</h2>
+        
+        <p>Demonstrate the use of different qualifiers. Provide various implementations of a particular bean type.</p>
+        <ul>
+            <li>Basic bean injections.</li>
+            <li>@Informal: Annotate the basic bean with @Informal qualifier.</li>
+            <li>@Official: Annotate the basic bean with @Official qualifier.</li>
+        </ul>
+
+        <h:form>
+            <p:panelGrid columns="3">
+
+                <p:outputLabel for="name" value="Name"/>
+                <p:inputText id="name" value="#{qualifierBean.name}"/>
+                <p:message for="name"/>
+
+                <h:panelGroup/>
+                <p:commandButton value="Send" action="#{qualifierBean.send}" ajax="true" update="salution"/>
+                <h:panelGroup/>
+            </p:panelGrid>
+        </h:form>
+
+        <p:panelGrid id="salution" columns="2">
+            <p:outputLabel value="Basic bean"/>
+            <p:outputLabel value="#{qualifierBean.salution1}"/>
+            
+            <p:outputLabel value="Informal"/>
+            <p:outputLabel value="#{qualifierBean.salution2}"/>
+            
+            <p:outputLabel value="Official"/>
+            <p:outputLabel value="#{qualifierBean.salution3}"/>
+        </p:panelGrid>
+
+        <p:messages/>
+    </ui:define>
+
+</ui:composition>

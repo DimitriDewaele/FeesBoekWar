@@ -1,0 +1,43 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Scopes</ui:define>
+
+    <ui:define name="body">
+        <h2>Bean Scopes</h2>
+        
+        <p>Demonstrate the use of different bean scopes.</p>
+        <ul>
+            <li>@RequestScoped: Every single request has it's own bean.</li>
+            <li>@SessionScoped: The users keeps the bean over multiple requests, during the session.</li>
+            <li>@ApplicationScoped: The bean is used over the complete application. Test with different browsers.: </li>
+        </ul>
+
+        <h:form>
+            <p:panelGrid columns="3">
+
+                <p:outputLabel for="request" value="Request"/>
+                <p:inputText id="request" value="#{scopesRequestBean.field}"/>
+                <p:message for="request"/>
+
+                <p:outputLabel for="session" value="Session"/>
+                <p:inputText id="session" value="#{scopesSessionBean.field}"/>
+                <p:message for="session"/>
+                
+                <p:outputLabel for="application" value="Application"/>
+                <p:inputText id="application" value="#{scopesApplicationBean.field}"/>
+                <p:message for="application"/>
+
+                <h:panelGroup/>
+                <h:commandButton value="Send" action="#{scopesBean.send}"/>
+                <h:panelGroup/>
+            </p:panelGrid>
+        </h:form>
+
+        <p:messages/>
+    </ui:define>
+
+</ui:composition>
