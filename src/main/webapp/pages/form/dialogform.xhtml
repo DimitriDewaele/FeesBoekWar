@@ -1,0 +1,241 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="title">Dialog from Form</ui:define>
+
+    <ui:define name="body">
+        <h2>Dialog from Form</h2>
+
+        <p><b>Form's can include dialog's that are also form-like. This can give problems with mixed forms (this is not allowed).</b> 2 solutions:</p>
+        <ul>
+            <li>Dialog without form: process part of the original form.</li>
+            <li>Append form dynamically outside the first form.</li>
+        </ul>
+        <p>The use of the primefaces helper client functions:</p>
+        <pre>
+\#{p:widgetVar('dialog1')}  = #{p:widgetVar('dialog1')}
+PF('dialog1Widget').show() = to show widget with primefaces javascript class
+\#{p:widgetVarFromContext('dialog1', cc)} = Only in Composite Component context: to look only in the cc component
+        </pre>
+
+        <p><b>Form</b></p>
+
+        <h:form id="parentForm">
+            <h:panelGrid id="parentGrid" columns="3">
+
+                <h:panelGroup/>
+                <h:outputLabel value="No dialog for field 1+2"/>
+                <h:panelGroup/>
+
+                <h:outputLabel for="field1" value="Field 1"/>
+                <h:inputText id="field1" value="#{dialogFormBean.field1}"/>
+                <h:message for="field1"/>
+
+                <h:outputLabel for="field2" value="Field 2"/>
+                <h:inputText id="field2" value="#{dialogFormBean.field2}"/>
+                <h:message for="field2"/>
+
+                <h:outputLabel for="dialog1Button" value="Dialog 1 for field 3+4"/>
+                <p:commandButton id="dialog1Button"
+                                 value="Dialog 1: with form"
+                                 actionListener="#{dialogFormBean.preload()}"
+                                 update="dialog1Form"
+                                 oncomplete="#{p:widgetVar('dialog1')}.show();"/>
+                <ui:remove>Alternative: oncomplete with PF('dialog1Widget').show()</ui:remove>
+                <h:panelGroup/>
+
+                <h:outputLabel for="field3" value="Field 3"/>
+                <h:inputText id="field3" value="#{dialogFormBean.field3}"/>
+                <h:message for="field3"/>
+
+                <h:outputLabel for="field4" value="Field 4"/>
+                <h:inputText id="field4" value="#{dialogFormBean.field4}"/>
+                <h:message for="field4"/>
+
+                <h:outputLabel for="dialog1Button" value="Dialog 2 for field 5+6"/>
+                <p:commandButton id="dialog2Button"
+                                 value="Dialog 2: with form"
+                                 actionListener="#{dialogFormBean.preload()}"
+                                 update=":dialog2Form"
+                                 oncomplete="PF('dialog2Widget').show();"/>
+                <ui:remove>Alternative: oncomplete with #{p:widgetVar('dialog2')}.show()</ui:remove>
+                <h:panelGroup/>
+
+                <h:outputLabel for="field5" value="Field 5"/>
+                <h:inputText id="field5" value="#{dialogFormBean.field5}"/>
+                <h:message for="field5"/>
+
+                <h:outputLabel for="field6" value="Field 6"/>
+                <h:inputText id="field6" value="#{dialogFormBean.field6}"/>
+                <h:message for="field6"/>
+
+                <h:outputLabel for="dialog3Button" value="Dialog 3 for field 7+8"/>
+                <p:commandButton id="dialog3Button"
+                                 value="Dialog 3: no form"
+                                 actionListener="#{dialogFormBean.preload()}"
+                                 update="dialog3Group"
+                                 oncomplete="#{p:widgetVar('parentForm:dialog3')}.show();"/>
+
+                <h:panelGroup/>
+
+                <h:outputLabel for="field7" value="Field 7"/>
+                <h:inputText id="field7" value="#{dialogFormBean.field7}"/>
+                <h:message for="field7"/>
+
+                <h:outputLabel for="field8" value="Field 8"/>
+                <h:inputText id="field8" value="#{dialogFormBean.field8}"/>
+                <h:message for="field8"/>
+
+                <h:outputLabel for="dialog4Button" value="Dialog 4 for field 9+10"/>
+                <p:commandButton id="dialog4Button"
+                                 value="Dialog 4: nested form"
+                                 actionListener="#{dialogFormBean.preload()}"
+                                 update="dialog4Form"
+                                 oncomplete="PF('dialog4Widget').show();"/>
+                <h:panelGroup/>
+
+                <h:outputLabel for="field9" value="Field 9"/>
+                <h:inputText id="field9" value="#{dialogFormBean.field9}"/>
+                <h:message for="field9"/>
+
+                <h:outputLabel for="field10" value="Field 10"/>
+                <h:inputText id="field10" value="#{dialogFormBean.field10}"/>
+                <h:message for="field10"/>
+
+                <h:outputText value="#{dialogFormBean.overviewDummyTime}" /> 
+                <p:commandButton id="formButton"
+                                 value="Full form submit"
+                                 actionListener="#{dialogFormBean.fullForm()}"
+                                 process="@form"
+                                 update="@form"/>
+                <h:panelGroup/>
+                <h:panelGroup/>
+            </h:panelGrid>
+
+            <p:dialog id="dialog3" header="Dialog 3" widgetVar="dialog3Widget" minHeight="40" closable="true" closeOnEscape="true">
+                <p>Dialog 3: Inside parent form - no own form: needs to process component</p>
+                <h:panelGroup id="dialog3Group">
+                    <p:panelGrid id="dialog3Grid" columns="3">
+
+                        <h:outputLabel for="field7Dialog" value="Field 7"/>
+                        <h:inputText id="field7Dialog" value="#{dialogFormBean.field7}"/>
+                        <h:message for="field7Dialog"/>
+
+                        <h:outputLabel for="field8Dialog" value="Field 8"/>
+                        <ui:remove><h:inputText id="field8Dialog" value="#{dialogFormBean.field8}"/></ui:remove>
+                        <p:selectOneMenu id="field8Dialog" value="#{dialogFormBean.field8}">
+                            <f:selectItems value="#{dialogFormBean.fields}"/>
+                        </p:selectOneMenu>
+                        <h:message for="field8Dialog"/>
+
+                        <p:commandButton value="No"
+                                         actionListener="#{dialogFormBean.nothing}"
+                                         oncomplete="PF('dialog3Widget').hide();"/>
+                        <p:commandButton value="Yes"
+                                         actionListener="#{dialogFormBean.dialog1Update()}"
+                                         update=":parentForm:parentGrid dialog3Group"
+                                         oncomplete="if (!args.validationFailed) { PF('dialog3Widget').hide(); }"
+                                         process="dialog3Group"/>
+                        <h:outputText value="#{dialogFormBean.overviewDummyTime}" /> 
+                    </p:panelGrid>
+                </h:panelGroup>
+            </p:dialog>
+
+            <p:dialog id="dialog4" dynamic="true" header="Dialog 4" widgetVar="dialog4Widget" minHeight="40" closable="true" closeOnEscape="true">
+                <p>Dialog 4: Inside parent form - own (nested) form: needs to process as form</p>
+                <h:form id="dialog4Form">
+                    <p:panelGrid id="dialog4Grid" columns="3">
+
+                        <h:outputLabel for="field9Dialog" value="Field 9"/>
+                        <h:inputText id="field9Dialog" value="#{dialogFormBean.field9}"/>
+                        <h:message for="field9Dialog"/>
+
+                        <h:outputLabel for="field10Dialog" value="Field 10"/>
+                        <ui:remove><h:inputText id="field10Dialog" value="#{dialogFormBean.field10}"/></ui:remove>
+                        <p:selectOneMenu id="field10Dialog" value="#{dialogFormBean.field10}">
+                            <f:selectItems value="#{dialogFormBean.fields}"/>
+                        </p:selectOneMenu>
+                        <h:message for="field10Dialog"/>
+
+                        <p:commandButton value="No"
+                                         actionListener="#{dialogFormBean.nothing}"
+                                         oncomplete="PF('dialog4Widget').hide();"/>
+                        <p:commandButton value="Yes"
+                                         actionListener="#{dialogFormBean.dialog1Update()}"
+                                         update=":parentForm:parentGrid @form"
+                                         oncomplete="console.log('oncomplete args = ', args);if (!args.validationFailed) { PF('dialog4Widget').hide(); }"
+                                         process="@form"/>
+                        <h:outputText value="#{dialogFormBean.overviewDummyTime}" /> 
+                    </p:panelGrid>
+                </h:form>
+            </p:dialog>
+
+        </h:form>
+
+        <p:dialog id="dialog1" header="Dialog 1" widgetVar="dialog1Widget" minHeight="40" closable="true" closeOnEscape="true">
+            <p>Dialog 1: Outside Parent form - own form</p>
+            <h:panelGroup id="dialog1Group">
+                <h:form id="dialog1Form">
+                    <p:panelGrid id="dialog1Grid" columns="3">
+
+                        <h:outputLabel for="field3Dialog" value="Field 3"/>
+                        <h:inputText id="field3Dialog" value="#{dialogFormBean.field3}"/>
+                        <h:message for="field3Dialog"/>
+
+                        <h:outputLabel for="field4Dialog" value="Field 4"/>
+                        <ui:remove><h:inputText id="field4Dialog" value="#{dialogFormBean.field4}"/></ui:remove>
+                        <p:selectOneMenu  id="field4Dialog" value="#{dialogFormBean.field4}">
+                            <f:selectItems value="#{dialogFormBean.fields}"/>
+                        </p:selectOneMenu>
+                        <h:message for="field4Dialog"/>
+
+                        <p:commandButton value="No"
+                                         actionListener="#{dialogFormBean.nothing}"
+                                         oncomplete="#{p:widgetVar('dialog1')}.hide();"/>
+                        <p:commandButton value="Yes"
+                                         actionListener="#{dialogFormBean.dialog1Update()}"
+                                         update=":parentForm :dialog1Form"
+                                         oncomplete="if (!args.validationFailed) { #{p:widgetVar('dialog1')}.hide(); }"/>
+                        <h:outputText value="#{dialogFormBean.overviewDummyTime}" /> 
+                    </p:panelGrid>
+                </h:form>
+            </h:panelGroup>
+        </p:dialog>
+
+        <p:dialog id="dialog2" header="Dialog 2" widgetVar="dialog2Widget" minHeight="40" closable="true" closeOnEscape="true">
+            <p>Dialog 2: Outside Parent form - own form (identical to Dialog 1)</p>
+            <h:form id="dialog2Form">
+                <p:panelGrid id="dialog2Grid" columns="3">
+
+                    <h:outputLabel for="field5Dialog" value="Field 5"/>
+                    <h:inputText id="field5Dialog" value="#{dialogFormBean.field5}"/>
+                    <h:message for="field5Dialog"/>
+
+                    <h:outputLabel for="field6Dialog" value="Field 6"/>
+                    <ui:remove><h:inputText id="field6Dialog" value="#{dialogFormBean.field6}"/></ui:remove>
+                    <p:selectOneMenu id="field6Dialog" value="#{dialogFormBean.field6}">
+                        <f:selectItems value="#{dialogFormBean.fields}"/>
+                    </p:selectOneMenu>
+                    <h:message for="field6Dialog"/>
+
+                    <p:commandButton value="No"
+                                     actionListener="#{dialogFormBean.nothing}"
+                                     oncomplete="PF('dialog2Widget').hide();"/>
+                    <p:commandButton value="Yes"
+                                     actionListener="#{dialogFormBean.dialog2Update()}"
+                                     update=":parentForm :dialog2Form"
+                                     oncomplete="if (!args.validationFailed) { #{p:widgetVar('dialog2')}.hide(); }"/>
+                    <h:outputText value="#{dialogFormBean.overviewDummyTime}" /> 
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+    </ui:define>
+
+</ui:composition>

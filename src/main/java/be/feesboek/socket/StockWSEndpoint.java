@@ -12,7 +12,7 @@ import javax.websocket.server.ServerEndpoint;
 
 /**
  *
- * @author dimitridw There is a StockWSEndpoint instance per connection
+ * @author dimitridw - There is a StockWSEndpoint instance per connection
  */
 @ServerEndpoint("/stockWSEndPoint")
 public class StockWSEndpoint {
@@ -34,7 +34,7 @@ public class StockWSEndpoint {
                 LOGGER.info("Sent: {}", msg);
             }
         } catch (IOException e) {
-            LOGGER.info(e.toString());
+            LOGGER.error(e.toString());
         }
     }
 

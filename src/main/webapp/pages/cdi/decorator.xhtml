@@ -1,0 +1,43 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Decorator</ui:define>
+
+    <ui:define name="body">
+        <h2>Decorator</h2>
+        
+        <p>Demonstrate the use of a decorator.</p>
+        <ul>
+            <li>DecoratorBean: Managed bean for this page.</li>
+            <li>Worker: Interface to do some work.</li>
+            <li>WorkerImpl: The implementation class to do the work.</li>
+            <li>WorkerDecorator: Abstract class that will decorate the some work in WorkerImpl.</li>
+            <li>beans.xml: Specify the decorator.</li>
+            <li>The DecoratorBean and the WorkerImpl have also a logged interceptor. See result in the logfile.</li>
+        </ul>
+
+        <h:form>
+            <p:panelGrid columns="3">
+
+                <p:outputLabel for="input" value="Input"/>
+                <p:inputText id="input" value="#{decoratorBean.input}"/>
+                <p:message for="input"/>
+
+                <h:panelGroup/>
+                <h:commandButton value="Encode" action="#{decoratorBean.encode()}"/>
+                <h:panelGroup/>
+            </p:panelGrid>
+        </h:form>
+        
+        <p>Results:</p>
+        <lu>
+            <li>Input: <b>#{decoratorBean.input}</b></li>
+            <li>Output: <b>#{decoratorBean.output}</b></li>
+        </lu>
+
+    </ui:define>
+
+</ui:composition>

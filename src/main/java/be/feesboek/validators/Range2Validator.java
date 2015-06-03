@@ -32,11 +32,13 @@ public class Range2Validator implements Validator {
 
         LOGGER.debug("Entering RangeValidator with: {} and {}", longValue, longValue3);
         if (longValue < 1000L) {
+            ((UIInput) component).setValid(false);
             FacesMessage message = new FacesMessage("Field 11 lower than 1000");
             context.addMessage(component.getClientId(context), message);
         }
 
         if (longValue3 > 2000L) {
+            ((UIInput) component).setValid(false);
             FacesMessage message = new FacesMessage("Field 12 is higher than 2000");
             context.addMessage(component.getClientId(context), message);
         }

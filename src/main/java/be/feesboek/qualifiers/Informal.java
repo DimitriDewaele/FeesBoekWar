@@ -1,4 +1,4 @@
-package be.feesboek.event;
+package be.feesboek.qualifiers;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
@@ -9,11 +9,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Target;
 import javax.inject.Qualifier;
 
-/**
- * Qualifier for Debit payment events.
- */
 @Qualifier
 @Retention(RUNTIME)
-@Target({METHOD, FIELD, PARAMETER, TYPE})
-public @interface Cash {
-}
+@Target({TYPE, METHOD, FIELD, PARAMETER})
+public @interface Informal {}

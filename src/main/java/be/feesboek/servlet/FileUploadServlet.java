@@ -6,8 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.logging.Level;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -23,8 +21,8 @@ import javax.servlet.http.Part;
 @WebServlet(name = "FileUploadServlet", urlPatterns = {"/FileUploadServlet"})
 @MultipartConfig
 public class FileUploadServlet extends HttpServlet {
-    
-    org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(FileUploadServlet.class);
+
+    private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(FileUploadServlet.class);
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,20 +41,18 @@ public class FileUploadServlet extends HttpServlet {
         // Create path components to save the file
         final String path = request.getParameter("destination");
         LOGGER.info("SERVLET destination : {}", path);
-//        final String path = request.getParameter("c:/temp");
+        // filePart = "c:/temp";
         final Part filePart = request.getPart("file");
         LOGGER.info("SERVLET filepart : {}", filePart);
+        // final String fileName = "test.txt";
         final String fileName = getFileName(filePart);
-//        final String fileName = "test.txt";
         LOGGER.info("SERVLET filename : {}", fileName);
 
-        LOGGER.info("TRY WRITER");
         OutputStream out = null;
         InputStream filecontent = null;
 
         try {
-            out = new FileOutputStream(new File(path + File.separator
-                    + fileName));
+            out = new FileOutputStream(new File(path + File.separator + fileName));
             filecontent = filePart.getInputStream();
 
             int read;
@@ -77,10 +73,10 @@ public class FileUploadServlet extends HttpServlet {
                 filecontent.close();
             }
         }
-        
+
         response.sendRedirect("pages/fileupload.xhtml");
     }
-    
+
     private String getFileName(final Part part) {
         final String partHeader = part.getHeader("content-disposition");
         LOGGER.info("Part Header = {0}", partHeader);

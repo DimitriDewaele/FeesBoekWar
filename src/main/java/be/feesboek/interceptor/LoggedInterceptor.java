@@ -20,7 +20,7 @@ public class LoggedInterceptor implements Serializable {
     public Object logMethodEntry(InvocationContext invocationContext)
             throws Exception {
         
-        LOGGER.debug("Entering method: "
+        LOGGER.debug("LOGGED INTERCEPTOR: Entering method: "
                 + invocationContext.getMethod().getName() + " in class "
                 + invocationContext.getMethod().getDeclaringClass().getName());
 
