@@ -1,0 +1,59 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Date</ui:define>
+
+    <ui:define name="body">
+        
+        <h2>Date form</h2>
+        
+        <p>Form to calculate the days between 2 dates with extra features.</p>
+        
+        <ul>
+            <li>Start Date: required</li>
+            <li>End Date: Filled in? --> Calculate Days</li>
+            <li>Days: Filled in? --> Calculate End Date</li>
+            <li>End Date and Days filled in? --> Validate if this is correct.</li>
+        </ul>
+
+        <h:form id="dateForm">
+
+            <h:panelGrid columns="3">
+                <p:outputLabel for="startDate" value="Start Date"/>
+                <p:calendar id="startDate"
+                            value="#{dateBean.startDate}"
+                            required="true"
+                            pattern="d MMM yyyy"
+                            validator="#{dateBean.validateStartDate}"/>
+                <p:message for="startDate"/>
+
+                <p:outputLabel for="endDate" value="End Date"/>
+                <p:calendar id="endDate"
+                            value="#{dateBean.endDate}"
+                            pattern="d MMM yyyy"
+                            validator="#{dateBean.validateEndDate}"/>
+                <p:message for="endDate"/>
+
+                <p:outputLabel for="days" value="Days"/>
+                <p:inputText id="days"
+                             value="#{dateBean.days}"
+                             validator="#{dateBean.validateDays}"/>
+                <p:message for="days"/>
+                
+                <h:panelGrid/>
+                <p:commandButton value="Calculate"
+                                 action="#{dateBean.calculate}"
+                                 ajax="true"
+                                 update="dateForm"/>
+                <h:panelGrid/>
+            </h:panelGrid>
+            
+        </h:form>
+        
+    </ui:define>
+</ui:composition>

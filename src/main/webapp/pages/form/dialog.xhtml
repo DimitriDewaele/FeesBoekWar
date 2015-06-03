@@ -52,15 +52,15 @@
                 </p:column>
 
                 <p:column headerText="" style="width: 220px;">
-                    <ui:remove>update: necessary to get load the selected person in the dialog</ui:remove>
+                    <ui:remove>Flow: ActionListener --> update --> oncomplete</ui:remove>
                     <p:commandButton value="Edit"
-                                     action="#{dialogBean.setSelected(person)}"
+                                     actionListener="#{dialogBean.setSelected(person)}"
                                      update=":dialogUpdateForm"
-                                     onclick="PF('updateDialog').show();" />
+                                     oncomplete="PF('updateDialog').show();" />
                     <p:commandButton value="Remove"
-                                     action="#{dialogBean.setSelected(person)}"
+                                     actionListener="#{dialogBean.setSelected(person)}"
                                      update=":dialogRemoveForm"
-                                     onclick="PF('removeDialog').show();" />
+                                     oncomplete="PF('removeDialog').show();" />
                 </p:column>
             </p:dataTable>
         </h:form>
@@ -105,14 +105,14 @@
 
                     <p:outputLabel value="Last name"/>
                     <p:outputLabel value="#{dialogBean.selected.lastName}"/>
-
-                    <p:commandButton id="no" value="No"
-                                     actionListener="#{dialogBean.nothing}" ajax="false" oncomplete="removeDialog.hide()"/>
-                    <p:commandButton id="yes" value="Yes"
+                    
+                    <p:commandButton value="No"
+                                     actionListener="#{dialogBean.nothing}"
+                                     oncomplete="PF('removeDialog').hide();"/>
+                    <p:commandButton value="Yes"
                                      update=":personlist"
                                      actionListener="#{dialogBean.remove(dialogBean.selected.id)}"
-                                     ajax="false"
-                                     oncomplete="removeDialog.hide()"/>
+                                     oncomplete="PF('removeDialog').hide();"/>
                 </p:panelGrid>
             </h:form>
         </p:dialog>
@@ -134,13 +134,13 @@
                     <p:outputLabel value="Birth date"/>
                     <p:calendar value="#{dialogBean.selected.birthDate}"/>
 
-                    <p:commandButton id="no" value="No"
-                                     actionListener="#{dialogBean.nothing}" ajax="false" oncomplete="updateDialog.hide()"/>
-                    <p:commandButton id="yes" value="Edit"
-                                     update=":personlist"
+                    <p:commandButton value="No"
+                                     actionListener="#{dialogBean.nothing()}"
+                                     oncomplete="PF('updateDialog').hide();"/>
+                    <p:commandButton value="Edit"
                                      actionListener="#{dialogBean.edit(dialogBean.selected)}"
-                                     ajax="false"
-                                     oncomplete="updateDialog.hide()"/>
+                                     update=":personlist"
+                                     oncomplete="PF('updateDialog').hide();"/>
                 </p:panelGrid>
             </h:form>
         </p:dialog>
@@ -162,13 +162,13 @@
                     <p:outputLabel value="Birth date"/>
                     <p:calendar value="#{dialogBean.selected.birthDate}"/>
 
-                    <p:commandButton id="no" value="No"
-                                     actionListener="#{dialogBean.nothing}" ajax="false" oncomplete="addDialog.hide()"/>
-                    <p:commandButton id="yes" value="Add"
+                    <p:commandButton value="No"
+                                     actionListener="#{dialogBean.nothing}"
+                                     oncomplete="PF('addDialog').hide();"/>
+                    <p:commandButton value="Add"
                                      update=":personlist"
                                      actionListener="#{dialogBean.add}"
-                                     ajax="false"
-                                     oncomplete="addDialog.hide()"/>
+                                     oncomplete="PF('addDialog').hide();"/>
                 </p:panelGrid>
             </h:form>
         </p:dialog>

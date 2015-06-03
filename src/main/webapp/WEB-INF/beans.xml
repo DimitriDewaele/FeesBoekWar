@@ -6,6 +6,9 @@
     <!--    <alternatives>
         <class>be.feesboek.business.CoderImplAlternative</class>
     </alternatives>-->
+    <decorators>
+        <class>be.feesboek.workers.WorkerDecorator</class>
+    </decorators>
     <interceptors>
         <class>be.feesboek.interceptor.LoggedInterceptor</class>
     </interceptors>

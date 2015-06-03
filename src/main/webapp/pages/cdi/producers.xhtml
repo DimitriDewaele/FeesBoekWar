@@ -1,0 +1,30 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Producers</ui:define>
+
+    <ui:define name="body">
+        <h2>Producers</h2>
+        
+        <p>Demonstrate the use of simple producer methods that are injected. <i>Refresh this page.</i></p>
+        <ul>
+            <li>This page is request scoped.</li>
+            <li>2 methods are injected from an application scoped bean.</li>
+            <li>2 qualifiers are needed.</li>
+        </ul>
+
+        <p:panelGrid id="salution" columns="2">
+            <p:outputLabel value="Injection of random produced number bean."/>
+            <p:outputLabel value="#{producerSimpleBean.randomNumber}"/>
+            
+            <p:outputLabel value="Injection of a max number"/>
+            <p:outputLabel value="#{producerSimpleBean.maxNumber}"/>
+        </p:panelGrid>
+
+        <p:messages/>
+    </ui:define>
+
+</ui:composition>

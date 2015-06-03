@@ -57,11 +57,13 @@ public class ValidatorBean implements Serializable {
         this.field8 = (Long) value;
         LOGGER.debug("Entering ValidateRange with: {} and {}", field7, field8);
         if (field7 < 1000L) {
+            ((UIInput) component).setValid(false);
             FacesMessage message = new FacesMessage("Field 7 is lower than 1000");
             context.addMessage(component.getClientId(context), message);
         }
 
         if (field8 > 2000L) {
+            ((UIInput) component).setValid(false);
             FacesMessage message = new FacesMessage("Field 8 is higher than 2000");
             context.addMessage(component.getClientId(context), message);
         }

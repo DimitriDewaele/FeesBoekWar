@@ -32,6 +32,7 @@ public class ProducerBean {
     private static final int HEXA = 3;
 
     // Inject the choosen producer implementation for doing the business.
+    // The Chosen qualifier is essential: This tells CDI which producer to inject, throught the @Produces annotation.
     @Inject
     @Chosen
     @RequestScoped
@@ -43,7 +44,7 @@ public class ProducerBean {
     public ProducerBean() {
     }
 
-    // method that produces a choosen producer.
+    // Method that @Produces a choosen producer.
     @Produces
     @Chosen
     @RequestScoped

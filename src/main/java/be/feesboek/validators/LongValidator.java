@@ -3,6 +3,7 @@ package be.feesboek.validators;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
@@ -25,6 +26,7 @@ public class LongValidator implements Validator {
         }
 
         if (input == null || input < 1000L) {
+            ((UIInput) component).setValid(false);
             FacesMessage message = new FacesMessage("Smaller than 1000", "The value is to low, need more than 1000.");
             context.addMessage(component.getClientId(context), message);
         }
