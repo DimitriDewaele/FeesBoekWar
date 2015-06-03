@@ -10,8 +10,11 @@
     <ui:define name="body">
         <h2>Observe an event</h2>
         
-        <p>Observe an event and fire business code. The managed bean creates an event, supplies the payload and fires it. An event listener handles the events, using observer methods.</p>
-        <p>Extra: There is also an interceptor set on a class and some methods. Enable the interceptor in beans.xml and mark the classes and/or methods you want to intercept.</p>
+        <lu>
+            <li>The managed bean creates an <b>Event</b>, supplies the <b>payload</b> to it, and <b>fire</b>'s the event.</li>
+            <li>An event <b>listener</b> observes and handles the events, using <b>observer</b> methods, to performs business logic.</li>
+            <li><b>Extra</b>: There is also an <i>log</i> <b>interceptor</b> set on a class and some methods. Enable the interceptor in beans.xml and mark the classes and/or methods you want to intercept.</li>
+        </lu>
 
         <h:form>
             <p:panelGrid columns="3">
@@ -34,10 +37,7 @@
             </p:panelGrid>
         </h:form>
 
-        <p><b>Payed with:</b></p>
-        <p:outputLabel value="#{paymentBean.option}"/>
-        <p><b>Value:</b></p>
-        <p:outputLabel value="#{paymentBean.value}"/>
+        <p>Payed value: <b>#{paymentBean.value}</b> with <b>#{paymentBean.showType()}</b>.</p>
 
         <p:messages/>
     </ui:define>

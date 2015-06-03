@@ -1,4 +1,4 @@
-package be.feesboek.event;
+package be.feesboek.qualifiers;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;

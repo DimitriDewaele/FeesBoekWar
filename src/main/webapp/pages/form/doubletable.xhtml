@@ -1,0 +1,57 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Double Table</ui:define>
+
+    <ui:define name="body">
+        <h2>Double Table</h2>
+
+        <h:form id="double">
+
+            <p:dataTable id="table1" var="table1" value="#{table1Bean.firstTable}">
+                <p:column>
+                    <p:outputLabel value="#{table1}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Dialog 1"
+                                     process="@this"
+                                     update="@([id$=dialog1Form])"
+                                     oncomplete="PF('dialog1Widget').show();"/>
+                </p:column>
+            </p:dataTable>
+
+            <p:dataTable id="table2" var="table2" value="#{table2Bean.secondTable}">
+                <p:column>
+                    <p:outputLabel value="#{table2}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Dialog 2"
+                                     process="@this"
+                                     update="@([id$=dialog2Form])"
+                                     oncomplete="PF('dialog2Widget').show();"/>
+                </p:column>
+            </p:dataTable>
+
+
+            <p:dialog dynamic="true" id="dialog1" widgetVar="dialog1Widget" >
+                <h:form id="dialog1Form">
+                    <p:inputText value="#{table1Bean.firstInput}"/>
+                </h:form>
+            </p:dialog>
+
+            <p:dialog dynamic="true" id="dialog2" widgetVar="dialog2Widget">
+                <h:form id="dialog2Form">
+                    <p:inputText value="#{table2Bean.secondInput}"/>
+                </h:form>
+            </p:dialog>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
