@@ -1,0 +1,52 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Print Message</ui:define>
+
+    <ui:define name="body">
+        <h2>Print message</h2>
+
+        <h:form id="printMessage">
+
+            <h:panelGrid columns="5">
+                <h:commandButton value="Print for 1" action="#{printManagedBean.sendMessage('printer-1')}" />
+                <h:commandButton value="Print for 2" action="#{printManagedBean.sendMessage('printer-2')}" />
+                <h:commandButton value="Print for 3" action="#{printManagedBean.sendMessage('printer-3')}" />
+                <h:commandButton value="Print for 4" action="#{printManagedBean.sendMessage('printer-4')}" />
+                <h:commandButton value="Print for 5" action="#{printManagedBean.sendMessage('printer-5')}" />
+
+                <h:commandButton value="Get for 1" action="#{printManagedBean.getMessage('printer-1')}" />
+                <h:commandButton value="Get for 2" action="#{printManagedBean.getMessage('printer-2')}" />
+                <h:commandButton value="Get for 3" action="#{printManagedBean.getMessage('printer-3')}" />
+                <h:commandButton value="Get for 4" action="#{printManagedBean.getMessage('printer-4')}" />
+                <h:commandButton value="Get for 5" action="#{printManagedBean.getMessage('printer-5')}" />
+            </h:panelGrid>
+        </h:form>
+
+        <h:form id="longMessage">
+            <h:commandButton value="Get long message - 5 seconds" action="#{printManagedBean.getLongMessage}" />
+        </h:form>
+
+        <h:messages showSummary="true" 
+                    showDetail="false"
+                    errorStyle="color: #d20005" 
+                    infoStyle="color: blue"/>
+
+        <h:form id="consume">
+            <p:dataTable var="message" value="#{printManagedBean.list}">
+                <p:column headerText="Message">#{message.body}</p:column>
+                <p:column headerText="Printer">#{message.property}</p:column>
+                <p:column headerText="messageID">#{message.id}</p:column>
+                <p:column>
+                    <h:commandButton value="Consume" action="#{printManagedBean.getMessageById(message.id)}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
