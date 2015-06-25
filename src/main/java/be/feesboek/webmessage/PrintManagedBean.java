@@ -58,7 +58,8 @@ public class PrintManagedBean {
         try {
             String messageSelector = "Printer = '" + printer + "'";
             JMSConsumer receiver = context.createConsumer(queue, messageSelector);
-            String text = receiver.receiveBody(String.class, 1000);
+            //String text = receiver.receiveBody(String.class, 1000);
+            String text = receiver.receiveBodyNoWait(String.class);
 
             if (text != null) {
                 LOGGER.debug("Reading message: " + text);
@@ -78,7 +79,8 @@ public class PrintManagedBean {
         try {
             String messageSelector = "JMSMessageID = '" + id + "'";
             JMSConsumer receiver = context.createConsumer(queue, messageSelector);
-            String text = receiver.receiveBody(String.class, 1000);
+            //String text = receiver.receiveBody(String.class, 1000);
+            String text = receiver.receiveBodyNoWait(String.class);
 
             if (text != null) {
                 LOGGER.debug("Reading message: " + text);
