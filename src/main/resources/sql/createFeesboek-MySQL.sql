@@ -1,0 +1,78 @@
+-- LOGIN as DataBase Administrator
+-- Cleanup database before start
+
+-- Create User: feesboekDB
+
+CREATE DATABASE feesboekDB;
+ 
+
+DROP TABLE MESSAGES;
+DROP TABLE USERS;
+DROP TABLE COUNTRIES;
+ 
+-- login with the new user and create databases.
+-- !!!! REPEAT: Login with new user
+CREATE TABLE COUNTRIES ( 
+    COUNTRY_ID BIGINT NOT NULL,
+    COUNTRY_ISO_CODE VARCHAR(2) NOT NULL,
+    COUNTRY_NAME VARCHAR(256) NOT NULL,
+    PRIMARY KEY (COUNTRY_ID)
+);
+
+CREATE TABLE USERS (
+    USER_ID BIGINT NOT NULL,
+    COUNTRY_ID BIGINT,
+    USERNAME VARCHAR(256) NOT NULL UNIQUE,
+    FIRSTNAME VARCHAR(256),
+    LASTNAME VARCHAR(256),
+    PRIMARY KEY (USER_ID),
+    FOREIGN KEY (COUNTRY_ID) REFERENCES COUNTRIES (COUNTRY_ID)
+);
+
+CREATE TABLE MESSAGES (
+    MESSAGE_ID BIGINT NOT NULL,
+    USER_ID BIGINT NOT NULL,
+    TITLE VARCHAR(128),
+    MESSAGE VARCHAR(1024),
+    SUBMIT_TIME TIMESTAMP,
+    PRIMARY KEY (MESSAGE_ID),
+    FOREIGN KEY (USER_ID) REFERENCES USERS (USER_ID)
+);
+
+INSERT INTO COUNTRIES VALUES(1,'BE','Belgium');
+INSERT INTO COUNTRIES VALUES(2,'NL','The Netherlands');
+INSERT INTO COUNTRIES VALUES(3,'FR','France');
+INSERT INTO COUNTRIES VALUES(4,'US','United States');
+INSERT INTO COUNTRIES VALUES(5,'GB','United Kingdom');
+INSERT INTO COUNTRIES VALUES(6,'DE','Germany');
+INSERT INTO COUNTRIES VALUES(7,'ES','Spain');
+INSERT INTO COUNTRIES VALUES(8,'LU','Luxembourg');
+INSERT INTO COUNTRIES VALUES(9,'IT','Italy');
+INSERT INTO COUNTRIES VALUES(10,'CA','Canada');
+
+INSERT INTO USERS VALUES(1,1,'polle','Pol','Vanden Walle');
+INSERT INTO USERS VALUES(2,1,'pete','Peter','Zonnebloem');
+INSERT INTO USERS VALUES(3,1,'mattn','Martin','De Wilde');
+INSERT INTO USERS VALUES(4,2,'kees','Kees','Mees');
+INSERT INTO USERS VALUES(5,4,'james','James','Johnson');
+INSERT INTO USERS VALUES(6,4,'alice','Alice','Cooper');
+INSERT INTO USERS VALUES(7,5,'jen','Jennifer','Althow');
+INSERT INTO USERS VALUES(8,10,'ashley','Ashley','Flower');
+INSERT INTO USERS VALUES(9,6,'stein','Stein','Berg');
+-- No country
+INSERT INTO USERS (USER_ID, USERNAME, FIRSTNAME, LASTNAME) VALUES(10,'mario','Mario','Elder');
+
+SELECT * FROM COUNTRIES;
+SELECT * FROM USERS;
+SELECT * FROM MESSAGES;
+
+INSERT INTO MESSAGES VALUES(1,10,'Car for sale','I sell my car for a good price!', '2015-02-21 18:00:00');
+INSERT INTO MESSAGES VALUES(2,8,'Dog','Anyone needs a dog?','2015-03-03 19:15:00');
+INSERT INTO MESSAGES VALUES(3,6,'Cycle','I search a cycle partner.','2015-03-04 20:40:45');
+INSERT INTO MESSAGES VALUES(4,5,'Money','Free money. Contact me soon.','2015-03-21 18:00:00');
+INSERT INTO MESSAGES VALUES(5,8,'Old socks','Can anybody find my old socks? Reds with blue stars.','2015-04-11 18:00:00');
+INSERT INTO MESSAGES VALUES(6,5,'500 tennis balls','I have some balls for sale.','2015-05-15 18:00:00');
+INSERT INTO MESSAGES VALUES(7,1,'Dance contest','Next week dance contest: hip hop','2015-06-02 18:00:00');
+INSERT INTO MESSAGES VALUES(8,2,'Airplane ticket','One way plane ticket for alaska on sale','2015-07-28 18:00:00');
+INSERT INTO MESSAGES VALUES(9,1,'4 tires','4 truck tires - free!','2015-08-02 18:00:00');
+INSERT INTO MESSAGES VALUES(10,3,'Cats and dogs','Cats and dogs for sale.','2015-12-15 18:00:00');
