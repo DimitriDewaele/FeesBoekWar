@@ -27,7 +27,7 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="south" closable="true" collapsible="true" size="80">
-                    <ui:insert name="footer">Copyright © All Rights Reserved
+                    <ui:insert name="footer">Copyright © #{initParam['myYear']} All Rights Reserved
                         - Application counter: <h:outputText value="#{applicationBean.counter()}"/>
                         - Start time: 
                         <h:outputText value="#{applicationBean.start}">

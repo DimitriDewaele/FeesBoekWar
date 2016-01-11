@@ -18,6 +18,11 @@
         <param-value>Welcome to FEESBOEK</param-value>
     </context-param>
     <context-param>
+        <description>This is the year, used in the copyrights at the bottom of all pages.</description>
+        <param-name>myYear</param-name>
+        <param-value>2016</param-value>
+    </context-param>
+    <context-param>
         <param-name>javax.faces.CONFIG_FILES</param-name>
         <param-value>/WEB-INF/DialogBean.xml</param-value>
     </context-param>
