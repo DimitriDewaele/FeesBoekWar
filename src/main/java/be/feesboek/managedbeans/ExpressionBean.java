@@ -31,7 +31,7 @@ public class ExpressionBean {
     @PostConstruct
     public void initialize() {
         
-        // Year = starting vrom +1900
+        // Year = starting from +1900
         // Month = zero based
         person = new PersonVO(1, "Ivan", "Dewaele", "pensioener", new Date(49, 0, 28));
 
