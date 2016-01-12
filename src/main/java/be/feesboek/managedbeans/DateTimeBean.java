@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -11,6 +12,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 
 @Named(value = "dateTimeBean")
 @RequestScoped
@@ -23,6 +25,10 @@ public class DateTimeBean {
     private Date dateNoTime1;
     private Date dateNoTime2;
     private LocalDate dateNoTime3;
+    
+    private DateTime jodaDateTime;
+    private LocalDate jodaDate;
+    private LocalTime jodaTime;
 
     /**
      * Creates a new instance of DateTimeBean
@@ -60,6 +66,21 @@ public class DateTimeBean {
         // Try to avoid 3rd party libraries for simple tasks, but this one is extremely popular
         // Joda does know a concept of date without time: LocalDate
         dateNoTime3 = new LocalDate();
+        
+        // Work with joda time
+        jodaDateTime = new DateTime();
+        
+        jodaDate = new LocalDate();
+        
+        jodaTime = new LocalTime();
+    }
+    
+    public String showMonth(){
+        return jodaDateTime.monthOfYear().getAsShortText(Locale.FRENCH);
+    }
+
+    public DateTime showYear(int year){
+        return jodaDateTime.withYear(year);
     }
 
     /**
@@ -144,6 +165,48 @@ public class DateTimeBean {
      */
     public void setDateNoTime3(LocalDate dateNoTime3) {
         this.dateNoTime3 = dateNoTime3;
+    }
+
+    /**
+     * @return the jodaTime
+     */
+    public DateTime getJodaDateTime() {
+        return jodaDateTime;
+    }
+
+    /**
+     * @param jodaTime the jodaTime to set
+     */
+    public void setJodaDateTime(DateTime jodaTime) {
+        this.jodaDateTime = jodaTime;
+    }
+
+    /**
+     * @return the jodaDate
+     */
+    public LocalDate getJodaDate() {
+        return jodaDate;
+    }
+
+    /**
+     * @param jodaDate the jodaDate to set
+     */
+    public void setJodaDate(LocalDate jodaDate) {
+        this.jodaDate = jodaDate;
+    }
+
+    /**
+     * @return the jodaTime
+     */
+    public LocalTime getJodaTime() {
+        return jodaTime;
+    }
+
+    /**
+     * @param jodaTime the jodaTime to set
+     */
+    public void setJodaTime(LocalTime jodaTime) {
+        this.jodaTime = jodaTime;
     }
 
 }
