@@ -1,0 +1,61 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+                xmlns:p="http://primefaces.org/ui">
+    
+        <ui:define name="title">Date and time</ui:define>
+        
+        <ui:define name="body">
+            <p>Everything you need to know about date and time</p>
+            
+            <h:form id="datetimeform">
+                
+                <h:panelGrid columns="3">
+                    
+                    <h:panelGroup/>
+                    <h:panelGroup>
+                        <b>Date with time</b>
+                    </h:panelGroup>
+                    <h:panelGroup/>
+                    
+                    <h:outputLabel for="datetime1" value="Date"/>
+                    <h:inputText id="datetime1" value="#{dateTimeBean.datetime1}" size="50"/>
+                    <h:message for="datetime1"/>
+                    
+                    <h:outputLabel for="datetime2" value="Output converter"/>
+                    <h:inputText id="datetime2" value="#{dateTimeBean.datetime2}" size="50">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:inputText>
+                    <h:message for="datetime2"/>
+                    
+                    <h:outputLabel for="datetime3" value="Joda DateTime"/>
+                    <h:inputText id="datetime3" value="#{dateTimeBean.datetime3}" size="50"/>
+                    <h:message for="datetime3"/>
+                    
+                    <h:panelGroup/>
+                    <h:panelGroup>
+                        <b>Date without time</b>
+                    </h:panelGroup>
+                    <h:panelGroup/>
+                    
+                    <h:outputLabel for="datenotime1" value="Formatter method"/>
+                    <h:inputText id="datenotime1" value="#{dateTimeBean.dateNoTime1}" size="50"/>
+                    <h:message for="datenotime1"/>
+
+                    <h:outputLabel for="datenotime2" value="Calendar method"/>
+                    <h:inputText id="datenotime2" value="#{dateTimeBean.dateNoTime2}" size="50"/>
+                    <h:message for="datenotime2"/>
+                    
+                    <h:outputLabel for="datenotime3" value="Joda Time"/>
+                    <h:inputText id="datenotime3" value="#{dateTimeBean.dateNoTime3}" size="50"/>
+                    <h:message for="datenotime3"/>
+                    
+                </h:panelGrid>
+                
+            </h:form>
+        </ui:define>
+
+</ui:composition>
