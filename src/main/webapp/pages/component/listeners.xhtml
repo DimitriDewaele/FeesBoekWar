@@ -12,12 +12,12 @@
             <h:outputText value="Listeners"/>
         </h2>
 
+        <p><b>Value-Change listener</b></p>
+        
+        <p>The listener is registered to the component. This will do extra work after the submit is pressed. In this case: write something in the <b>log</b>. But this could easily invoke a thread to start another process workflow.</p>
+        
         <h:form id="listeners">
             <h:panelGrid columns="3">
-
-                <h:outputLabel><b>Value-Change listener</b></h:outputLabel>
-                <h:panelGroup/>
-                <h:panelGroup/>
 
                 <h:outputLabel for="field1" value="No Listener"/>
                 <h:inputText id="field1" value="#{listenerBean.field1}"/>
@@ -41,11 +41,14 @@
             </h:panelGrid>
         </h:form>
 
+        <p><b>Action and Action Listener</b></p>
+        
+        <p>Register an actionListener to a button or link. Use this to update a shopping cart or start another process.</p>
 
         <h:form id="action1">
             <h:panelGrid columns="1">
 
-                <h:outputLabel><b>Action and Action Listener - managed bean method</b></h:outputLabel>
+                <h:outputLabel><b>Managed bean method</b></h:outputLabel>
 
                 <h:commandButton value="Submit"
                                  id="bottonId"
@@ -58,7 +61,7 @@
         <h:form id="action2">
             <h:panelGrid columns="1">
 
-                <h:outputLabel><b>Action and Action Listener - Action Listener class with type</b></h:outputLabel>
+                <h:outputLabel><b>Action Listener class with type</b></h:outputLabel>
 
                 <h:commandButton value="Submit"
                                  id="bottonId"
@@ -71,7 +74,7 @@
         <h:form id="action3">
             <h:panelGrid columns="1">
 
-                <h:outputLabel><b>Action and Action Listener - Action Listener class while binding to managed bean</b></h:outputLabel>
+                <h:outputLabel><b>Action Listener class while binding to managed bean</b></h:outputLabel>
 
                 <h:commandButton value="Submit"
                                  id="bottonId"
