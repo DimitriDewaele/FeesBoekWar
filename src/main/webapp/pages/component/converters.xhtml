@@ -20,7 +20,7 @@
                 <h:panelGroup/>
                 <h:panelGroup/>
 
-                <h:outputLabel for="field1" value="No convertion: default String to bean Integer)"/>
+                <h:outputLabel for="field1" value="No convertion: default Integer to String"/>
                 <h:inputText id="field1" value="#{converterBean.field1}"/>
                 <h:outputText value="#{converterBean.field1}"/>
                 <h:message for="field1"/>
@@ -32,7 +32,7 @@
                 </h:outputText>
                 <h:message for="field2"/>
 
-                <h:outputLabel for="field3" value="Convert: also on input"/>
+                <h:outputLabel for="field3" value="Convert: input and output"/>
                 <h:inputText id="field3" value="#{converterBean.field3}">
                     <f:convertNumber pattern="$ ###"/>
                 </h:inputText>
@@ -81,7 +81,6 @@
                     <f:convertDateTime type="date" dateStyle="full"/>
                 </h:outputText>
                 <h:message for="date2"/>
-
 
                 <h:outputLabel for="date3" value="Conversion with nested tag (pattern from bean)"/>
                 <p:calendar id="date3" value="#{converterBean.date3}"/>
