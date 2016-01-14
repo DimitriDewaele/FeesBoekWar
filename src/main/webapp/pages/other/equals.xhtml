@@ -1,0 +1,77 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:em="http://xmlns.jcp.org/jsf/composite/emcomp"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">equals - hashCode - toString</ui:define>
+
+    <ui:define name="body">
+        <h2>equals - hashCode - toString</h2>
+
+        <p>Demonstrating the use of: equals() - hashCode() - toString()</p>
+
+        <h:form>
+
+
+            <h:panelGrid columns="2">
+                <h:outputText value="Cats:"/>
+                <h:outputText value="Birds:"/>
+
+                <h:outputText value="#{equalsBean.cat1}"/>
+                <h:outputText value="#{equalsBean.bird1}"/>
+
+                <h:outputText value="#{equalsBean.cat2}"/>
+                <h:outputText value="#{equalsBean.bird2}"/>
+
+                <h:outputText value="#{equalsBean.cat3}"/>
+                <h:outputText value="#{equalsBean.bird3}"/>
+
+                <h:outputText value="#{equalsBean.cat4}"/>
+                <h:outputText value="#{equalsBean.bird4}"/>
+
+                <h:outputText value="#{equalsBean.cat5}"/>
+                <h:outputText value="#{equalsBean.bird5}"/>
+
+
+                <h:outputText value="#{equalsBean.catEquals(equalsBean.cat1, equalsBean.cat2)}"/>
+                <h:outputText value="#{equalsBean.birdEquals(equalsBean.bird1, equalsBean.bird2)}"/>
+
+                <h:outputText value="#{equalsBean.catEquals(equalsBean.cat1, equalsBean.cat3)}"/>
+                <h:outputText value="#{equalsBean.birdEquals(equalsBean.bird1, equalsBean.bird3)}"/>
+
+                <h:outputText value="#{equalsBean.catEquals(equalsBean.cat1, equalsBean.cat4)}"/>
+                <h:outputText value="#{equalsBean.birdEquals(equalsBean.bird1, equalsBean.bird4)}"/>
+
+                <h:outputText value="#{equalsBean.catEquals(equalsBean.cat1, equalsBean.cat5)}"/>
+                <h:outputText value="#{equalsBean.birdEquals(equalsBean.bird1, equalsBean.bird5)}"/>
+
+                <h:outputText value="#{equalsBean.catHashCode(equalsBean.cat1)}"/>
+                <h:outputText value="#{equalsBean.birdHashCode(equalsBean.bird1)}"/>
+
+                <h:outputText value="#{equalsBean.catHashCode(equalsBean.cat2)}"/>
+                <h:outputText value="#{equalsBean.birdHashCode(equalsBean.bird2)}"/>
+
+                <h:outputText value="#{equalsBean.catHashCode(equalsBean.cat3)}"/>
+                <h:outputText value="#{equalsBean.birdHashCode(equalsBean.bird3)}"/>
+
+                <h:outputText value="#{equalsBean.catHashCode(equalsBean.cat4)}"/>
+                <h:outputText value="#{equalsBean.birdHashCode(equalsBean.bird4)}"/>
+
+                <h:outputText value="#{equalsBean.catHashCode(equalsBean.cat5)}"/>
+                <h:outputText value="#{equalsBean.birdHashCode(equalsBean.bird5)}"/>
+
+                <h:commandButton value="Add to Map" action="#{equalsBean.addCats()}"/>
+                <h:commandButton value="Add to Map" action="#{equalsBean.addBirds()}"/>
+                
+                <h:outputText value="#{equalsBean.hsCats.size()}"/>
+                <h:outputText value="#{equalsBean.hsBirds.size()}"/>
+
+            </h:panelGrid>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>
