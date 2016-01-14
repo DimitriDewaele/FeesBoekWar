@@ -1,0 +1,15 @@
+/* 
+    Created on : Jan 13, 2016, 11:09:46 AM
+    Author     : dimitridw
+*/
+
+/* class attribute: note */
+.note  {
+	font-size:120%;
+	color:red;
+}
+
+/* group classes */
+.groupA  { background-color:black; padding:20px;}
+.groupB  { background-color:gray;  padding:10px;}
+.groupC  { background-color:white; padding:5px;}

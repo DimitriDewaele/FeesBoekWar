@@ -1,0 +1,95 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="title">Basic components</ui:define>
+
+    <ui:define name="body">
+        <h2>Basic components</h2>
+
+        <p>Overview and usage of basic components.</p>
+
+        <h:form>
+
+            <h:panelGrid columns="3">
+
+                <h:outputFormat value="OuputFormat: {0} - {1} with style" style="font-weight: bold;">
+                    <f:param value="A"/>
+                    <f:param value="B"/>
+                </h:outputFormat>
+                <h:inputText id="item1" value="#{componentBean.text1}"/>
+                <h:message for="item1"/>
+
+                <h:outputLabel for="item2" value="Text with rendered"/>
+                <h:inputText id="item2" value="#{componentBean.text2}" rendered="true"/>
+                <h:message for="item2"/>
+
+                <h:outputLabel for="item3" value="Text area with styleClass" styleClass="groupA"/>
+                <h:inputTextarea id="item3" value="#{componentBean.text3}"/>
+                <h:message for="item3"/>
+
+                <h:outputLabel for="item4" value="Secret text + hidden text"/>
+                <h:panelGroup>
+                    <h:inputSecret id="item4" value="#{componentBean.text4}" redisplay="true"/>
+                    <h:inputHidden value="hidden text"/>
+                </h:panelGroup>
+                <h:message for="item4"/>
+                
+                <h:outputLabel for="item5" value="Select Boolean"/>
+                <h:selectBooleanCheckbox id="item5" value="#{componentBean.select1}"/>
+                <h:message for="item5"/>
+                
+                <h:outputLabel for="item6" value="Select OneListBox - items in facelet"/>
+                <h:selectOneListbox id="item6" value="#{componentBean.select2}">
+                    <f:selectItem itemValue="A" itemLabel="Item A"/>
+                    <f:selectItem itemValue="A" itemLabel="Item B"/>
+                    <f:selectItem itemValue="B" itemLabel="Item C"/>
+                </h:selectOneListbox>    
+                <h:message for="item6"/>
+                
+                
+                <h:outputLabel for="item7" value="Select OneMenu - items from bean"/>
+                <h:selectOneMenu id="item7" value="#{componentBean.select2}">
+                    <f:selectItems value="#{componentBean.availableItems}"/>
+                </h:selectOneMenu>    
+                <h:message for="item7"/>
+                
+                <h:outputLabel for="item8" value="Select OneMenu - items from bean"/>
+                <h:selectOneRadio id="item8" value="#{componentBean.select3}">
+                    <f:selectItems value="#{componentBean.availableItems}"/>
+                </h:selectOneRadio>    
+                <h:message for="item8"/>
+                
+                <h:outputLabel for="item9" value="Select ManyListbox"/>
+                <h:selectManyListbox id="item9" value="#{componentBean.many1}">
+                    <f:selectItems value="#{componentBean.availableItems}"/>
+                </h:selectManyListbox>    
+                <h:message for="item9"/>
+                
+                
+                <h:outputLabel for="item10" value="Select ManyMenu"/>
+                <h:selectManyMenu id="item10" value="#{componentBean.many2}">
+                    <f:selectItems value="#{componentBean.availableItems}"/>
+                </h:selectManyMenu>    
+                <h:message for="item10"/>
+                
+                <h:outputLabel for="item11" value="Select ManyCheckbox"/>
+                <h:selectManyCheckbox id="item11" value="#{componentBean.many3}">
+                    <f:selectItems value="#{componentBean.availableItems}"/>
+                </h:selectManyCheckbox>    
+                <h:message for="item11"/>
+                
+                <h:panelGroup/>
+                <h:commandButton value="Submit"/>
+                <h:panelGroup/>
+
+            </h:panelGrid>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

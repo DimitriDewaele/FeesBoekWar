@@ -28,7 +28,10 @@
 
                 <h:outputLabel value="expressionBean.person.firstName"/>
                 <h:outputLabel>${expressionBean.person.firstName}</h:outputLabel>
-
+                
+                <h:outputLabel value="expressionBean.person[&#39;firstName&#39;]"/>
+                <h:outputLabel>${expressionBean.person['firstName']}</h:outputLabel>
+                
                 <h:outputLabel value="expressionBean.person[&#34;firstName&#34;]"/>
                 <h:outputLabel>${expressionBean.person["firstName"]}</h:outputLabel>
 
