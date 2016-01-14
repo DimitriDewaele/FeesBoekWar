@@ -27,7 +27,7 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="south" closable="true" collapsible="true" size="80">
-                    <ui:insert name="footer">Copyright © All Rights Reserved
+                    <ui:insert name="footer">Copyright © #{initParam['myYear']} All Rights Reserved
                         - Application counter: <h:outputText value="#{applicationBean.counter()}"/>
                         - Start time: 
                         <h:outputText value="#{applicationBean.start}">
@@ -46,9 +46,16 @@
                                 <p:menuitem value="Expression" outcome="/pages/basic/expression" />
                                 <p:menuitem value="Ajax" outcome="/pages/basic/ajax" />
                             </p:submenu>
+                            <p:submenu label="Component">
+                                <p:menuitem value="Components" outcome="/pages/component/components" />
+                                <p:menuitem value="Converters" outcome="/pages/component/converters" />
+                                <p:menuitem value="Validators" outcome="/pages/component/validators" />
+                                <p:menuitem value="Listeners" outcome="/pages/component/listeners" />
+                            </p:submenu>
                             <p:submenu label="Forms">
                                 <p:menuitem value="Feesboek" outcome="/pages/form/feesboek" />
                                 <p:menuitem value="Date" outcome="/pages/form/date" />
+                                <p:menuitem value="Date and Time" outcome="/pages/form/datetime" />
                                 <p:menuitem value="Billing" outcome="/pages/form/billing" />
                                 <p:menuitem value="Dialog" outcome="/pages/form/dialog" />
                                 <p:menuitem value="Dialog Form" outcome="/pages/form/dialogform" />
@@ -61,11 +68,6 @@
                                 <p:menuitem value="Dynamic from Code" outcome="/pages/crazy/dynamicCode" />
                                 <p:menuitem value="Dynamic from Code 2" outcome="/pages/crazy/dynamicCode2" />
                                 <p:menuitem value="Dynamic from Repeat" outcome="/pages/crazy/dynamicRepeat" />                                    
-                            </p:submenu>
-                            <p:submenu label="Component">
-                                <p:menuitem value="Converters" outcome="/pages/component/converters" />
-                                <p:menuitem value="Validators" outcome="/pages/component/validators" />
-                                <p:menuitem value="Listeners" outcome="/pages/component/listeners" />
                             </p:submenu>
                             <p:submenu label="Messaging">
                                 <p:menuitem value="Sender" outcome="/pages/webmessage/sender" />

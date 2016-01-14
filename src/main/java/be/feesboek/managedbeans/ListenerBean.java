@@ -41,7 +41,7 @@ public class ListenerBean implements Serializable {
     public void printIt(ActionEvent event) {
         //Action Listener to handle an action event.
         // !! not an Action (for navigation)
-        LOGGER.debug("Entering the pintIt action listener");
+        LOGGER.debug("Entering the printIt action listener");
         //Get submit button id
         String buttonId = event.getComponent().getClientId();
         //TODO: do something with this.
