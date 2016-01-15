@@ -7,15 +7,9 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.ejb.TimerService;
 import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
 import javax.ejb.Timeout;
 import javax.ejb.Timer;
 import javax.ejb.TimerConfig;
-
-/**
- *
- * @author dimitridw
- */
 
 @Startup
 @Singleton
