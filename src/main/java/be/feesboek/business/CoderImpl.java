@@ -1,9 +1,5 @@
 package be.feesboek.business;
 
-/**
- *
- * @author dimitridw
- */
 public class CoderImpl implements Coder {
 
     @Override
