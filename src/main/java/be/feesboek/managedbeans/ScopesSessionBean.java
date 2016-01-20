@@ -4,10 +4,6 @@ import java.io.Serializable;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 
-/**
- *
- * @author dimitridw
- */
 @Named(value = "scopesSessionBean")
 @SessionScoped
 public class ScopesSessionBean implements Serializable{

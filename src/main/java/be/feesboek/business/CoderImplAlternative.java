@@ -2,10 +2,6 @@ package be.feesboek.business;
 
 import javax.enterprise.inject.Alternative;
 
-/**
- *
- * @author dimitridw
- */
 @Alternative
 public class CoderImplAlternative implements Coder {
 
