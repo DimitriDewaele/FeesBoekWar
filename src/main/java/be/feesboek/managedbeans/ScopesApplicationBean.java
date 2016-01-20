@@ -3,10 +3,6 @@ package be.feesboek.managedbeans;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
-/**
- *
- * @author dimitridw
- */
 @Named(value = "scopesApplicationBean")
 @ApplicationScoped
 public class ScopesApplicationBean {

@@ -21,6 +21,8 @@ import javax.ws.rs.core.UriInfo;
  */
 @Path("helloworld/{extra}")
 public class HelloWorld {
+    
+    private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(HelloWorld.class);
 
     @Context
     private UriInfo context;
@@ -38,6 +40,7 @@ public class HelloWorld {
      * Creates a new instance of HelloWorld
      */
     public HelloWorld() {
+        LOGGER.info("JAX-RS: Constructor");
     }
 
     /**
@@ -50,6 +53,8 @@ public class HelloWorld {
     @Produces("text/html")
     public String getHtml(@NotNull @PathParam("extra") String userName) {
 
+        LOGGER.info("JAX-RS: Get");
+        
         String firstname = "Empty";
         String lastname = "Empty";
 
