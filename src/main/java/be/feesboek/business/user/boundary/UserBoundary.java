@@ -58,4 +58,16 @@ public class UserBoundary implements Serializable {
     public UserEntity findByUserName(String userName) {
         return userService.findByUserName(userName);
     }
+    
+    public List<UserEntity> findByQueryAll() {
+        return userService.findByQueryAll();
+    }
+    
+    public UserEntity findByQueryByUserName(String username) {
+        return userService.findByQueryByUserName(username);
+    }
+    
+    public List<UserEntity> findByQueryUserWithMessages() {
+        return userService.findByQueryUserWithMessages();
+    }
 }
