@@ -1,0 +1,28 @@
+<ui:composition template="/WEB-INF/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">Query</ui:define>
+
+    <ui:define name="body">
+
+        <h1>Query</h1>
+        
+        <p>Different Query examples</p>
+
+        <h3>Find user by name</h3>
+        
+        <p>User: <h:outputText value="#{queryBean.user1}"/></p>
+        <p>User: <h:outputText value="#{queryBean.user2}"/></p>
+        <p>User: <h:outputText value="#{queryBean.user3}"/></p>
+        
+        <h3>Count something</h3>
+
+        <p>Count: <h:outputText value="#{queryBean.count1}"/></p>
+
+    </ui:define>
+
+</ui:composition>
