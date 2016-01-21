@@ -127,4 +127,19 @@ public class UserService {
 
         return tq.getSingleResult();
     }
+    
+    public List<UserEntity> findByQueryAll() {
+        return em.createQuery("SELECT u FROM UserEntity").getResultList();
+    }
+    
+    public UserEntity findByQueryByUserName(String username) {
+        return (UserEntity) em.createQuery("SELECT u FROM UserEntity u WHERE u.username = :username")
+                .setParameter("username", username)
+                .getSingleResult();
+    }
+    
+    public List<UserEntity> findByQueryUserWithMessages() {
+        return (List<UserEntity>) em.createQuery("SELECT u FROM UserEntity u JOIN u.messageEntityCollection m")
+                .getResultList();
+    }
 }
